@@ -16,6 +16,7 @@ class FavViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
         favTableView.delegate = self
         favTableView.dataSource = self
+        self.favTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     override func viewWillAppear(_ animated: Bool) {

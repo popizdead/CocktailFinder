@@ -5,7 +5,7 @@
 //  Created by Даниил Дорожкин on 05/03/2021.
 //
 
-import UIKit
+import UIKit 
 
 class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
 
@@ -22,11 +22,11 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
     }
     
     func updateUI() {
+        self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         self.nameLbl.text = cellCoctail.name
         self.instructionText.text = cellCoctail.instruction
         self.img.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         self.instructionText.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
-        //instrScroll.contentLayoutGuide.bottomAnchor.constraint(equalTo: instrLbl.bottomAnchor).isActive = true
         
         if let cocImg = cellCoctail.image {
             img.image = cocImg
