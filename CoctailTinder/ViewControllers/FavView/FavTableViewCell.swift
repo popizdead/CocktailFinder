@@ -39,7 +39,6 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     //MARK:TABLE VIEW
@@ -52,12 +51,15 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
         let ingr = cellCoctail.ingrArray[indexPath.row]
         
         //Sometimes there's empty ingredient in array, because of API
-        if ingr != nil {
+        if ingr.name != "" {
             cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
         }
         
         
         return cell
     }
-    
+ 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ingrTableView.deselectRow(at: indexPath, animated: true)
+    }
 }

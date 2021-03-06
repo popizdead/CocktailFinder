@@ -55,6 +55,7 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
         swipeView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         image.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         
+        ingrTableView.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         ingrTableView.delegate = self
         ingrTableView.dataSource = self
     }
@@ -99,6 +100,10 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let ingr = currentCoctail.ingrArray[indexPath.row]
         cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ingrTableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

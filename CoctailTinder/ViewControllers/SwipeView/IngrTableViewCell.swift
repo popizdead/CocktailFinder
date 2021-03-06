@@ -11,7 +11,7 @@ class IngrTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

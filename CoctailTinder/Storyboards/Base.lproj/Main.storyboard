@@ -36,10 +36,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3a-7V-Hnk">
-                                                    <rect key="frame" x="156" y="51" width="198" height="100"/>
+                                                    <rect key="frame" x="156" y="51" width="198" height="88"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="NGk-S2-ySD"/>
+                                                        <constraint firstAttribute="height" constant="88" id="whV-ij-URT"/>
                                                     </constraints>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingrCell" id="84m-Gw-4ZN" customClass="IngrTableViewCell" customModule="CoctailTinder" customModuleProvider="target">
@@ -70,7 +70,7 @@
                                                     </prototypes>
                                                 </tableView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR4-LE-Cxe">
-                                                    <rect key="frame" x="20" y="159" width="334" height="109"/>
+                                                    <rect key="frame" x="20" y="147" width="334" height="121"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -89,6 +89,7 @@
                                                 <constraint firstItem="w3a-7V-Hnk" firstAttribute="top" secondItem="f5d-gl-qYy" secondAttribute="bottom" constant="12.5" id="1Qz-RJ-gcW"/>
                                                 <constraint firstAttribute="trailing" secondItem="w3a-7V-Hnk" secondAttribute="trailing" constant="20" id="Bi1-gO-Y6C"/>
                                                 <constraint firstAttribute="trailing" secondItem="f5d-gl-qYy" secondAttribute="trailing" constant="20" id="DUh-tq-scX"/>
+                                                <constraint firstItem="QR4-LE-Cxe" firstAttribute="top" secondItem="w3a-7V-Hnk" secondAttribute="bottom" constant="8" symbolic="YES" id="EwF-vm-UAF"/>
                                                 <constraint firstItem="f5d-gl-qYy" firstAttribute="leading" secondItem="Zmv-Zz-ThW" secondAttribute="trailing" constant="8" id="I9h-I0-fmb"/>
                                                 <constraint firstItem="w3a-7V-Hnk" firstAttribute="leading" secondItem="Zmv-Zz-ThW" secondAttribute="trailing" constant="8" id="XXz-9l-jxo"/>
                                                 <constraint firstItem="QR4-LE-Cxe" firstAttribute="centerX" secondItem="Eda-ja-q3Y" secondAttribute="centerX" id="aAM-Uq-Zbs"/>
@@ -96,7 +97,6 @@
                                                 <constraint firstItem="f5d-gl-qYy" firstAttribute="top" secondItem="Eda-ja-q3Y" secondAttribute="top" constant="11" id="jyE-FY-pyn"/>
                                                 <constraint firstAttribute="trailing" secondItem="QR4-LE-Cxe" secondAttribute="trailing" constant="20" id="nc1-6x-3j7"/>
                                                 <constraint firstItem="Zmv-Zz-ThW" firstAttribute="top" secondItem="Eda-ja-q3Y" secondAttribute="top" constant="11" id="tix-ae-pfQ"/>
-                                                <constraint firstItem="QR4-LE-Cxe" firstAttribute="top" secondItem="w3a-7V-Hnk" secondAttribute="bottom" constant="8" id="vPN-tI-Bdl"/>
                                                 <constraint firstItem="Zmv-Zz-ThW" firstAttribute="leading" secondItem="Eda-ja-q3Y" secondAttribute="leading" constant="20" id="vjd-su-Cmv"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -104,7 +104,7 @@
                                             <outlet property="img" destination="Zmv-Zz-ThW" id="NcV-gU-coo"/>
                                             <outlet property="ingrTableView" destination="w3a-7V-Hnk" id="h3j-z3-Kg9"/>
                                             <outlet property="instructionText" destination="QR4-LE-Cxe" id="O7d-Wd-koU"/>
-                                            <outlet property="nameLbl" destination="f5d-gl-qYy" id="2wg-yR-xzY"/>
+                                            <outlet property="nameLbl" destination="f5d-gl-qYy" id="Xn5-bI-lBq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
