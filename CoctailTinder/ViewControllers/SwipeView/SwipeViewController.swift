@@ -11,7 +11,7 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //MARK:OUTLETS
     @IBOutlet weak var swipeView: UIView!
-    @IBOutlet weak var colorView: UIView!
+    //@IBOutlet weak var colorView: UIView!
     
     @IBOutlet var rightSwipe: UISwipeGestureRecognizer!
     @IBOutlet var leftSwipe: UISwipeGestureRecognizer!
@@ -70,8 +70,7 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func hideView(hide: Bool, toColor: UIColor?) {
         loadingIndicator.animateHidding(hidding: !hide)
         if hide {
-            image.isHidden = true
-            image.image = nil
+            /*
             self.colorView.animateHidding(hidding: false)
             UIView.animate(withDuration: 1) {
                 self.colorView.backgroundColor = toColor!
@@ -79,12 +78,13 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
             UIView.animate(withDuration: 0.5) {
                 self.colorView.backgroundColor = .white
             }
-            
+             */
+            image.isHidden = true
+            image.image = nil
         } else {
             image.backgroundColor = .systemGray6
             image.isHidden = false
-            self.colorView.animateHidding(hidding: true)
-            
+            //self.colorView.animateHidding(hidding: true)
         }
     }
     
