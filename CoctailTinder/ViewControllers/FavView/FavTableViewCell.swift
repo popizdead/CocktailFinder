@@ -11,6 +11,7 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
 
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var instructionText: UITextView!
     
     @IBOutlet weak var ingrTableView: UITableView!
     var cellCoctail : Coctail!
@@ -22,6 +23,10 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
     
     func updateUI() {
         self.nameLbl.text = cellCoctail.name
+        self.instructionText.text = cellCoctail.instruction
+        self.img.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        self.instructionText.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        //instrScroll.contentLayoutGuide.bottomAnchor.constraint(equalTo: instrLbl.bottomAnchor).isActive = true
         
         if let cocImg = cellCoctail.image {
             img.image = cocImg
@@ -46,7 +51,11 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
         let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
         let ingr = cellCoctail.ingrArray[indexPath.row]
         
-        cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
+        //Sometimes there's empty ingredient in array, because of API
+        if ingr != nil {
+            cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
+        }
+        
         
         return cell
     }
