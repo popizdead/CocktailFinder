@@ -41,6 +41,10 @@ class FavViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         favArray.remove(at: indexPath.row)
-        favTableView.reloadData()
+        if favArray.count > 0 {
+            favTableView.deleteRows(at: [indexPath], with: .fade)
+        } else {
+            favTableView.reloadData()
+        }
     }
 }

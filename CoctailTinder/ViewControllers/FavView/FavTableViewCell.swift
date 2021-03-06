@@ -8,7 +8,10 @@
 import UIKit 
 
 class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
-
+    
+    
+    @IBOutlet weak var glassLbl: UILabel!
+    @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var instructionText: UITextView!
@@ -23,8 +26,12 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
     
     func updateUI() {
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        
         self.nameLbl.text = cellCoctail.name
         self.instructionText.text = cellCoctail.instruction
+        self.categoryLbl.text = cellCoctail.category
+        self.glassLbl.text = cellCoctail.glass
+        
         self.img.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         self.instructionText.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         
