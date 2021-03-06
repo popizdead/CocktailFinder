@@ -15,12 +15,11 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet var rightSwipe: UISwipeGestureRecognizer!
     @IBOutlet var leftSwipe: UISwipeGestureRecognizer!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var instructionTextView: UITextView!
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var categoryLbl: UILabel!
-    @IBOutlet weak var descrLbl: UILabel!
     @IBOutlet weak var ingrTableView: UITableView!
    
     @IBAction func swipeAction(_ sender: UISwipeGestureRecognizer) {
@@ -63,7 +62,7 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func updateUI() {
         self.categoryLbl.text = currentCoctail.category
         self.nameLbl.text = currentCoctail.name
-        self.descrLbl.text = currentCoctail.instruction
+        self.instructionTextView.text = currentCoctail.instruction
         
         ingrTableView.reloadData()
     }
@@ -79,7 +78,14 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func viewUpdate(hide: Bool) {
         loadingIndicator.animateHidding(hidding: !hide)
-        let elementsArray = [image, nameLbl, descrLbl, categoryLbl, ingrTableView]
+        if hide {
+            image.isHidden = true
+            image.image = nil
+        } else {
+            image.backgroundColor = .systemGray6
+            image.isHidden = false
+        }
+        let elementsArray = [nameLbl, instructionTextView, categoryLbl, ingrTableView]
         for element in elementsArray {
             element?.animateHidding(hidding: hide)
         }

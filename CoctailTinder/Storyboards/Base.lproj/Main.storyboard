@@ -158,16 +158,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysK-vA-zSg">
-                                        <rect key="frame" x="15" y="308" width="344" height="98.5"/>
-                                        <string key="text">Pour brandy and ginger ale directly into highball glass with ice cubes. Stir gently. Garnish with lemon zest. If desired, add dashes of Angostura Bitter.</string>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6UH-oz-hkp">
-                                        <rect key="frame" x="0.0" y="414.5" width="374" height="274.5"/>
+                                        <rect key="frame" x="0.0" y="446" width="374" height="243"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="243" id="X2Z-TZ-Gj0"/>
+                                        </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingrCell" id="nQS-J5-xpf" customClass="IngrTableViewCell" customModule="CoctailTinder" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
@@ -198,25 +194,32 @@
                                         <rect key="frame" x="177" y="347" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axB-tb-DGK">
+                                        <rect key="frame" x="15" y="310" width="344" height="128"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="6UH-oz-hkp" firstAttribute="leading" secondItem="8co-K8-4WK" secondAttribute="leading" id="083-2M-ZFh"/>
-                                    <constraint firstAttribute="trailing" secondItem="ysK-vA-zSg" secondAttribute="trailing" constant="15" id="1E9-lW-7ik"/>
-                                    <constraint firstItem="ysK-vA-zSg" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="2fE-fN-TzT"/>
                                     <constraint firstItem="6UH-oz-hkp" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="BoD-x9-FT4"/>
-                                    <constraint firstItem="6UH-oz-hkp" firstAttribute="top" secondItem="ysK-vA-zSg" secondAttribute="bottom" constant="8" id="E8d-Rn-a6H"/>
+                                    <constraint firstItem="axB-tb-DGK" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="KC0-IT-Vds"/>
                                     <constraint firstAttribute="bottom" secondItem="6UH-oz-hkp" secondAttribute="bottom" id="Mbg-4n-fh6"/>
+                                    <constraint firstItem="6UH-oz-hkp" firstAttribute="top" secondItem="axB-tb-DGK" secondAttribute="bottom" constant="8" id="UaI-Ah-VrJ"/>
                                     <constraint firstItem="YTr-EQ-bPu" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="b1d-G7-5aS"/>
                                     <constraint firstItem="YTr-EQ-bPu" firstAttribute="leading" secondItem="8co-K8-4WK" secondAttribute="leading" constant="87" id="ckA-ut-KOp"/>
                                     <constraint firstItem="YTr-EQ-bPu" firstAttribute="top" secondItem="8co-K8-4WK" secondAttribute="top" constant="27" id="fe4-PU-WZt"/>
-                                    <constraint firstItem="ysK-vA-zSg" firstAttribute="top" secondItem="MXu-Jc-Xyj" secondAttribute="bottom" constant="8" id="gFx-ll-9BS"/>
                                     <constraint firstItem="NPn-aD-MiQ" firstAttribute="top" secondItem="YTr-EQ-bPu" secondAttribute="bottom" constant="8" id="jCq-So-ezt"/>
                                     <constraint firstItem="MXu-Jc-Xyj" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="kAh-9d-8Ie"/>
+                                    <constraint firstItem="axB-tb-DGK" firstAttribute="leading" secondItem="8co-K8-4WK" secondAttribute="leadingMargin" constant="7" id="kiF-4L-icD"/>
                                     <constraint firstItem="NPn-aD-MiQ" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="nhw-c9-hAJ"/>
+                                    <constraint firstItem="axB-tb-DGK" firstAttribute="top" secondItem="MXu-Jc-Xyj" secondAttribute="bottom" constant="10" id="nsA-Jh-QtT"/>
                                     <constraint firstItem="MXu-Jc-Xyj" firstAttribute="top" secondItem="NPn-aD-MiQ" secondAttribute="bottom" constant="8" id="pBS-4T-Qvb"/>
-                                    <constraint firstItem="ysK-vA-zSg" firstAttribute="leading" secondItem="8co-K8-4WK" secondAttribute="leading" constant="15" id="wAm-G0-gro"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Ipa-8H-Zbq" appends="YES" id="h3A-Qn-Ef1"/>
@@ -236,9 +239,9 @@
                     <tabBarItem key="tabBarItem" title="" image="cards" id="DmR-i1-luV"/>
                     <connections>
                         <outlet property="categoryLbl" destination="MXu-Jc-Xyj" id="bnq-eX-78E"/>
-                        <outlet property="descrLbl" destination="ysK-vA-zSg" id="jaU-hr-BFm"/>
                         <outlet property="image" destination="YTr-EQ-bPu" id="JLR-Ld-gRA"/>
                         <outlet property="ingrTableView" destination="6UH-oz-hkp" id="Zd2-zb-yER"/>
+                        <outlet property="instructionTextView" destination="axB-tb-DGK" id="upq-i0-vQ1"/>
                         <outlet property="leftSwipe" destination="gll-ww-kei" id="haz-Mw-Paw"/>
                         <outlet property="loadingIndicator" destination="wE5-kd-vAr" id="9HP-Hm-fG0"/>
                         <outlet property="nameLbl" destination="NPn-aD-MiQ" id="5WG-ci-fwd"/>

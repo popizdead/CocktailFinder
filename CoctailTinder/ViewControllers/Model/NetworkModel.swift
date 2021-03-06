@@ -51,6 +51,7 @@ extension SwipeViewController {
                 let coctailImage = UIImage(data: dataImg)
                 self.image.image = coctailImage
                 currentCoctail.image = coctailImage
+                //self.image.animateHidding(hidding: false)
             }
         }
     }
