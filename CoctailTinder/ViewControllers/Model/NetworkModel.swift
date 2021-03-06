@@ -33,7 +33,7 @@ extension SwipeViewController {
                                         currentCoctail = coctail
                                         downloadImg()
                                         self.updateUI()
-                                        self.viewUpdate(hide: false)
+                                        self.hideView(hide: false, toColor: nil)
                                     }
                                 }
                             }

@@ -11,6 +11,7 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //MARK:OUTLETS
     @IBOutlet weak var swipeView: UIView!
+    @IBOutlet weak var colorView: UIView!
     
     @IBOutlet var rightSwipe: UISwipeGestureRecognizer!
     @IBOutlet var leftSwipe: UISwipeGestureRecognizer!
@@ -23,13 +24,12 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var ingrTableView: UITableView!
    
     @IBAction func swipeAction(_ sender: UISwipeGestureRecognizer) {
-        viewUpdate(hide: true)
         if sender == rightSwipe {
-            fillView(toColor: UIColor(red: 14/255, green: 150/255, blue: 65/255, alpha: 1))
-            favArray.append(currentCoctail)
+            hideView(hide: true, toColor: UIColor(red: 14/255, green: 150/255, blue: 65/255, alpha: 1))
+            favArray.insert(currentCoctail, at: 0)
         }
         else if sender == leftSwipe {
-            fillView(toColor: UIColor(red: 240/255, green: 51/255, blue: 66/255, alpha: 1))
+            hideView(hide: true, toColor: UIColor(red: 240/255, green: 51/255, blue: 66/255, alpha: 1))
         }
         randomCoctailRequest()
     }
@@ -67,27 +67,24 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
         ingrTableView.reloadData()
     }
     
-    func fillView(toColor: UIColor) {
-        UIView.animate(withDuration: 0.5) {
-            self.swipeView.backgroundColor = toColor
-        }
-        UIView.animate(withDuration: 0.5) {
-            self.swipeView.backgroundColor = .white
-        }
-    }
-    
-    func viewUpdate(hide: Bool) {
+    func hideView(hide: Bool, toColor: UIColor?) {
         loadingIndicator.animateHidding(hidding: !hide)
         if hide {
             image.isHidden = true
             image.image = nil
+            self.colorView.animateHidding(hidding: false)
+            UIView.animate(withDuration: 1) {
+                self.colorView.backgroundColor = toColor!
+            }
+            UIView.animate(withDuration: 0.5) {
+                self.colorView.backgroundColor = .white
+            }
+            
         } else {
             image.backgroundColor = .systemGray6
             image.isHidden = false
-        }
-        let elementsArray = [nameLbl, instructionTextView, categoryLbl, ingrTableView]
-        for element in elementsArray {
-            element?.animateHidding(hidding: hide)
+            self.colorView.animateHidding(hidding: true)
+            
         }
     }
     
