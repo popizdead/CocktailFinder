@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6308FF8825F4BA0400F61589 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6308FF8725F4BA0400F61589 /* CardsViewController.swift */; };
+		633325AB25F7AEA3001B399F /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633325AA25F7AEA3001B399F /* CardsViewController.swift */; };
+		633325B925F83944001B399F /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633325B825F83943001B399F /* Ingredient.swift */; };
+		633325BE25F839A4001B399F /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633325BD25F839A4001B399F /* Cocktail.swift */; };
 		6340B68F25F152BC006F7672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340B68E25F152BC006F7672 /* AppDelegate.swift */; };
 		6340B69125F152BC006F7672 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340B69025F152BC006F7672 /* SceneDelegate.swift */; };
 		6340B69625F152BC006F7672 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6340B69425F152BC006F7672 /* Main.storyboard */; };
@@ -16,8 +18,9 @@
 		639DDDEC25F2870C0010CA4A /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DDDEB25F2870C0010CA4A /* SwipeViewController.swift */; };
 		639DDDF025F2872D0010CA4A /* SwipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DDDEF25F2872D0010CA4A /* SwipeModel.swift */; };
 		639DDDF425F289D00010CA4A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DDDF325F289D00010CA4A /* Extensions.swift */; };
+		63BF68A925F6E4960066F117 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BF68A825F6E4960066F117 /* CardCollectionViewCell.swift */; };
+		63BF68B025F6E9400066F117 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BF68AF25F6E9400066F117 /* CardView.xib */; };
 		63D74B0525F2A44B00503326 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B0425F2A44B00503326 /* NetworkModel.swift */; };
-		63D74B0A25F2A5A900503326 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B0925F2A5A900503326 /* Classes.swift */; };
 		63D74B1125F2C03200503326 /* IngrTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B1025F2C03200503326 /* IngrTableViewCell.swift */; };
 		63D74B1425F2D49B00503326 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B1325F2D49B00503326 /* FavViewController.swift */; };
 		63D74B1925F2D6C600503326 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B1825F2D6C600503326 /* FavTableViewCell.swift */; };
@@ -25,7 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6308FF8725F4BA0400F61589 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		633325AA25F7AEA3001B399F /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		633325B825F83943001B399F /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		633325BD25F839A4001B399F /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
 		6340B68B25F152BC006F7672 /* CoctailTinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoctailTinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340B68E25F152BC006F7672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6340B69025F152BC006F7672 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,8 +41,9 @@
 		639DDDEB25F2870C0010CA4A /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		639DDDEF25F2872D0010CA4A /* SwipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModel.swift; sourceTree = "<group>"; };
 		639DDDF325F289D00010CA4A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		63BF68A825F6E4960066F117 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		63BF68AF25F6E9400066F117 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		63D74B0425F2A44B00503326 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
-		63D74B0925F2A5A900503326 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		63D74B1025F2C03200503326 /* IngrTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngrTableViewCell.swift; sourceTree = "<group>"; };
 		63D74B1325F2D49B00503326 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
 		63D74B1825F2D6C600503326 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +70,15 @@
 				D71595DBF42E90CF5E0F9ED1 /* Pods_CoctailTinder.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		633325BB25F8398D001B399F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				633325B825F83943001B399F /* Ingredient.swift */,
+				633325BD25F839A4001B399F /* Cocktail.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		6340B68225F152BC006F7672 = {
@@ -121,7 +136,8 @@
 				639DDDE925F286EC0010CA4A /* SwipeView */,
 				63D74B0725F2A45300503326 /* Model */,
 				63D74B1625F2D4A100503326 /* FavView */,
-				6308FF8725F4BA0400F61589 /* CardsViewController.swift */,
+				63BF68AC25F6E4A00066F117 /* CardsView */,
+				633325BB25F8398D001B399F /* Classes */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -136,11 +152,20 @@
 			path = SwipeView;
 			sourceTree = "<group>";
 		};
+		63BF68AC25F6E4A00066F117 /* CardsView */ = {
+			isa = PBXGroup;
+			children = (
+				63BF68AF25F6E9400066F117 /* CardView.xib */,
+				63BF68A825F6E4960066F117 /* CardCollectionViewCell.swift */,
+				633325AA25F7AEA3001B399F /* CardsViewController.swift */,
+			);
+			path = CardsView;
+			sourceTree = "<group>";
+		};
 		63D74B0725F2A45300503326 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				63D74B0425F2A44B00503326 /* NetworkModel.swift */,
-				63D74B0925F2A5A900503326 /* Classes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,6 +249,7 @@
 			files = (
 				6340B69B25F152BF006F7672 /* LaunchScreen.storyboard in Resources */,
 				6340B69825F152BF006F7672 /* Assets.xcassets in Resources */,
+				63BF68B025F6E9400066F117 /* CardView.xib in Resources */,
 				6340B69625F152BC006F7672 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,13 +304,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D74B0525F2A44B00503326 /* NetworkModel.swift in Sources */,
-				63D74B0A25F2A5A900503326 /* Classes.swift in Sources */,
+				633325B925F83944001B399F /* Ingredient.swift in Sources */,
 				639DDDF425F289D00010CA4A /* Extensions.swift in Sources */,
 				63D74B1425F2D49B00503326 /* FavViewController.swift in Sources */,
+				63BF68A925F6E4960066F117 /* CardCollectionViewCell.swift in Sources */,
 				6340B68F25F152BC006F7672 /* AppDelegate.swift in Sources */,
+				633325BE25F839A4001B399F /* Cocktail.swift in Sources */,
 				6340B69125F152BC006F7672 /* SceneDelegate.swift in Sources */,
 				63D74B1125F2C03200503326 /* IngrTableViewCell.swift in Sources */,
-				6308FF8825F4BA0400F61589 /* CardsViewController.swift in Sources */,
+				633325AB25F7AEA3001B399F /* CardsViewController.swift in Sources */,
 				639DDDEC25F2870C0010CA4A /* SwipeViewController.swift in Sources */,
 				639DDDF025F2872D0010CA4A /* SwipeModel.swift in Sources */,
 				63D74B1925F2D6C600503326 /* FavTableViewCell.swift in Sources */,

@@ -41,4 +41,8 @@ extension String {
     mutating func uppercaseFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
+    
+    func makeUrlable() -> String {
+        return self.replacingOccurrences(of: " ", with: "%20")
+    }
 }

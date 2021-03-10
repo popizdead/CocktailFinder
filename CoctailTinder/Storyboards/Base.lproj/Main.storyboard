@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -295,18 +296,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="413-FL-ThD">
-                                <rect key="frame" x="0.0" y="147" width="414" height="666"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ETp-Ue-uKI" customClass="GeminiCollectionView" customModule="Gemini">
+                                <rect key="frame" x="0.0" y="35" width="414" height="778"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nds-0i-pLh">
+                                    <size key="itemSize" width="395" height="751"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Nyd-jy-WsC" customClass="CardCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                        <rect key="frame" x="9.5" y="0.0" width="395" height="751"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vsq-y6-dLk">
+                                            <rect key="frame" x="0.0" y="0.0" width="395" height="751"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdr-kQ-9sB">
+                                                    <rect key="frame" x="177" y="79" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="395" height="751"/>
+                                        <connections>
+                                            <outlet property="text" destination="jdr-kQ-9sB" id="SvJ-Tb-ObA"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SOH-Ia-UVR"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="ETp-Ue-uKI" firstAttribute="leading" secondItem="SOH-Ia-UVR" secondAttribute="leading" id="Kpr-JL-iMQ"/>
+                            <constraint firstItem="ETp-Ue-uKI" firstAttribute="bottom" secondItem="SOH-Ia-UVR" secondAttribute="bottom" id="UDu-En-xAh"/>
+                            <constraint firstItem="ETp-Ue-uKI" firstAttribute="trailing" secondItem="SOH-Ia-UVR" secondAttribute="trailing" id="YIH-22-gWj"/>
+                            <constraint firstItem="ETp-Ue-uKI" firstAttribute="top" secondItem="Cu2-9y-Dda" secondAttribute="top" constant="35" id="r1b-5L-9QM"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Xfw-Lf-ctJ"/>
                     <connections>
-                        <outlet property="collectionFrame" destination="413-FL-ThD" id="VhR-HA-IZ0"/>
+                        <outlet property="cardsCollectionView" destination="ETp-Ue-uKI" id="HoL-0n-eAu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-mp-SEZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

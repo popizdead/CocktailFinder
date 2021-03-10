@@ -57,13 +57,13 @@ extension SwipeViewController {
     }
 }
 
-func createIngredients(from dict: [String:Any]) -> [Ingredient] {
-    var ingrArray : [Ingredient] = []
+func createIngredients(from dict: [String:Any]) -> [IngredientShort] {
+    var ingrArray : [IngredientShort] = []
     
     for index in Range(1...15) {
         if let name = dict["strIngredient\(index)"] as? String {
             if let measure = dict["strMeasure\(index)"] as? String {
-                let ingr = Ingredient(name: name, measure: measure)
+                let ingr = IngredientShort(name: name, measure: measure)
                 ingrArray.append(ingr)
             }
         } else {

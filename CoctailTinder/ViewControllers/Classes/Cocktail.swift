@@ -1,8 +1,8 @@
 //
-//  Classes.swift
+//  Cocktail.swift
 //  CoctailTinder
 //
-//  Created by Даниил Дорожкин on 05/03/2021.
+//  Created by Даниил Дорожкин on 10/03/2021.
 //
 
 import Foundation
@@ -14,11 +14,11 @@ class Coctail {
     var id : String
     var imageURL : String
     var glass : String
-    var ingrArray : [Ingredient]
+    var ingrArray : [IngredientShort]
     var instruction : String
     var image: UIImage?
     
-    init(name: String, category: String, id: String, imgUrl: String, glass: String, ingrArray: [Ingredient], instr: String) {
+    init(name: String, category: String, id: String, imgUrl: String, glass: String, ingrArray: [IngredientShort], instr: String) {
         self.name = name
         self.category = category
         self.id = id
@@ -27,9 +27,4 @@ class Coctail {
         self.ingrArray = ingrArray
         self.instruction = instr
     }
-}
-
-struct Ingredient {
-    var name = String()
-    var measure = String()
 }

@@ -38,6 +38,7 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllIngredients()
         updateUI()
         setupUI()
         randomCoctailRequest()
