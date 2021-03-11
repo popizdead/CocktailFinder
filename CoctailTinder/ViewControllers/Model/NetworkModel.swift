@@ -14,6 +14,7 @@ extension SwipeViewController {
             guard let dataDict = data.value as? [String : Any] else { return }
             if let coctail = self.createCoctail(from: dataDict) {
                 currentCoctail = coctail
+                
             }
         }
     }
@@ -32,8 +33,9 @@ extension SwipeViewController {
                                         let coctail = Coctail(name: name, category: category, id: id, imgUrl: imgUrl, glass: glass, ingrArray: ingredientArray, instr: instr)
                                         currentCoctail = coctail
                                         downloadImg()
+                                        self.getIngrImages()
                                         self.updateUI()
-                                        self.hideView(hide: false, toColor: nil)
+                                        
                                     }
                                 }
                             }
@@ -55,21 +57,39 @@ extension SwipeViewController {
             }
         }
     }
-}
-
-func createIngredients(from dict: [String:Any]) -> [IngredientShort] {
-    var ingrArray : [IngredientShort] = []
     
-    for index in Range(1...15) {
-        if let name = dict["strIngredient\(index)"] as? String {
-            if let measure = dict["strMeasure\(index)"] as? String {
-                let ingr = IngredientShort(name: name, measure: measure)
-                ingrArray.append(ingr)
+    
+    func createIngredients(from dict: [String:Any]) -> [Ingredient] {
+        var ingrArray : [Ingredient] = []
+        
+        for index in Range(1...15) {
+            if let name = dict["strIngredient\(index)"] as? String {
+                if let measure = dict["strMeasure\(index)"] as? String {
+                    let ingr = Ingredient(name: name)
+                    //getIngredientImage(toName: ingr.name)
+                    ingrArray.append(ingr)
+                }
+            } else {
+                break
             }
-        } else {
-            break
         }
+        
+        return ingrArray
     }
     
-    return ingrArray
+    func getIngrImages() {
+        for ingr in currentCoctail.ingrArray {
+            AF.request("https://www.thecocktaildb.com/images/ingredients/\(ingr.name.makeUrlable()).png").responseData { (response) in
+                if let data = response.data {
+                    if let img = UIImage(data: data) {
+                        ingr.ingrImage = img
+                        self.ingredientCollectionView.reloadData()
+                    }
+                }
+            }
+            
+        }
+    }
+
 }
+

@@ -54,14 +54,15 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
+        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath)
         let ingr = cellCoctail.ingrArray[indexPath.row]
         
+        /*
         //Sometimes there's empty ingredient in array, because of API
         if ingr.name != "" {
             cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
         }
-        
+        */
         
         return cell
     }

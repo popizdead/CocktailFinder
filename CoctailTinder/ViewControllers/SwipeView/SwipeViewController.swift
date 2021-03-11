@@ -7,38 +7,34 @@
 
 import UIKit
 
-class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
     //MARK:OUTLETS
     @IBOutlet weak var swipeView: UIView!
-    //@IBOutlet weak var colorView: UIView!
-    
-    @IBOutlet var rightSwipe: UISwipeGestureRecognizer!
-    @IBOutlet var leftSwipe: UISwipeGestureRecognizer!
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var instructionTextView: UITextView!
+    @IBOutlet var cardPenRecognizer: UIPanGestureRecognizer!
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var categoryLbl: UILabel!
-    @IBOutlet weak var ingrTableView: UITableView!
-   
-    @IBAction func swipeAction(_ sender: UISwipeGestureRecognizer) {
-        if sender == rightSwipe {
-            hideView(hide: true, toColor: UIColor(red: 14/255, green: 150/255, blue: 65/255, alpha: 1))
-            favArray.insert(currentCoctail, at: 0)
-        }
-        else if sender == leftSwipe {
-            hideView(hide: true, toColor: UIColor(red: 240/255, green: 51/255, blue: 66/255, alpha: 1))
-        }
-        randomCoctailRequest()
-    }
+    @IBOutlet weak var ingredientCollectionView: UICollectionView!
+    @IBOutlet weak var instructionButton: UIButton!
     
+    
+    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
+        let card = sender.view!
+        let point = sender.translation(in: card)
+        card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+        if sender.state == .ended {
+            card.animateHidding(hidding: true)
+            card.center = self.view.center
+            card.animateHidding(hidding: false)
+            randomCoctailRequest()
+        }
+    }
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAllIngredients()
         updateUI()
         setupUI()
         randomCoctailRequest()
@@ -50,61 +46,43 @@ class SwipeViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //MARK:UI
     func setupUI() {
-        loadingIndicator.isHidden = true
-        loadingIndicator.startAnimating()
         swipeView.backgroundColor = .white
         swipeView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         image.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        instructionButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         
-        ingrTableView.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
-        ingrTableView.delegate = self
-        ingrTableView.dataSource = self
+        ingredientCollectionView.delegate = self
+        ingredientCollectionView.dataSource = self
     }
     
     func updateUI() {
         self.categoryLbl.text = currentCoctail.category
         self.nameLbl.text = currentCoctail.name
-        self.instructionTextView.text = currentCoctail.instruction
         
-        ingrTableView.reloadData()
+        ingredientCollectionView.reloadData()
     }
-    
-    func hideView(hide: Bool, toColor: UIColor?) {
-        loadingIndicator.animateHidding(hidding: !hide)
-        if hide {
-            /*
-            self.colorView.animateHidding(hidding: false)
-            UIView.animate(withDuration: 1) {
-                self.colorView.backgroundColor = toColor!
-            }
-            UIView.animate(withDuration: 0.5) {
-                self.colorView.backgroundColor = .white
-            }
-             */
-            image.isHidden = true
-            image.image = nil
-        } else {
-            image.backgroundColor = .systemGray6
-            image.isHidden = false
-            //self.colorView.animateHidding(hidding: true)
-        }
-    }
+   
     
     
     //MARK:COLLECTION VIEW
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return currentCoctail.ingrArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = ingredientCollectionView.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
         let ingr = currentCoctail.ingrArray[indexPath.row]
-        cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
+        
+        cell.nameLbl.text = ingr.name
+        if let img = ingr.ingrImage {
+            cell.img.image = img
+            cell.img.backgroundColor = .white
+        } else {
+            cell.img.image = nil
+            cell.img.backgroundColor = .systemGray6
+        }
+        
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ingrTableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

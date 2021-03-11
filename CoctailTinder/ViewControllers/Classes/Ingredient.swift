@@ -18,17 +18,15 @@ var ingredientDict : [String : UIImage] = [:]
 
 class Ingredient {
     var name : String
-    var ingrImage : UIImage
+    var ingrImage : UIImage?
     var measure : String?
     
-    init(name: String, img: UIImage) {
+    init(name: String) {
         self.name = name
-        self.ingrImage = img
     }
-    
 }
 
-
+/*
 func getAllIngredients() {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list").responseJSON { (response) in
         if let dataArray = response.value as? [String : Any] {
@@ -43,13 +41,5 @@ func getAllIngredients() {
         }
     }
 }
+*/
 
-func getIngredientImage(toName: String) {
-    AF.request("https://www.thecocktaildb.com/images/ingredients/\(toName.makeUrlable()).png").responseData { (response) in
-        if let data = response.data {
-            if let img = UIImage(data: data) {
-                ingredientDict[toName] = img
-            }
-        }
-    }
-}

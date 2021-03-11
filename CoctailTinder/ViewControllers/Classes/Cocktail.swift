@@ -14,11 +14,11 @@ class Coctail {
     var id : String
     var imageURL : String
     var glass : String
-    var ingrArray : [IngredientShort]
+    var ingrArray : [Ingredient]
     var instruction : String
     var image: UIImage?
     
-    init(name: String, category: String, id: String, imgUrl: String, glass: String, ingrArray: [IngredientShort], instr: String) {
+    init(name: String, category: String, id: String, imgUrl: String, glass: String, ingrArray: [Ingredient], instr: String) {
         self.name = name
         self.category = category
         self.id = id
