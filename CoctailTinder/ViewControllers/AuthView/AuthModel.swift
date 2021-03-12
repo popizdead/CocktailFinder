@@ -14,6 +14,7 @@ var ingrNameArray : [String] = []
 var imgDict : [String:UIImage] = [:]
 
 var ingrBarArray : [Ingredient] = []
+var needUpdate = false
 
 extension AuthViewController {
     func getAllIngredientsList() {
@@ -23,7 +24,7 @@ extension AuthViewController {
                     for ingrElem in ingrDict {
                         if let name = ingrElem["strIngredient1"] as? String {
                             ingrNameArray.append(name)
-                            self.getIngredientImage(toName: name)
+                            //self.getIngredientImage(toName: name)
                         }
                     }
                     self.ingredientsCV.reloadData()
@@ -56,8 +57,6 @@ func ingredientCoreData(ingr: Ingredient) {
     
     guard let entity = NSEntityDescription.entity(forEntityName: "IngredientBar", in: context) else { return }
     let ingrObject = IngredientBar(entity: entity, insertInto: context)
-    
-    print(ingr.ingrImage?.pngData())
     
     ingrObject.name = ingr.name
     if let data = ingr.ingrImage?.pngData() {

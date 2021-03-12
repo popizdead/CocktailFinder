@@ -17,6 +17,15 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         setupUI()
         getAllIngredientsList()
+        let _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateCV), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCV() {
+        if needUpdate {
+            self.ingredientsCV.reloadData()
+            needUpdate = false
+        }
+        
     }
     
     func setupUI() {
@@ -45,8 +54,6 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = ingredientsCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! ItemCollectionViewCell
         cell.cellIndex = indexPath.row
         cell.tappedCell()
-        print(ingrNameArray.count)
-        print("tapped \(cell.nameLbl.text)")
         ingredientsCV.reloadData()
     }
     

@@ -18,6 +18,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var ingredientCollectionView: UICollectionView!
     @IBOutlet weak var instructionButton: UIButton!
+    @IBOutlet weak var ingrCountLbl: UILabel!
     
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -25,9 +26,16 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         let point = sender.translation(in: card)
         card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
         if sender.state == .ended {
-            card.animateHidding(hidding: true)
-            card.center = self.view.center
-            card.animateHidding(hidding: false)
+            if card.center.x > view.center.x {
+                //Green
+                self.swipeView.backgroundColor = .systemGreen
+            } else {
+                //Red
+                self.swipeView.backgroundColor = .systemRed
+            }
+            UIView.animate(withDuration: 0.2) {
+                card.center = self.view.center
+            }
             randomCoctailRequest()
         }
     }
@@ -58,10 +66,35 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     func updateUI() {
         self.categoryLbl.text = currentCoctail.category
         self.nameLbl.text = currentCoctail.name
-        
+        self.ingrCountLbl.text = "\(currentCoctail.ingrArray.count) Ingredients"
         ingredientCollectionView.reloadData()
     }
+    
+    func hideView(hidding: Bool) {
+        if hidding {
+            self.image.image = nil
+            self.image.backgroundColor = .systemGray6
+            
+            currentCoctail.ingrArray.removeAll()
+        } else {
+            swipeView.backgroundColor = .white
+        }
+        let viewArray = [ingredientCollectionView, image, nameLbl, categoryLbl, ingrCountLbl, instructionButton]
+        for view in viewArray {
+            view?.animateHidding(hidding: hidding)
+        }
+    }
    
+    func fillView(toColor: UIColor) {
+        UIView.animate(withDuration: 0.2) {
+            
+        }
+    }
+    
+    
+    @IBAction func instructionButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "mainToReview", sender: self)
+    }
     
     
     //MARK:COLLECTION VIEW
@@ -72,7 +105,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingredientCollectionView.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
         let ingr = currentCoctail.ingrArray[indexPath.row]
-        
+        cell.img.layer.cornerRadius = 10
         cell.nameLbl.text = ingr.name
         if let img = ingr.ingrImage {
             cell.img.image = img

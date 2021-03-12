@@ -10,11 +10,11 @@ import Alamofire
 
 extension SwipeViewController {
     func randomCoctailRequest() {
+        self.hideView(hidding: true)
         AF.request("https://www.thecocktaildb.com/api/json/v1/1/random.php").responseJSON { (data) in
             guard let dataDict = data.value as? [String : Any] else { return }
             if let coctail = self.createCoctail(from: dataDict) {
                 currentCoctail = coctail
-                
             }
         }
     }
@@ -35,7 +35,7 @@ extension SwipeViewController {
                                         downloadImg()
                                         self.getIngrImages()
                                         self.updateUI()
-                                        
+                                        self.hideView(hidding: false)
                                     }
                                 }
                             }

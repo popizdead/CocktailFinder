@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var img: UIImageView!
@@ -20,15 +21,24 @@ class ItemCollectionViewCell: UICollectionViewCell {
             self.img.image = img
             self.img.backgroundColor = .white
         } else {
+            AF.request("https://www.thecocktaildb.com/images/ingredients/\(cellName.makeUrlable()).png").responseData { (response) in
+                if let data = response.data {
+                    if let img = UIImage(data: data) {
+                        imgDict[cellName] = img
+                        needUpdate = true
+                    }
+                }
+            }
             self.img.image = nil
             self.img.backgroundColor = .systemGray6
+            
         }
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         self.contentView.layer.cornerRadius = 10
         self.img.layer.cornerRadius = 10
         
         if ingrBarArray.contains(where: {$0.name == cellName}) {
-            self.contentView.backgroundColor = .systemGreen
+            self.contentView.backgroundColor = .systemPink
             self.nameLbl.textColor = .white
         } else {
             self.contentView.backgroundColor = .white
