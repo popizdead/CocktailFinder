@@ -10,6 +10,7 @@ import UIKit
 class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     //MARK:OUTLETS
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var swipeView: UIView!
     @IBOutlet var cardPenRecognizer: UIPanGestureRecognizer!
     
@@ -19,6 +20,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var ingredientCollectionView: UICollectionView!
     @IBOutlet weak var instructionButton: UIButton!
     @IBOutlet weak var ingrCountLbl: UILabel!
+    @IBOutlet weak var filtersButton: UIButton!
     
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -29,6 +31,9 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
             if card.center.x > view.center.x {
                 //Green
                 self.swipeView.backgroundColor = .systemGreen
+                let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
+                newCocktail.image = currentCoctail.image
+                favArray.insert(newCocktail, at: 0)
             } else {
                 //Red
                 self.swipeView.backgroundColor = .systemRed
@@ -58,6 +63,10 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         swipeView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         image.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         instructionButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        filtersButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        
+        navView.backgroundColor = .white
+        navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         
         ingredientCollectionView.delegate = self
         ingredientCollectionView.dataSource = self
@@ -93,6 +102,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     
     @IBAction func instructionButtonTapped(_ sender: UIButton) {
+        reviewCocktail = currentCoctail
         self.performSegue(withIdentifier: "mainToReview", sender: self)
     }
     

@@ -16,8 +16,6 @@ class FavViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
         favTableView.delegate = self
         favTableView.dataSource = self
-        self.favTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.favTableView.allowsSelection = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +31,11 @@ class FavViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.cellCoctail = favArray[indexPath.row]
         cell.updateUI()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        reviewCocktail = favArray[indexPath.row]
+        self.performSegue(withIdentifier: "favToReview", sender: self)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

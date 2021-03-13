@@ -36,11 +36,11 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func setupUI() {
-        cocktailImg.image = currentCoctail.image
-        nameLbl.text = currentCoctail.name
-        typeLbl.text = currentCoctail.category
-        ingredientsCount.text = "\(currentCoctail.ingrArray.count) Ingredients"
-        instructionText.text = currentCoctail.instruction
+        cocktailImg.image = reviewCocktail.image
+        nameLbl.text = reviewCocktail.name
+        typeLbl.text = reviewCocktail.category
+        ingredientsCount.text = "\(reviewCocktail.ingrArray.count) Ingredients"
+        instructionText.text = reviewCocktail.instruction
         
         let viewArray = [cocktailImg, dismissButton, saveButton]
         for view in viewArray {
@@ -54,12 +54,12 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentCoctail.ingrArray.count
+        return reviewCocktail.ingrArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
-        let ingr = currentCoctail.ingrArray[indexPath.row]
+        let ingr = reviewCocktail.ingrArray[indexPath.row]
         
         cell.nameLbl.text = ingr.name
         cell.img.image = ingr.ingrImage

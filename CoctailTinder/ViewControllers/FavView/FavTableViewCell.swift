@@ -7,16 +7,15 @@
 
 import UIKit 
 
-class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
-    
-    
+class FavTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+
     @IBOutlet weak var glassLbl: UILabel!
     @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var img: UIImageView!
-    @IBOutlet weak var instructionText: UITextView!
+    @IBOutlet weak var ingrCV: UICollectionView!
+    @IBOutlet weak var ingrCountLbl: UILabel!
     
-    @IBOutlet weak var ingrTableView: UITableView!
     var cellCoctail : Coctail!
     
     override func awakeFromNib() {
@@ -27,20 +26,21 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
     func updateUI() {
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         
+        ingrCV.delegate = self
+        ingrCV.dataSource = self
+        
         self.nameLbl.text = cellCoctail.name
-        self.instructionText.text = cellCoctail.instruction
         self.categoryLbl.text = cellCoctail.category
         self.glassLbl.text = cellCoctail.glass
+        self.ingrCountLbl.text = "\(cellCoctail.ingrArray.count) Ingredients"
         
         self.img.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
-        self.instructionText.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        
         
         if let cocImg = cellCoctail.image {
             img.image = cocImg
         }
         
-        ingrTableView.delegate = self
-        ingrTableView.dataSource = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,26 +48,18 @@ class FavTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSou
 
     }
     
-    //MARK:TABLE VIEW
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //MARK:COLLECTION VIEW
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellCoctail.ingrArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
         let ingr = cellCoctail.ingrArray[indexPath.row]
         
-        /*
-        //Sometimes there's empty ingredient in array, because of API
-        if ingr.name != "" {
-            cell.nameLbl.text = "\(ingr.name) \(ingr.measure)"
-        }
-        */
+        cell.img.image = ingr.ingrImage
+        cell.nameLbl.text = ingr.name
         
         return cell
-    }
- 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ingrTableView.deselectRow(at: indexPath, animated: true)
     }
 }
