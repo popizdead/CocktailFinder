@@ -33,6 +33,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.swipeView.backgroundColor = .systemGreen
                 let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
                 newCocktail.image = currentCoctail.image
+                cocktailCoreData(object: newCocktail)
                 favArray.insert(newCocktail, at: 0)
             } else {
                 //Red

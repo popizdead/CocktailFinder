@@ -7,13 +7,17 @@
 
 import UIKit
 
-class BarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class BarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
     //MARK:OUTLETS
     @IBOutlet weak var barButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var navView: UIView!
-    @IBOutlet weak var ingrTableView: UITableView!
+    @IBOutlet weak var ingrCV: UICollectionView!
+    
+    @IBOutlet weak var buttonView: UIView!
+    @IBOutlet weak var addButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +25,14 @@ class BarViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         setupUI()
     }
     
+    @objc func update() {
+        ingrCV.reloadData()
+    }
+    
     func delegate() {
-        ingrTableView.dataSource = self
-        ingrTableView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateBar"), object: nil)
+        ingrCV.dataSource = self
+        ingrCV.delegate = self
     }
     
     func setupUI() {
@@ -31,10 +40,17 @@ class BarViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         navView.backgroundColor = .white
         barButton.layer.cornerRadius = 10
         buyButton.layer.cornerRadius = 10
+        buttonView.layer.cornerRadius = 10
     }
     
-    //MARK:TABLE VIEW
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        ingrCalled = .bar
+        self.performSegue(withIdentifier: "barToIngr", sender: self)
+    }
+    
+    //MARK:COLLECTION VIEW
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if currentState == .bar {
             return ingrBarArray.count
         } else {
@@ -42,13 +58,13 @@ class BarViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngredientTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! BarCollectionViewCell
         let ingr = ingrBarArray[indexPath.row]
         
         cell.setupUI()
         cell.ingrImage.image = ingr.ingrImage
-        cell.ingrName.text = ingr.name
+        cell.nameLbl.text = ingr.name
         
         return cell
     }

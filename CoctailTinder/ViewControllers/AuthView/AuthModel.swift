@@ -14,7 +14,13 @@ var ingrNameArray : [String] = []
 var imgDict : [String:UIImage] = [:]
 
 var ingrBarArray : [Ingredient] = []
-var needUpdate = false
+
+enum ingrCalledFrom {
+    case auth
+    case bar
+}
+
+var ingrCalled = ingrCalledFrom.auth
 
 extension AuthViewController {
     func getAllIngredientsList() {

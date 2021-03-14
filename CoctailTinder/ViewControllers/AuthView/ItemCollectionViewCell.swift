@@ -25,7 +25,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
                 if let data = response.data {
                     if let img = UIImage(data: data) {
                         imgDict[cellName] = img
-                        needUpdate = true
+                        NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
                     }
                 }
             }
@@ -60,6 +60,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
             ingrBarArray.append(ingr)
             print("Added")
         }
+        NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
         self.setupUI()
     }
 }

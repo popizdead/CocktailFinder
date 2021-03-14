@@ -17,15 +17,11 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         setupUI()
         getAllIngredientsList()
-        let _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateCV), userInfo: nil, repeats: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCV), name: NSNotification.Name("updateAuthCV"), object: nil)
     }
     
     @objc func updateCV() {
-        if needUpdate {
-            self.ingredientsCV.reloadData()
-            needUpdate = false
-        }
-        
+        self.ingredientsCV.reloadData()
     }
     
     func setupUI() {
@@ -45,7 +41,6 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingredientsCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! ItemCollectionViewCell
         cell.cellIndex = indexPath.row
-        //cell.nameLbl.text = ingrNameArray[indexPath.row]
         cell.setupUI()
         return cell
     }
@@ -59,7 +54,12 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         saveIngredients()
-        self.performSegue(withIdentifier: "toMain", sender: self)
+        if ingrCalled == .auth {
+            self.performSegue(withIdentifier: "toMain", sender: self)
+        }
+        else if ingrCalled == .bar {
+            self.dismiss(animated: true, completion: nil)
+        }
         imgDict.removeAll()
         ingrNameArray.removeAll()
     }
