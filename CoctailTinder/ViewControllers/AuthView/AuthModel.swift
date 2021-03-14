@@ -13,7 +13,6 @@ import CoreData
 var ingrNameArray : [String] = []
 var imgDict : [String:UIImage] = [:]
 
-var ingrBarArray : [Ingredient] = []
 
 enum ingrCalledFrom {
     case auth
@@ -30,7 +29,6 @@ extension AuthViewController {
                     for ingrElem in ingrDict {
                         if let name = ingrElem["strIngredient1"] as? String {
                             ingrNameArray.append(name)
-                            //self.getIngredientImage(toName: name)
                         }
                     }
                     self.ingredientsCV.reloadData()
@@ -51,26 +49,6 @@ extension AuthViewController {
     }
 }
 
-func saveIngredients() {
-    for ingr in ingrBarArray {
-        ingredientCoreData(ingr: ingr)
-    }
-}
 
-func ingredientCoreData(ingr: Ingredient) {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = appDelegate.persistentContainer.viewContext
-    
-    guard let entity = NSEntityDescription.entity(forEntityName: "IngredientBar", in: context) else { return }
-    let ingrObject = IngredientBar(entity: entity, insertInto: context)
-    
-    ingrObject.name = ingr.name
-    if let data = ingr.ingrImage?.pngData() {
-        ingrObject.ingrImage = data
-    }
-    
-    do { try context.save() }
-    catch {}
-}
 
 

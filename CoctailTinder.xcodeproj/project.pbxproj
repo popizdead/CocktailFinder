@@ -10,6 +10,7 @@
 		63131BEF25FE6271002EB9EE /* FavModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63131BEE25FE6271002EB9EE /* FavModel.swift */; };
 		6319D56325FD071400CB2DD1 /* BarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319D56225FD071400CB2DD1 /* BarCollectionViewCell.swift */; };
 		6319D56625FD0BAD00CB2DD1 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319D56525FD0BAD00CB2DD1 /* FavCollectionViewCell.swift */; };
+		631F560C25FE903C0010E90E /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631F560B25FE903C0010E90E /* CoreDataModel.swift */; };
 		633325B925F83944001B399F /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633325B825F83943001B399F /* Ingredient.swift */; };
 		633325BE25F839A4001B399F /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633325BD25F839A4001B399F /* Cocktail.swift */; };
 		633325C425F8FF58001B399F /* IngrCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633325C325F8FF58001B399F /* IngrCollectionViewCell.swift */; };
@@ -39,6 +40,7 @@
 		63131BEE25FE6271002EB9EE /* FavModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavModel.swift; sourceTree = "<group>"; };
 		6319D56225FD071400CB2DD1 /* BarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewCell.swift; sourceTree = "<group>"; };
 		6319D56525FD0BAD00CB2DD1 /* FavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewCell.swift; sourceTree = "<group>"; };
+		631F560B25FE903C0010E90E /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		633325B825F83943001B399F /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		633325BD25F839A4001B399F /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
 		633325C325F8FF58001B399F /* IngrCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngrCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				63D74B0425F2A44B00503326 /* NetworkModel.swift */,
 				636C272A25FCEC47009C9DA3 /* UserModel.swift */,
+				631F560B25FE903C0010E90E /* CoreDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				636C272325FCE9CD009C9DA3 /* BarViewController.swift in Sources */,
 				639DDDF425F289D00010CA4A /* Extensions.swift in Sources */,
 				633325D825F922DB001B399F /* AuthModel.swift in Sources */,
+				631F560C25FE903C0010E90E /* CoreDataModel.swift in Sources */,
 				63D74B1425F2D49B00503326 /* FavViewController.swift in Sources */,
 				633325D525F922D2001B399F /* AuthViewController.swift in Sources */,
 				6319D56625FD0BAD00CB2DD1 /* FavCollectionViewCell.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class Coctail {
     var name : String
@@ -27,4 +28,37 @@ class Coctail {
         self.ingrArray = ingrArray
         self.instruction = instr
     }
+    
+    func getCocktailImage() {
+        AF.request(self.imageURL).response { (data) in
+            if let dataImg = data.data {
+                let cocktailImage = UIImage(data: dataImg)
+                self.image = cocktailImage
+                self.updateController()
+            }
+        }
+    }
+    
+    func getIngredientImage() {
+        for ingr in self.ingrArray {
+            AF.request("https://www.thecocktaildb.com/images/ingredients/\(ingr.name.makeUrlable()).png").responseData { (response) in
+                if let data = response.data {
+                    if let img = UIImage(data: data) {
+                        ingr.ingrImage = img
+                        self.updateController()
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateController() {
+        if requestedFrom == .swipe {
+            NotificationCenter.default.post(name: NSNotification.Name("updateCard"), object: nil)
+        }
+        else if requestedFrom == .favourite {
+            NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
+        }
+    }
+    
 }

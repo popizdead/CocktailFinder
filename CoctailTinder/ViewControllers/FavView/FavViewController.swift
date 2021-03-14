@@ -32,6 +32,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     @objc func update() {
         favCollectionView.reloadData()
+        print("FUcking updating")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

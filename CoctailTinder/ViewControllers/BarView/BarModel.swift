@@ -14,3 +14,5 @@ enum State {
 }
 
 var currentState = State.bar
+
+var ingrBarArray : [Ingredient] = []

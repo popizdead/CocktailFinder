@@ -51,6 +51,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         let cellName = ingrNameArray[cellIndex]
         if ingrBarArray.contains(where: {$0.name == cellName}) {
             ingrBarArray = ingrBarArray.filter({$0.name != cellName})
+            deleteSavedIngredient(name: cellName)
             print("Deleted")
         } else {
             let ingr = Ingredient(name: cellName)
@@ -58,6 +59,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
                 ingr.ingrImage = img
             }
             ingrBarArray.append(ingr)
+            saveIngredientCoreData(ingr: ingr)
             print("Added")
         }
         NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)

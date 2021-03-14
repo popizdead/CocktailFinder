@@ -53,7 +53,6 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        saveIngredients()
         if ingrCalled == .auth {
             self.performSegue(withIdentifier: "toMain", sender: self)
         }

@@ -33,7 +33,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.swipeView.backgroundColor = .systemGreen
                 let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
                 newCocktail.image = currentCoctail.image
-                cocktailCoreData(object: newCocktail)
+                saveCocktailCoreData(object: newCocktail)
                 favArray.insert(newCocktail, at: 0)
             } else {
                 //Red
@@ -49,6 +49,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateCard"), object: nil)
         updateUI()
         setupUI()
         randomCoctailRequest()
@@ -73,10 +74,11 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         ingredientCollectionView.dataSource = self
     }
     
-    func updateUI() {
+    @objc func updateUI() {
         self.categoryLbl.text = currentCoctail.category
         self.nameLbl.text = currentCoctail.name
         self.ingrCountLbl.text = "\(currentCoctail.ingrArray.count) Ingredients"
+        self.image.image = currentCoctail.image
         ingredientCollectionView.reloadData()
     }
     

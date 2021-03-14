@@ -25,6 +25,10 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        ingrCV.reloadData()
+    }
+    
     @objc func update() {
         ingrCV.reloadData()
     }
