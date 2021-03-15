@@ -279,6 +279,22 @@
             </objects>
             <point key="canvasLocation" x="-1691" y="688"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Va3-F1-dMz">
+            <objects>
+                <viewController id="Pg4-5v-BfC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BEo-Cq-XbQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="NBL-2c-Opf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <size key="freeformSize" width="414" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jUO-mL-sgG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1691" y="980"/>
+        </scene>
         <!--Swipe View Controller-->
         <scene sceneID="sl3-YG-2Mp">
             <objects>
@@ -641,7 +657,7 @@
         <!--Auth View Controller-->
         <scene sceneID="Ya7-Oo-Xpb">
             <objects>
-                <viewController id="Vmf-nQ-gbW" customClass="AuthViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="auth" id="Vmf-nQ-gbW" customClass="AuthViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4M-Ye-Bk9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -754,7 +770,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6E1-GS-eyl">
             <objects>
-                <tabBarController id="Dw6-DE-IJs" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="home" id="Dw6-DE-IJs" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xpt-sv-Nug">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
