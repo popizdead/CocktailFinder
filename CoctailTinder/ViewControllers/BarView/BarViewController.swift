@@ -12,13 +12,14 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     //MARK:OUTLETS
     @IBOutlet weak var barButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
+    
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var ingrCV: UICollectionView!
     
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var addButton: UIButton!
     
-    
+    //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate()
@@ -39,6 +40,7 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         ingrCV.delegate = self
     }
     
+    //MARK:UI
     func setupUI() {
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         navView.backgroundColor = .white
@@ -47,9 +49,31 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         buttonView.layer.cornerRadius = 10
     }
     
+    //MARK:BUTTONS
     @IBAction func addButtonTapped(_ sender: UIButton) {
         ingrCalled = .bar
         self.performSegue(withIdentifier: "barToIngr", sender: self)
+    }
+    
+    @IBAction func navButtonTapped(_ sender: UIButton) {
+        if sender == barButton {
+            currentState = .bar
+        } else {
+            currentState = .buyList
+        }
+        fillButtons()
+        ingrCV.reloadData()
+    }
+    
+    func fillButtons() {
+        if currentState == .bar {
+            barButton.backgroundColor = .systemPink
+            buyButton.backgroundColor = .black
+        }
+        else if currentState == .buyList {
+            barButton.backgroundColor = .black
+            buyButton.backgroundColor = .systemPink
+        }
     }
     
     //MARK:COLLECTION VIEW
@@ -64,7 +88,13 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! BarCollectionViewCell
-        let ingr = ingrBarArray[indexPath.row]
+        var ingr = Ingredient(name: "")
+        
+        if currentState == .bar {
+             ingr = ingrBarArray[indexPath.row]
+        } else {
+            ingr = userBuyList[indexPath.row]
+        }
         
         cell.setupUI()
         cell.ingrImage.image = ingr.ingrImage

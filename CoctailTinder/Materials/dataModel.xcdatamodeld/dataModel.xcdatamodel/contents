@@ -8,8 +8,13 @@
         <attribute name="ingrImage" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="IngredientBuy" representedClassName="IngredientBuy" syncable="YES" codeGenerationType="class">
+        <attribute name="img" optional="YES" attributeType="Binary"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
-        <element name="IngredientBar" positionX="-63" positionY="-18" width="128" height="59"/>
         <element name="CocktailFav" positionX="-63" positionY="0" width="128" height="59"/>
+        <element name="IngredientBar" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="IngredientBuy" positionX="-63" positionY="9" width="128" height="59"/>
     </elements>
 </model>

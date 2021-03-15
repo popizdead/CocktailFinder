@@ -14,5 +14,7 @@ enum State {
 }
 
 var currentState = State.bar
+var alertIngredient = Ingredient(name: "")
 
 var ingrBarArray : [Ingredient] = []
+var userBuyList : [Ingredient] = []

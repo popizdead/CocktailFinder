@@ -12,6 +12,7 @@ import UIKit
 func getSavedData() {
     getSavedCocktails()
     getSavedIngredients()
+    getSavedBuyList()
 }
 
 //MARK:COCKTAIL
@@ -113,6 +114,61 @@ func getSavedIngredients() {
                     ingr.ingrImage = UIImage(data: imgData)!
                 }
                 ingrBarArray.append(ingr)
+            }
+        }
+    } catch {}
+}
+
+//MARK:BUY LIST
+func saveBuyListItem(ingr: Ingredient) {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    
+    guard let entity = NSEntityDescription.entity(forEntityName: "IngredientBuy", in: context) else { return }
+    let ingrObject = IngredientBuy(entity: entity, insertInto: context)
+    
+    ingrObject.name = ingr.name
+    if let data = ingr.ingrImage?.pngData() {
+        ingrObject.img = data
+    }
+    
+    do { try context.save() }
+    catch {}
+}
+
+func deleteBuyListItem(name: String) {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    
+    let fetchRequest : NSFetchRequest<IngredientBuy> = IngredientBuy.fetchRequest()
+    
+    if let ingredientArray = try? context.fetch(fetchRequest) {
+        for object in ingredientArray {
+            if object.name == name {
+                context.delete(object)
+            }
+        }
+    }
+    
+    do { try context.save() }
+    catch {}
+}
+
+func getSavedBuyList() {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+
+    let fetchRequest : NSFetchRequest<IngredientBuy> = IngredientBuy.fetchRequest()
+
+    do {
+        let ingredientArray = try context.fetch(fetchRequest)
+        for object in ingredientArray {
+            if let name = object.name {
+                let ingr = Ingredient(name: name)
+                if let imgData = object.img {
+                    ingr.ingrImage = UIImage(data: imgData)!
+                }
+                userBuyList.append(ingr)
             }
         }
     } catch {}

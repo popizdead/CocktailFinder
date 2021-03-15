@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
 class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -129,6 +130,41 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let ingrObject = currentCoctail.ingrArray[indexPath.row]
+        alertIngredient = ingrObject
+        SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
+    }
+    
+    //MARK:ATTRIBUTES
+    func setupAttributes() -> EKAttributes {
+        var attributes = EKAttributes.centerFloat
+        
+        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
+        let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
+        
+        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
+        
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
+        attributes.roundCorners = .all(radius: 15)
+        
+        // Set its background to white
+        attributes.entryBackground = .color(color: .clear)
+        attributes.screenBackground = .color(color: EKColor(UIColor(white: 0, alpha: 0.5)))
+
+        // Animate in and out using default translation
+        attributes.entranceAnimation = .translation
+        attributes.exitAnimation = .translation
+        
+        attributes.displayDuration = .infinity
+        attributes.entryInteraction = .forward
+        
+        attributes.screenInteraction = .dismiss
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        
+        return attributes
     }
     
 }
