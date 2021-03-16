@@ -14,6 +14,28 @@ enum dataRequestedFrom {
 }
 
 var requestedFrom = dataRequestedFrom.swipe
+var responseArray : [ShortCocktail] = []
+
+var indexCurrentCocktail = 0
+var isFilterChanged = true
+
+func requestCocktail() {
+    if currentRequest.ingr == .all && currentRequest.alc == .all {
+        //Random
+        randomCoctailRequest()
+    }
+    else if currentRequest.ingr == .myBar {
+        //Ingredients
+        if isFilterChanged {
+            indexCurrentCocktail = 0
+            responseArray.removeAll()
+            ingredientCocktailRequest()
+            isFilterChanged = false
+        } else {
+            cocktailFromArray()
+        }
+    }
+}
 
 func randomCoctailRequest() {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
@@ -27,13 +49,46 @@ func randomCoctailRequest() {
     }
 }
 
+func ingredientCocktailRequest() {
+    AF.request(createIngrUrl()).responseJSON { (data) in
+        guard let dataDict = data.value as? [String : Any] else { return }
+        if let cocktailsArray = dataDict["drinks"] as? [[String:Any]] {
+            for object in cocktailsArray {
+                if let short = createShortCocktail(dict: object) {
+                    responseArray.append(short)
+                }
+            }
+            cocktailFromArray()
+        }
+    }
+}
+
+func cocktailFromArray() {
+    if indexCurrentCocktail > responseArray.count - 1 {
+        indexCurrentCocktail = 0
+    }
+    print("looking for \(indexCurrentCocktail)")
+    let short = responseArray[indexCurrentCocktail]
+    getCocktailByID(id: short.id)
+    indexCurrentCocktail += 1
+}
+
 func getCocktailByID(id: String) {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
         guard let dataDict = data.value as? [String : Any] else { return }
         if let cocktail = createCoctail(from: dataDict) {
-            cocktail.getCocktailImage()
-            cocktail.getIngredientImage()
-            favArray.append(cocktail)
+            if requestedFrom == .favourite {
+                cocktail.getCocktailImage()
+                cocktail.getIngredientImage()
+                favArray.append(cocktail)
+            }
+            else if requestedFrom == .swipe {
+                currentCoctail = cocktail
+                currentCoctail.getIngredientImage()
+                currentCoctail.getCocktailImage()
+                NotificationCenter.default.post(name: NSNotification.Name("openCard"), object: nil)
+            }
+            
         }
     }
 }

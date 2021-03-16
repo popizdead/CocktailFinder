@@ -19,27 +19,26 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var alcWith: UIButton!
     @IBOutlet weak var alcWithout: UIButton!
     
-    //Category
-    @IBOutlet weak var catAll: UIButton!
-    @IBOutlet weak var catCocktail: UIButton!
-    @IBOutlet weak var catBeer: UIButton!
-    @IBOutlet weak var catShot: UIButton!
-    @IBOutlet weak var catCoffee: UIButton!
-    @IBOutlet weak var catMilk: UIButton!
-    @IBOutlet weak var catPunch: UIButton!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+        
     }
     
     //MARK:UI
     func setupUI() {
-        let buttonsArray = [ingrAll, ingrMyBar, alcAll, alcWith, alcWithout, catAll, catCocktail, catBeer, catShot, catCoffee, catMilk, catPunch]
+        let buttonsArray = [ingrAll, ingrMyBar, alcAll, alcWith, alcWithout]
         for but in buttonsArray {
             but?.layer.cornerRadius = 10
         }
+        view.layer.cornerRadius = 10
+    }
+    
+    @IBAction func myBarTapped(_ sender: UIButton) {
+        currentRequest.ingr = .myBar
+        isFilterChanged = true
     }
 }

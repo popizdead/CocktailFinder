@@ -60,5 +60,9 @@ class Coctail {
             NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
         }
     }
-    
+}
+
+struct ShortCocktail {
+    var name : String
+    var id: String
 }

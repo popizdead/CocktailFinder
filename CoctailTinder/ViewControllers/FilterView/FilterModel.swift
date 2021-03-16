@@ -23,17 +23,32 @@ struct requestType {
     var alc = alcRequest.all
 }
 
-var currentRequest = requestType(ingr: .all, alc: .all)
+var currentRequest = requestType(ingr: .myBar, alc: .all)
 
-func requestCocktail() {
-    if currentRequest.ingr == .all && currentRequest.alc == .all {
-        //Random
-        
+func createShortCocktail(dict: [String:Any]) -> ShortCocktail? {
+    if let name = dict["strDrink"] as? String {
+        if let id = dict["idDrink"] as? String {
+            let short = ShortCocktail(name: name, id: id)
+            responseArray.append(short)
+        }
     }
-    else if currentRequest.ingr == .myBar {
-        //Ingredients
-        
+    return nil
+}
+
+func createIngrUrl() -> String {
+    var urlString = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i="
+    var counter = 1
+    
+    for ingr in ingrBarArray {
+        if counter == ingrBarArray.count {
+            urlString.append(ingr.name.makeUrlable())
+        } else {
+            urlString.append(ingr.name.makeUrlable() + ",")
+        }
+        counter += 1
     }
+    
+    return urlString
 }
 
 

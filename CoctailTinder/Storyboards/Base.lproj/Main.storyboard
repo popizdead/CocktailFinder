@@ -284,45 +284,18 @@
             <objects>
                 <viewController storyboardIdentifier="filterView" id="Pg4-5v-BfC" customClass="FilterViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BEo-Cq-XbQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-Af-4em">
-                                <rect key="frame" x="20" y="19" width="115" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alcohol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxB-vg-b3W">
-                                <rect key="frame" x="168" y="19" width="78" height="31"/>
+                                <rect key="frame" x="195" y="19" width="78" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMX-NE-rjy">
-                                <rect key="frame" x="289" y="19" width="93" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3T-6b-fRN">
-                                <rect key="frame" x="27" y="58" width="100" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="All">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="b2T-Zu-Jf7"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="3aY-eP-bGt"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roZ-7G-ddc">
-                                <rect key="frame" x="157" y="58" width="100" height="40"/>
+                                <rect key="frame" x="184" y="58" width="100" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
@@ -334,34 +307,8 @@
                                     <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="CST-j8-HrW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoD-gC-emT">
-                                <rect key="frame" x="285" y="58" width="100" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="All">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="RQa-Vq-UWu"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="6ao-Dt-Db7"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0P-xG-DW8">
-                                <rect key="frame" x="27" y="106" width="100" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="My bar">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="h4G-T1-4lo"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="POZ-fU-LJi"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-mk-X5y">
-                                <rect key="frame" x="157" y="106" width="100" height="40"/>
+                                <rect key="frame" x="184" y="106" width="100" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
@@ -373,47 +320,8 @@
                                     <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="OXs-Ty-OAv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uE-IB-tin">
-                                <rect key="frame" x="285" y="106" width="100" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Cocktail">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="WDt-cG-LMq"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="vM8-dG-K9I"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZq-Zb-lag">
-                                <rect key="frame" x="285" y="154" width="100" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Beer">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="IkN-Yc-Q1l"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="EaT-hv-UYN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgA-HZ-nog">
-                                <rect key="frame" x="285" y="202" width="100" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Shot">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="sPy-iw-rmK"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="EaF-ca-qWl"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Qs-KK-91F">
-                                <rect key="frame" x="157" y="154" width="100" height="40"/>
+                                <rect key="frame" x="184" y="154" width="100" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
@@ -425,61 +333,49 @@
                                     <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="5Pv-HI-QNj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzA-pP-YQZ">
-                                <rect key="frame" x="277" y="250" width="117" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-Af-4em">
+                                <rect key="frame" x="16" y="19" width="115" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3T-6b-fRN">
+                                <rect key="frame" x="23" y="58" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Coffee/Tea">
+                                <state key="normal" title="All">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="5jl-ox-A6Y"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="N6V-5D-lx2"/>
+                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="b2T-Zu-Jf7"/>
+                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="3aY-eP-bGt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nI-uR-iz6">
-                                <rect key="frame" x="277" y="298" width="117" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0P-xG-DW8">
+                                <rect key="frame" x="23" y="106" width="100" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Milk/Shake">
+                                <state key="normal" title="My bar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="vwA-Wj-PIw"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="NzC-4x-9FD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDt-Ds-bf9">
-                                <rect key="frame" x="277" y="346" width="117" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Punch/Party">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="U8T-mH-gRY"/>
-                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="fQC-ji-QgB"/>
+                                    <action selector="addButtonTapped:" destination="fHp-hO-N8U" eventType="touchUpInside" id="h4G-T1-4lo"/>
+                                    <action selector="myBarTapped:" destination="Pg4-5v-BfC" eventType="touchUpInside" id="a7R-m5-pSg"/>
+                                    <action selector="navButtonTapped:" destination="ycf-Nd-KvD" eventType="touchUpInside" id="POZ-fU-LJi"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NBL-2c-Opf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <size key="freeformSize" width="414" height="400"/>
+                    <size key="freeformSize" width="300" height="250"/>
                     <connections>
                         <outlet property="alcAll" destination="roZ-7G-ddc" id="1jw-9Y-UZ6"/>
                         <outlet property="alcWith" destination="ksu-mk-X5y" id="PYV-d7-X35"/>
                         <outlet property="alcWithout" destination="2Qs-KK-91F" id="am4-k1-pSN"/>
-                        <outlet property="catAll" destination="eoD-gC-emT" id="Q9M-u6-cI7"/>
-                        <outlet property="catBeer" destination="RZq-Zb-lag" id="2qi-Wc-fAe"/>
-                        <outlet property="catCocktail" destination="1uE-IB-tin" id="gJT-XN-EYQ"/>
-                        <outlet property="catCoffee" destination="CzA-pP-YQZ" id="vsi-K0-1DP"/>
-                        <outlet property="catMilk" destination="3nI-uR-iz6" id="Vy5-DE-EpX"/>
-                        <outlet property="catPunch" destination="gDt-Ds-bf9" id="65c-Hh-RS5"/>
-                        <outlet property="catShot" destination="hgA-HZ-nog" id="Cme-jn-8Df"/>
                         <outlet property="ingrAll" destination="s3T-6b-fRN" id="dMj-Wb-M0I"/>
                         <outlet property="ingrMyBar" destination="O0P-xG-DW8" id="vqb-Cy-lHP"/>
                     </connections>
@@ -855,7 +751,7 @@
             <objects>
                 <viewController storyboardIdentifier="auth" id="Vmf-nQ-gbW" customClass="AuthViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4M-Ye-Bk9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose ingredients that you have" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnm-xN-oBY">

@@ -45,7 +45,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
             requestedFrom = .swipe
             self.hideView(hidding: true)
-            randomCoctailRequest()
+            requestCocktail()
         }
     }
     
@@ -57,11 +57,11 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         updateUI()
         setupUI()
         requestedFrom = .swipe
-        randomCoctailRequest()
+        requestCocktail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        isFilterChanged = true
     }
     
     //MARK:UI
@@ -162,8 +162,8 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
             let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
             attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
         } else {
-            let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 1)
-            let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.5)
+            let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
+            let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
             attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
         }
         
