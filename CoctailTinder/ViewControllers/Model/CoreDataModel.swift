@@ -19,7 +19,8 @@ func getSavedData() {
 func getSavedCocktails() {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = appDelegate.persistentContainer.viewContext
-
+    requestedFrom = .favourite
+    
     let fetchRequest : NSFetchRequest<CocktailFav> = CocktailFav.fetchRequest()
 
     do {

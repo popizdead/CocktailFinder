@@ -28,7 +28,6 @@ func randomCoctailRequest() {
 }
 
 func getCocktailByID(id: String) {
-    requestedFrom = .favourite
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
         guard let dataDict = data.value as? [String : Any] else { return }
         if let cocktail = createCoctail(from: dataDict) {

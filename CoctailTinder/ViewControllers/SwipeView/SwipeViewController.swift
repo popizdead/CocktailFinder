@@ -56,6 +56,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         NotificationCenter.default.addObserver(self, selector: #selector(openCard), name: NSNotification.Name("openCard"), object: nil)
         updateUI()
         setupUI()
+        requestedFrom = .swipe
         randomCoctailRequest()
     }
     
