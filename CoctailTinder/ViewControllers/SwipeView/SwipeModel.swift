@@ -12,3 +12,10 @@ import CoreData
 var currentCoctail = Coctail(name: "", category: "", id: "", imgUrl: "", glass: "", ingrArray: [], instr: "")
 var favArray : [Coctail] = []
 
+enum presentView {
+    case filter
+    case buyList
+}
+
+var attributesView = presentView.buyList
+
