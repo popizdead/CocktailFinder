@@ -43,6 +43,8 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
             UIView.animate(withDuration: 0.2) {
                 card.center = self.view.center
             }
+            requestedFrom = .swipe
+            self.hideView(hidding: true)
             randomCoctailRequest()
         }
     }
@@ -51,6 +53,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateCard"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openCard), name: NSNotification.Name("openCard"), object: nil)
         updateUI()
         setupUI()
         randomCoctailRequest()
@@ -81,6 +84,11 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.ingrCountLbl.text = "\(currentCoctail.ingrArray.count) Ingredients"
         self.image.image = currentCoctail.image
         ingredientCollectionView.reloadData()
+    }
+    
+    @objc func openCard() {
+        self.updateUI()
+        self.hideView(hidding: false)
     }
     
     func hideView(hidding: Bool) {

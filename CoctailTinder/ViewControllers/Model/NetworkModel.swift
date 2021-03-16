@@ -15,23 +15,17 @@ enum dataRequestedFrom {
 
 var requestedFrom = dataRequestedFrom.swipe
 
-extension SwipeViewController {
-    func randomCoctailRequest() {
-        requestedFrom = .swipe
-        self.hideView(hidding: true)
-        AF.request("https://www.thecocktaildb.com/api/json/v1/1/random.php").responseJSON { (data) in
-            guard let dataDict = data.value as? [String : Any] else { return }
-            if let coctail = createCoctail(from: dataDict) {
-                currentCoctail = coctail
-                currentCoctail.getIngredientImage()
-                currentCoctail.getCocktailImage()
-                self.updateUI()
-                self.hideView(hidding: false)
-            }
+func randomCoctailRequest() {
+    AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
+        guard let dataDict = data.value as? [String : Any] else { return }
+        if let coctail = createCoctail(from: dataDict) {
+            currentCoctail = coctail
+            currentCoctail.getIngredientImage()
+            currentCoctail.getCocktailImage()
+            NotificationCenter.default.post(name: NSNotification.Name("openCard"), object: nil)
         }
     }
 }
-
 
 func getCocktailByID(id: String) {
     requestedFrom = .favourite
