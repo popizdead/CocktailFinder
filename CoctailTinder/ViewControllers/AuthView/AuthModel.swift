@@ -29,6 +29,18 @@ enum ingrCalledFrom {
 var ingrCalled = ingrCalledFrom.auth
 var curState = viewState.all
 
+extension AuthViewController {
+    func hideKeyboardSetting() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hide() {
+        view.endEditing(true)
+    }
+}
+
 func updateShowingArray() {
     if curState == .all {
         sourceArray = ingrNameArray
@@ -66,7 +78,13 @@ func getIngredientImage(toName: String) {
 
 
 func searchIngredient(text: String) {
-    
+    searchArray.removeAll()
+    for name in ingrNameArray {
+        if name.lowercased().contains(text.lowercased()) {
+            searchArray.append(name)
+        }
+    }
+    NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
 }
 
 

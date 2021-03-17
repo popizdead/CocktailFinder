@@ -15,7 +15,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     var cellIndex = Int()
     
     func setupUI() {
-        let cellName = ingrNameArray[cellIndex]
+        let cellName = sourceArray[cellIndex]
         nameLbl.text = cellName
         if let img = imgDict[cellName] {
             self.img.image = img
@@ -48,7 +48,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     }
     
     func tappedCell() {
-        let cellName = ingrNameArray[cellIndex]
+        let cellName = sourceArray[cellIndex]
         if ingrBarArray.contains(where: {$0.name == cellName}) {
             ingrBarArray = ingrBarArray.filter({$0.name != cellName})
             deleteSavedIngredient(name: cellName)

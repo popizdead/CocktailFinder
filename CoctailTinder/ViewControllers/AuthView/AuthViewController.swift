@@ -17,17 +17,20 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: "isLogin")
+        defaults.set(false, forKey: "isLogin")
         setupUI()
         getAllIngredientsList()
         NotificationCenter.default.addObserver(self, selector: #selector(updateCV), name: NSNotification.Name("updateAuthCV"), object: nil)
     }
     
     @objc func updateCV() {
+        updateShowingArray()
         self.ingredientsCV.reloadData()
     }
     
     func setupUI() {
+        hideKeyboardSetting()
+        updateShowingArray()
         setDelegates()
         self.doneButton.layer.cornerRadius = 10
     }
@@ -39,7 +42,7 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ingrNameArray.count
+        return sourceArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -69,9 +72,17 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     //MARK:SEARCH
     @IBAction func fieldStart(_ sender: UITextField) {
+        curState = .searching
+        updateCV()
     }
     
     @IBAction func fieldChanged(_ sender: UITextField) {
+        searchIngredient(text: sender.text!)
+    }
+    
+    @IBAction func fieldEnd(_ sender: UITextField) {
+        curState = .all
+        updateCV()
     }
     
     

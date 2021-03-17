@@ -23,7 +23,7 @@ struct requestType {
     var alc = alcRequest.all
 }
 
-var currentRequest = requestType(ingr: .myBar, alc: .all)
+var currentRequest = requestType(ingr: .all, alc: .all)
 
 func createShortCocktail(dict: [String:Any]) -> ShortCocktail? {
     if let name = dict["strDrink"] as? String {
