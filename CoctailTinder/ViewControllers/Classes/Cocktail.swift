@@ -59,6 +59,9 @@ class Coctail {
         else if requestedFrom == .favourite {
             NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
         }
+        else if requestedFrom == .collection {
+            NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
+        }
     }
 }
 

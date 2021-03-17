@@ -21,14 +21,20 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         self.contentView.layer.cornerRadius = 10
+        self.cocktailImg.layer.cornerRadius = 10
         
         cocktailImg.image = cellCocktail.image
         nameLbl.text = cellCocktail.name
     }
     
     func delegates() {
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateItemsCV"), object: nil)
         ingrCV.delegate = self
         ingrCV.dataSource = self
+    }
+    
+    @objc func update() {
+        ingrCV.reloadData()
     }
     
     //MARK:CV

@@ -45,6 +45,12 @@ class CollectionsViewController: UIViewController {
     //MARK:BUTTONS
     @IBAction func newTapped(_ sender: UIButton) {
         collectionRequest(type: .new)
+        self.performSegue(withIdentifier: "toItemsList", sender: self)
+    }
+    
+    @IBAction func popTapped(_ sender: UIButton) {
+        collectionRequest(type: .pop)
+        self.performSegue(withIdentifier: "toItemsList", sender: self)
     }
     
 }

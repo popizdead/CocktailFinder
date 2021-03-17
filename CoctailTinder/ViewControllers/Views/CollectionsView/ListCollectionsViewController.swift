@@ -21,9 +21,19 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func delegates() {
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateItemsCV"), object: nil)
         itemsCV.delegate = self
         itemsCV.dataSource = self
     }
+    
+    @objc func update() {
+        itemsCV.reloadData()
+    }
+    
+    @IBAction func dismissTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -35,6 +45,12 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
         cell.cellCocktail = sourceItemsArray[indexPath.row]
         cell.setupUI()
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cocktail = sourceItemsArray[indexPath.row]
+        reviewCocktail = cocktail
+        self.performSegue(withIdentifier: "collectionToReview", sender: self)
     }
     
 }

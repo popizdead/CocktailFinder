@@ -256,6 +256,9 @@
                                         <state key="normal" title="Popular drinks">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="popTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="Dpa-Lp-Y8w"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWZ-68-dUW">
                                         <rect key="frame" x="57" y="89" width="300" height="50"/>
@@ -304,6 +307,7 @@
                         <outlet property="shadowView" destination="RgT-Bq-aAt" id="qer-hg-seG"/>
                         <outlet property="shake" destination="dNX-r5-pL4" id="jjs-6V-Hdl"/>
                         <outlet property="shot" destination="tBK-BP-5SF" id="TTA-aJ-sAV"/>
+                        <segue destination="SLH-AW-1lq" kind="presentation" identifier="toItemsList" modalPresentationStyle="fullScreen" id="UIm-MM-HI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqV-br-Zzd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -322,27 +326,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New drinks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGW-lU-WNZ">
-                                        <rect key="frame" x="143" y="44" width="130" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqx-zQ-TiQ">
                                         <rect key="frame" x="8" y="49" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="dismissTapped:" destination="SLH-AW-1lq" eventType="touchUpInside" id="RE1-SV-noP"/>
+                                        </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New drinks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGW-lU-WNZ">
+                                        <rect key="frame" x="150" y="47" width="114" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sSg-yw-tgZ">
-                                <rect key="frame" x="0.0" y="95" width="414" height="801"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bhM-u5-EbA">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bhM-u5-EbA">
                                     <size key="itemSize" width="355" height="128"/>
+                                    <size key="estimatedItemSize" width="355" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -370,15 +378,16 @@
                                                     <rect key="frame" x="136" y="59" width="211" height="61"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r80-3E-Uct">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r80-3E-Uct">
                                                         <size key="itemSize" width="58" height="58"/>
+                                                        <size key="estimatedItemSize" width="58" height="58"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="ro8-Em-sed" customClass="InsideIngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
+                                                            <rect key="frame" x="0.0" y="1.5" width="58" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6xR-30-6yI">
                                                                 <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
@@ -398,6 +407,7 @@
                                                     </cells>
                                                 </collectionView>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="355" height="128"/>
                                         <connections>
@@ -416,11 +426,12 @@
                         <outlet property="dismissButton" destination="uqx-zQ-TiQ" id="loH-Zc-MLX"/>
                         <outlet property="itemsCV" destination="sSg-yw-tgZ" id="1hq-mi-6ql"/>
                         <outlet property="viewNameLbl" destination="zGW-lU-WNZ" id="zqc-L8-E9f"/>
+                        <segue destination="7VX-dS-RoT" kind="presentation" identifier="collectionToReview" modalPresentationStyle="fullScreen" id="HYz-GW-C4g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YH5-SI-gx9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911.59420289855075" y="916.74107142857133"/>
+            <point key="canvasLocation" x="888" y="917"/>
         </scene>
         <!--Alert Ingredient View Controller-->
         <scene sceneID="TK0-nI-Rzi">
@@ -948,7 +959,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHu-vV-OzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="175"/>
+            <point key="canvasLocation" x="912" y="175"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="Ya7-Oo-Xpb">
@@ -1035,7 +1046,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKE-Ia-9ZH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1691.304347826087" y="174.77678571428569"/>
+            <point key="canvasLocation" x="-1691" y="158"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6E1-GS-eyl">
@@ -1056,7 +1067,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fnq-NH-vw3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-784" y="190"/>
+            <point key="canvasLocation" x="-784" y="175"/>
         </scene>
         <!--Bar View Controller-->
         <scene sceneID="QcN-8t-VSK">
@@ -1173,7 +1184,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="36a-ea-qtM"/>
+        <segue reference="HYz-GW-C4g"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bar" width="32" height="32"/>
