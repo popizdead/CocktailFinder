@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftEntryKit
+import GoogleMobileAds
 
 class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
