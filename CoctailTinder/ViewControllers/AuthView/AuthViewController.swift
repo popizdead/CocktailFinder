@@ -13,6 +13,7 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
     
+    //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
@@ -35,7 +36,8 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
         ingredientsCV.delegate = self
         ingredientsCV.dataSource = self
     }
-
+    
+    //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ingrNameArray.count
     }
@@ -64,5 +66,14 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
         imgDict.removeAll()
         ingrNameArray.removeAll()
     }
+    
+    //MARK:SEARCH
+    @IBAction func fieldStart(_ sender: UITextField) {
+    }
+    
+    @IBAction func fieldChanged(_ sender: UITextField) {
+    }
+    
+    
     
 }
