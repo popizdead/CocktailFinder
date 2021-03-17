@@ -35,20 +35,4 @@ func createShortCocktail(dict: [String:Any]) -> ShortCocktail? {
     return nil
 }
 
-func createIngrUrl() -> String {
-    var urlString = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i="
-    var counter = 1
-    
-    for ingr in ingrBarArray {
-        if counter == ingrBarArray.count {
-            urlString.append(ingr.name.makeUrlable())
-        } else {
-            urlString.append(ingr.name.makeUrlable() + ",")
-        }
-        counter += 1
-    }
-    
-    return urlString
-}
-
 

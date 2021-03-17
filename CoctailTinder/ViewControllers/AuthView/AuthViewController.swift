@@ -60,12 +60,7 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        if ingrCalled == .auth {
-            self.performSegue(withIdentifier: "toMain", sender: self)
-        }
-        else if ingrCalled == .bar {
-            self.dismiss(animated: true, completion: nil)
-        }
+        self.dismiss(animated: true, completion: nil)
         imgDict.removeAll()
         ingrNameArray.removeAll()
     }

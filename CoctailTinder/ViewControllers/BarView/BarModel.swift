@@ -8,13 +8,5 @@
 import Foundation
 import UIKit
 
-enum State {
-    case bar
-    case buyList
-}
-
-var currentState = State.bar
 var alertIngredient = Ingredient(name: "")
-
-var ingrBarArray : [Ingredient] = []
 var userBuyList : [Ingredient] = []

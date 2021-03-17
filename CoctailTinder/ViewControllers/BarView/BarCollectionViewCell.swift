@@ -18,14 +18,8 @@ class BarCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        if currentState == .bar {
-            ingrBarArray = ingrBarArray.filter({$0.name != self.nameLbl.text})
-            deleteSavedIngredient(name: self.nameLbl.text!)
-        }
-        else if currentState == .buyList {
-            userBuyList = userBuyList.filter({$0.name != self.nameLbl.text})
-            deleteBuyListItem(name: self.nameLbl.text!)
-        }
+        userBuyList = userBuyList.filter({$0.name != self.nameLbl.text})
+        deleteBuyListItem(name: self.nameLbl.text!)
         NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
     }
     

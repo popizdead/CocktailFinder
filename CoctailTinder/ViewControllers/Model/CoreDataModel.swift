@@ -11,7 +11,6 @@ import UIKit
 
 func getSavedData() {
     getSavedCocktails()
-    getSavedIngredients()
     getSavedBuyList()
 }
 
@@ -63,61 +62,6 @@ func saveCocktailCoreData(object: Coctail) {
     
     do { try context.save() }
     catch {}
-}
-
-//MARK:INGREDIENT
-func saveIngredientCoreData(ingr: Ingredient) {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = appDelegate.persistentContainer.viewContext
-    
-    guard let entity = NSEntityDescription.entity(forEntityName: "IngredientBar", in: context) else { return }
-    let ingrObject = IngredientBar(entity: entity, insertInto: context)
-    
-    ingrObject.name = ingr.name
-    if let data = ingr.ingrImage?.pngData() {
-        ingrObject.ingrImage = data
-    }
-    
-    do { try context.save() }
-    catch {}
-}
-
-func deleteSavedIngredient(name: String) {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = appDelegate.persistentContainer.viewContext
-    
-    let fetchRequest : NSFetchRequest<IngredientBar> = IngredientBar.fetchRequest()
-    
-    if let ingredientArray = try? context.fetch(fetchRequest) {
-        for object in ingredientArray {
-            if object.name == name {
-                context.delete(object)
-            }
-        }
-    }
-    
-    do { try context.save() }
-    catch {}
-}
-
-func getSavedIngredients() {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = appDelegate.persistentContainer.viewContext
-
-    let fetchRequest : NSFetchRequest<IngredientBar> = IngredientBar.fetchRequest()
-
-    do {
-        let ingredientArray = try context.fetch(fetchRequest)
-        for object in ingredientArray {
-            if let name = object.name {
-                let ingr = Ingredient(name: name)
-                if let imgData = object.ingrImage {
-                    ingr.ingrImage = UIImage(data: imgData)!
-                }
-                ingrBarArray.append(ingr)
-            }
-        }
-    } catch {}
 }
 
 //MARK:BUY LIST

@@ -37,7 +37,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.cornerRadius = 10
         self.img.layer.cornerRadius = 10
         
-        if ingrBarArray.contains(where: {$0.name == cellName}) {
+        if userBuyList.contains(where: {$0.name == cellName}) {
             self.contentView.backgroundColor = .systemPink
             self.nameLbl.textColor = .white
         } else {
@@ -49,17 +49,17 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     func tappedCell() {
         let cellName = sourceArray[cellIndex]
-        if ingrBarArray.contains(where: {$0.name == cellName}) {
-            ingrBarArray = ingrBarArray.filter({$0.name != cellName})
-            deleteSavedIngredient(name: cellName)
+        if userBuyList.contains(where: {$0.name == cellName}) {
+            userBuyList = userBuyList.filter({$0.name != cellName})
+            deleteBuyListItem(name: cellName)
             print("Deleted")
         } else {
             let ingr = Ingredient(name: cellName)
             if let img = imgDict[cellName] {
                 ingr.ingrImage = img
             }
-            ingrBarArray.append(ingr)
-            saveIngredientCoreData(ingr: ingr)
+            userBuyList.append(ingr)
+            saveBuyListItem(ingr: ingr)
             print("Added")
         }
         NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
