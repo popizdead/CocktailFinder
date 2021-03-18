@@ -11,7 +11,6 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
 
     //MARK:OUTLETS
     @IBOutlet weak var navView: UIView!
-    @IBOutlet weak var cvShadowView: UIView!
     
     @IBOutlet weak var ingrCV: UICollectionView!
     
@@ -42,11 +41,9 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     //MARK:UI
     func setupUI() {
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
-        cvShadowView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         
         buttonView.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         navView.backgroundColor = .white
-        cvShadowView.backgroundColor = .white
     }
     
     //MARK:BUTTONS

@@ -24,10 +24,6 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
         self.viewNameLbl.text = screenName
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        responseArray.removeAll()
-        sourceItemsArray.removeAll()
-    }
     
     func delegates() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateItemsCV"), object: nil)

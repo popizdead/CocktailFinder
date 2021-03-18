@@ -58,7 +58,8 @@ func collectionRequest(type: typeRequest) {
     case .beer:
         idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Beer")
     case .punch:
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Cocktail")
+        let url = "Punch / Party Drink"
+        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
     case .random:
         fullCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php")
     }

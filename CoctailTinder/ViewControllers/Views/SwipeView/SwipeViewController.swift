@@ -24,31 +24,6 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var ingrCountLbl: UILabel!
     
     
-    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
-        let card = sender.view!
-        let point = sender.translation(in: card)
-        card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
-        if sender.state == .ended {
-            if card.center.x > view.center.x {
-                //Green
-                self.swipeView.backgroundColor = .systemGreen
-                let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
-                newCocktail.image = currentCoctail.image
-                saveCocktailCoreData(object: newCocktail)
-                favArray.insert(newCocktail, at: 0)
-            } else {
-                //Red
-                self.swipeView.backgroundColor = .systemRed
-            }
-            UIView.animate(withDuration: 0.2) {
-                card.center = self.view.center
-            }
-            requestedFrom = .swipe
-            self.hideView(hidding: true)
-            requestCocktail()
-        }
-    }
-    
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,9 +88,29 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     //MARK:BUTTON
-    @IBAction func filterButtonTapped(_ sender: UIButton) {
-        attributesView = .filter
-        SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"filterView"), using: setupAttributes())
+    @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
+        let card = sender.view!
+        let point = sender.translation(in: card)
+        card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+        if sender.state == .ended {
+            if card.center.x > view.center.x {
+                //Green
+                self.swipeView.backgroundColor = .systemGreen
+                let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
+                newCocktail.image = currentCoctail.image
+                saveCocktailCoreData(object: newCocktail)
+                favArray.insert(newCocktail, at: 0)
+            } else {
+                //Red
+                self.swipeView.backgroundColor = .systemRed
+            }
+            UIView.animate(withDuration: 0.2) {
+                card.center = self.view.center
+            }
+            requestedFrom = .swipe
+            self.hideView(hidding: true)
+            requestCocktail()
+        }
     }
     
     @IBAction func instructionButtonTapped(_ sender: UIButton) {

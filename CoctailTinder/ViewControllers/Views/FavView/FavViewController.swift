@@ -28,6 +28,8 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     func designSetup() {
         self.navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        self.navView.backgroundColor = .white
+        self.favCollectionView.backgroundColor = .white
     }
     
     @objc func update() {

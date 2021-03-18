@@ -21,7 +21,6 @@ class CollectionsViewController: UIViewController {
     @IBOutlet weak var random: UIButton!
     @IBOutlet weak var beer: UIButton!
     
-    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var navView: UIView!
     
     //MARK:VIEW LOAD
@@ -37,8 +36,6 @@ class CollectionsViewController: UIViewController {
             button?.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         }
         navView.backgroundColor = .white
-        shadowView.backgroundColor = .white
-        shadowView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
     }
     

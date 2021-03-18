@@ -41,6 +41,8 @@
 		63BB121625FB972A0079F279 /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BB121525FB972A0079F279 /* ReviewModel.swift */; };
 		63D74B0525F2A44B00503326 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B0425F2A44B00503326 /* NetworkModel.swift */; };
 		63D74B1425F2D49B00503326 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B1325F2D49B00503326 /* FavViewController.swift */; };
+		63FC0D9D2603E8E200ADAF67 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC0D9C2603E8E200ADAF67 /* SearchViewController.swift */; };
+		63FC0DA02603E8EC00ADAF67 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC0D9F2603E8EC00ADAF67 /* SearchModel.swift */; };
 		C15205C9755D6D7AA238D2D2 /* Pods_CoctailTinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71595DBF42E90CF5E0F9ED1 /* Pods_CoctailTinder.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		63BB121525FB972A0079F279 /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		63D74B0425F2A44B00503326 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		63D74B1325F2D49B00503326 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
+		63FC0D9C2603E8E200ADAF67 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		63FC0D9F2603E8EC00ADAF67 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		9F2F2B1DD27F3ED1E8BD16B2 /* Pods-CoctailTinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTinder.release.xcconfig"; path = "Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder.release.xcconfig"; sourceTree = "<group>"; };
 		D71595DBF42E90CF5E0F9ED1 /* Pods_CoctailTinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailTinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BADE432189863B61DCED0B /* Pods-CoctailTinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTinder.debug.xcconfig"; path = "Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				63BB121825FB97300079F279 /* CocktailView */,
 				636C272825FCE9DF009C9DA3 /* BarView */,
 				634F5D172602872700EFECD9 /* CollectionsView */,
+				63FC0DA22603EBAF00ADAF67 /* Search */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,6 +273,15 @@
 				63131BEE25FE6271002EB9EE /* FavModel.swift */,
 			);
 			path = FavView;
+			sourceTree = "<group>";
+		};
+		63FC0DA22603EBAF00ADAF67 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				63FC0D9C2603E8E200ADAF67 /* SearchViewController.swift */,
+				63FC0D9F2603E8EC00ADAF67 /* SearchModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		8FFE1195C6FD5F640A1F5C51 /* Pods */ = {
@@ -399,10 +413,12 @@
 				63D74B0525F2A44B00503326 /* NetworkModel.swift in Sources */,
 				633325B925F83944001B399F /* Ingredient.swift in Sources */,
 				634F5D152602871900EFECD9 /* CollectionsModel.swift in Sources */,
+				63FC0DA02603E8EC00ADAF67 /* SearchModel.swift in Sources */,
 				636C272325FCE9CD009C9DA3 /* BarViewController.swift in Sources */,
 				639DDDF425F289D00010CA4A /* Extensions.swift in Sources */,
 				633325D825F922DB001B399F /* AuthModel.swift in Sources */,
 				631F560C25FE903C0010E90E /* CoreDataModel.swift in Sources */,
+				63FC0D9D2603E8E200ADAF67 /* SearchViewController.swift in Sources */,
 				63D74B1425F2D49B00503326 /* FavViewController.swift in Sources */,
 				634F5D2226028CC100EFECD9 /* InsideIngrCollectionViewCell.swift in Sources */,
 				633325D525F922D2001B399F /* AuthViewController.swift in Sources */,

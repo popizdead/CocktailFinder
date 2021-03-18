@@ -25,7 +25,13 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         self.cocktailImg.layer.cornerRadius = 10
         
         ingrCountLbl.text = "\(cellCocktail.ingrArray.count) Ingredients"
-        cocktailImg.image = cellCocktail.image
+        if cellCocktail.image != nil {
+            cocktailImg.image = cellCocktail.image
+        } else {
+            cocktailImg.image = nil
+            cocktailImg.backgroundColor = .systemGray6
+        }
+        
         nameLbl.text = cellCocktail.name
     }
     
@@ -48,7 +54,15 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! InsideIngrCollectionViewCell
         //MARK:FIXME
         if indexPath.row <= cellCocktail.ingrArray.count - 1 {
+            cell.img.layer.cornerRadius = 10
             let ingr = cellCocktail.ingrArray[indexPath.row]
+            if ingr.ingrImage != nil {
+                cell.img.image = ingr.ingrImage
+                cell.img.backgroundColor = .white
+            } else {
+                cell.img.image = nil
+                cell.img.backgroundColor = .systemGray6
+            }
             cell.img.image = ingr.ingrImage
         }
         return cell
