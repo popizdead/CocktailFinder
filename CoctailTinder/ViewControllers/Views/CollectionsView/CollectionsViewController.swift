@@ -43,25 +43,55 @@ class CollectionsViewController: UIViewController {
     }
     
     //MARK:BUTTONS
-    @IBAction func newTapped(_ sender: UIButton) {
-        collectionRequest(type: .new)
+    @IBAction func collectionButtonTapped(_ sender: UIButton) {
+        switch sender {
+        case new:
+            collectionRequest(type: .new)
+        case pop:
+            collectionRequest(type: .new)
+        case nonAlc:
+            collectionRequest(type: .nonAlc)
+        case cocktails:
+            collectionRequest(type: .cocktails)
+        case shake:
+            collectionRequest(type: .shake)
+        case coffee:
+            collectionRequest(type: .coffee)
+        case shot:
+            collectionRequest(type: .shot)
+        case punch:
+            collectionRequest(type: .punch)
+        case random:
+            collectionRequest(type: .random)
+        case beer:
+            collectionRequest(type: .beer)
+        default:
+            print("default")
+        }
         self.performSegue(withIdentifier: "toItemsList", sender: self)
+        
     }
     
-    @IBAction func popTapped(_ sender: UIButton) {
-        collectionRequest(type: .pop)
-        self.performSegue(withIdentifier: "toItemsList", sender: self)
-    }
     
-    @IBAction func nonAlcTapped(_ sender: UIButton) {
-        collectionRequest(type: .nonAlc)
-        self.performSegue(withIdentifier: "toItemsList", sender: self)
-    }
-    
-    @IBAction func cocktailsTapped(_ sender: UIButton) {
-        collectionRequest(type: .cocktails)
-        self.performSegue(withIdentifier: "toItemsList", sender: self)
-    }
+//    @IBAction func newTapped(_ sender: UIButton) {
+//        collectionRequest(type: .new)
+//        self.performSegue(withIdentifier: "toItemsList", sender: self)
+//    }
+//
+//    @IBAction func popTapped(_ sender: UIButton) {
+//        collectionRequest(type: .pop)
+//        self.performSegue(withIdentifier: "toItemsList", sender: self)
+//    }
+//
+//    @IBAction func nonAlcTapped(_ sender: UIButton) {
+//        collectionRequest(type: .nonAlc)
+//        self.performSegue(withIdentifier: "toItemsList", sender: self)
+//    }
+//
+//    @IBAction func cocktailsTapped(_ sender: UIButton) {
+//        collectionRequest(type: .cocktails)
+//        self.performSegue(withIdentifier: "toItemsList", sender: self)
+//    }
     
     
 }

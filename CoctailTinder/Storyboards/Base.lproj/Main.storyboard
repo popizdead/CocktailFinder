@@ -193,6 +193,9 @@
                                         <state key="normal" title="Top punch">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="4TN-QI-BrP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yA-eQ-fgg">
                                         <rect key="frame" x="57" y="495" width="300" height="50"/>
@@ -202,6 +205,9 @@
                                         <state key="normal" title="Top beer">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="op2-Da-ZfV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBK-BP-5SF">
                                         <rect key="frame" x="57" y="379" width="300" height="50"/>
@@ -211,6 +217,9 @@
                                         <state key="normal" title="Top shot">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="aJr-Si-qfp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIK-VB-ylf">
                                         <rect key="frame" x="57" y="437" width="300" height="50"/>
@@ -220,6 +229,9 @@
                                         <state key="normal" title="Top coffee">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="WK7-bL-6Tk"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNX-r5-pL4">
                                         <rect key="frame" x="57" y="321" width="300" height="50"/>
@@ -229,6 +241,9 @@
                                         <state key="normal" title="Top shake">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="uqw-eQ-lad"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Vg-xq-hHA">
                                         <rect key="frame" x="57" y="263" width="300" height="50"/>
@@ -239,7 +254,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="cocktailsTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="uN9-TY-ftU"/>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="wTV-fA-dpq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1T-yh-NR6">
@@ -251,7 +266,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="nonAlcTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="I99-Nb-UOD"/>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="vVF-gq-aQe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0g-EO-g35">
@@ -263,7 +278,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="popTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="Dpa-Lp-Y8w"/>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="uwQ-rv-V8g"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWZ-68-dUW">
@@ -275,7 +290,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="newTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="Yry-nK-21b"/>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="McW-31-6wl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFf-Nx-nqr">
@@ -286,6 +301,9 @@
                                         <state key="normal" title="Random">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="collectionButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="cGI-1u-dLc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
