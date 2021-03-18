@@ -44,8 +44,11 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! InsideIngrCollectionViewCell
-        let ingr = cellCocktail.ingrArray[indexPath.row]
-        cell.img.image = ingr.ingrImage
+        //MARK:FIXME
+        if indexPath.row <= cellCocktail.ingrArray.count - 1 {
+            let ingr = cellCocktail.ingrArray[indexPath.row]
+            cell.img.image = ingr.ingrImage
+        }
         return cell
     }
     

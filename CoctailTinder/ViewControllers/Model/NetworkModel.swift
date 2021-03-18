@@ -15,7 +15,6 @@ enum dataRequestedFrom {
 }
 
 var requestedFrom = dataRequestedFrom.swipe
-var responseArray : [ShortCocktail] = []
 
 var indexCurrentCocktail = 0
 var isFilterChanged = true
@@ -49,10 +48,19 @@ func getCocktailByID(id: String) {
         if let arrayData = dataDict["drinks"] as? [[String:Any]] {
             if let cocktailData = arrayData.first {
                 if let cocktail = createCoctail(from: cocktailData) {
-                    cocktail.getCocktailImage()
-                    cocktail.getIngredientImage()
-                    favArray.append(cocktail)
-                    NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
+                    if requestedFrom == .favourite {
+                        cocktail.getCocktailImage()
+                        cocktail.getIngredientImage()
+                        favArray.append(cocktail)
+                        NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
+                    }
+                    else if requestedFrom == .collection {
+                        cocktail.getIngredientImage()
+                        cocktail.getCocktailImage()
+                        sourceItemsArray.append(cocktail)
+                        NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
+                    }
+                    
                 }
             }
         }

@@ -53,4 +53,15 @@ class CollectionsViewController: UIViewController {
         self.performSegue(withIdentifier: "toItemsList", sender: self)
     }
     
+    @IBAction func nonAlcTapped(_ sender: UIButton) {
+        collectionRequest(type: .nonAlc)
+        self.performSegue(withIdentifier: "toItemsList", sender: self)
+    }
+    
+    @IBAction func cocktailsTapped(_ sender: UIButton) {
+        collectionRequest(type: .cocktails)
+        self.performSegue(withIdentifier: "toItemsList", sender: self)
+    }
+    
+    
 }
