@@ -53,6 +53,13 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        saveCocktailCoreData(object: reviewCocktail)
+        favArray.insert(reviewCocktail, at: 0)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return reviewCocktail.ingrArray.count

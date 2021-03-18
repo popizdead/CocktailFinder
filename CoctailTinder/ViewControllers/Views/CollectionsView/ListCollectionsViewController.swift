@@ -11,19 +11,34 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
 
     @IBOutlet weak var viewNameLbl: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
-    
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var itemsCV: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        delegates()
+        setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewNameLbl.text = screenName
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        responseArray.removeAll()
+        sourceItemsArray.removeAll()
     }
     
     func delegates() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateItemsCV"), object: nil)
         itemsCV.delegate = self
         itemsCV.dataSource = self
+    }
+    
+    func setupUI() {
+        delegates()
+        navView.backgroundColor = .white
+        navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
     }
     
     @objc func update() {

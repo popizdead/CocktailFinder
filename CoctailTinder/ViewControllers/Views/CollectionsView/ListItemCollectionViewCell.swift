@@ -11,6 +11,7 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     @IBOutlet weak var cocktailImg: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var ingrCountLbl: UILabel!
     @IBOutlet weak var ingrCV: UICollectionView!
     
     var cellCocktail : Coctail!
@@ -23,6 +24,7 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         self.contentView.layer.cornerRadius = 10
         self.cocktailImg.layer.cornerRadius = 10
         
+        ingrCountLbl.text = "\(cellCocktail.ingrArray.count) Ingredients"
         cocktailImg.image = cellCocktail.image
         nameLbl.text = cellCocktail.name
     }

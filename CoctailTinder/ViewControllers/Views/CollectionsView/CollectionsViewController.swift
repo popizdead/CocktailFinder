@@ -47,51 +47,41 @@ class CollectionsViewController: UIViewController {
         switch sender {
         case new:
             collectionRequest(type: .new)
+            screenName = "New drinks"
         case pop:
-            collectionRequest(type: .new)
+            collectionRequest(type: .pop)
+            screenName = "Popular drinks"
         case nonAlc:
             collectionRequest(type: .nonAlc)
+            screenName = "Non-Alcoholic drinks"
         case cocktails:
             collectionRequest(type: .cocktails)
+            screenName = "Cocktails"
         case shake:
             collectionRequest(type: .shake)
+            screenName = "Milk/Shake drinks"
         case coffee:
             collectionRequest(type: .coffee)
+            screenName = "Coffee/Tea drinks"
         case shot:
             collectionRequest(type: .shot)
+            screenName = "Shot drinks"
         case punch:
             collectionRequest(type: .punch)
+            screenName = "Punch drinks"
         case random:
             collectionRequest(type: .random)
+            screenName = "Random drinks"
         case beer:
             collectionRequest(type: .beer)
+            screenName = "Beer drinks"
         default:
             print("default")
         }
         self.performSegue(withIdentifier: "toItemsList", sender: self)
         
     }
-    
-    
-//    @IBAction func newTapped(_ sender: UIButton) {
-//        collectionRequest(type: .new)
-//        self.performSegue(withIdentifier: "toItemsList", sender: self)
-//    }
-//
-//    @IBAction func popTapped(_ sender: UIButton) {
-//        collectionRequest(type: .pop)
-//        self.performSegue(withIdentifier: "toItemsList", sender: self)
-//    }
-//
-//    @IBAction func nonAlcTapped(_ sender: UIButton) {
-//        collectionRequest(type: .nonAlc)
-//        self.performSegue(withIdentifier: "toItemsList", sender: self)
-//    }
-//
-//    @IBAction func cocktailsTapped(_ sender: UIButton) {
-//        collectionRequest(type: .cocktails)
-//        self.performSegue(withIdentifier: "toItemsList", sender: self)
-//    }
+  
     
     
 }

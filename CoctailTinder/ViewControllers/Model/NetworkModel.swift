@@ -15,6 +15,7 @@ enum dataRequestedFrom {
 }
 
 var requestedFrom = dataRequestedFrom.swipe
+var screenName = String()
 
 var indexCurrentCocktail = 0
 var isFilterChanged = true
@@ -94,8 +95,14 @@ func createIngredients(from dict: [String:Any]) -> [Ingredient] {
     for index in Range(1...15) {
         if let name = dict["strIngredient\(index)"] as? String {
             if let measure = dict["strMeasure\(index)"] as? String {
-                let ingr = Ingredient(name: name)
-                ingrArray.append(ingr)
+                if name != "" {
+                    let ingr = Ingredient(name: name)
+                    ingr.measure = measure
+                    ingrArray.append(ingr)
+                } else {
+                    break
+                }
+                
             }
         } else {
             break

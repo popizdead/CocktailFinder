@@ -22,7 +22,6 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var ingredientCollectionView: UICollectionView!
     @IBOutlet weak var instructionButton: UIButton!
     @IBOutlet weak var ingrCountLbl: UILabel!
-    @IBOutlet weak var filtersButton: UIButton!
     
     
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
@@ -71,7 +70,6 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         swipeView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         image.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         instructionButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
-        filtersButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         
         navView.backgroundColor = .white
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
