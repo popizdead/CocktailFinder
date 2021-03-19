@@ -22,6 +22,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var ingredientCollectionView: UICollectionView!
     @IBOutlet weak var instructionButton: UIButton!
     @IBOutlet weak var ingrCountLbl: UILabel!
+    @IBOutlet weak var bgView: UIView!
     
     func createLoadingAnimation() {
         
@@ -98,9 +99,9 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBAction func panAction(_ sender: UIPanGestureRecognizer) {
         let card = sender.view!
         let point = sender.translation(in: card)
-        card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
+        card.center = CGPoint(x: bgView.center.x + point.x, y: bgView.center.y + point.y)
         if sender.state == .ended {
-            if card.center.x > view.center.x {
+            if card.center.x > bgView.center.x {
                 //Green
                 self.swipeView.backgroundColor = .systemGreen
                 let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
@@ -112,8 +113,11 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.swipeView.backgroundColor = .systemRed
             }
             UIView.animate(withDuration: 0.2) {
-                card.center = self.view.center
+                card.center.x = self.bgView.center.x
+                card.center.y = self.bgView.center.y / 1.25
+                //card.center = self.bgView.center
             }
+            self.swipeView.layoutIfNeeded()
             requestedFrom = .swipe
             self.hideView(hidding: true)
             randomCoctailRequest()
