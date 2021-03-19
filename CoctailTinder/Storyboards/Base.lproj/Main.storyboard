@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uom-tG-Shq">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uom-tG-Shq">
                                 <rect key="frame" x="0.0" y="99" width="414" height="714"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="63H-Vw-8w7">
                                     <size key="itemSize" width="350" height="439"/>
@@ -137,23 +136,35 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsu-S3-M37">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsu-S3-M37">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fM7-In-jw9">
-                                        <rect key="frame" x="172" y="57" width="71" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fM7-In-jw9">
+                                        <rect key="frame" x="171.5" y="57.5" width="71" height="34.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="fM7-In-jw9" secondAttribute="bottom" constant="8" id="4tV-AR-I9u"/>
+                                    <constraint firstItem="fM7-In-jw9" firstAttribute="centerX" secondItem="dsu-S3-M37" secondAttribute="centerX" id="UI6-ax-ssN"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="een-8s-WdP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uom-tG-Shq" firstAttribute="top" secondItem="dsu-S3-M37" secondAttribute="bottom" constant="-1" id="7qz-JE-Two"/>
+                            <constraint firstItem="uom-tG-Shq" firstAttribute="top" secondItem="een-8s-WdP" secondAttribute="top" constant="55" id="7vM-Uw-cCO"/>
+                            <constraint firstItem="uom-tG-Shq" firstAttribute="bottom" secondItem="een-8s-WdP" secondAttribute="bottom" id="9Dg-L9-Hk1"/>
+                            <constraint firstItem="dsu-S3-M37" firstAttribute="top" secondItem="cZe-s1-nr3" secondAttribute="top" id="FPL-zk-Qxf"/>
+                            <constraint firstItem="uom-tG-Shq" firstAttribute="leading" secondItem="een-8s-WdP" secondAttribute="leading" id="ODm-5V-RvJ"/>
+                            <constraint firstItem="dsu-S3-M37" firstAttribute="trailing" secondItem="een-8s-WdP" secondAttribute="trailing" id="iER-Po-U0o"/>
+                            <constraint firstItem="uom-tG-Shq" firstAttribute="trailing" secondItem="een-8s-WdP" secondAttribute="trailing" id="xcV-Ph-KFR"/>
+                            <constraint firstItem="dsu-S3-M37" firstAttribute="leading" secondItem="een-8s-WdP" secondAttribute="leading" id="yNg-3G-v3z"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="fav" id="ylZ-Hd-6mz"/>
                     <connections>
@@ -1411,7 +1422,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lrS-JP-UhX"/>
+        <segue reference="eJG-Ms-Xbn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="32" height="32"/>
