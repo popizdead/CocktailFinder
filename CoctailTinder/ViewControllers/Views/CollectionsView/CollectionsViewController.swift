@@ -43,33 +43,43 @@ class CollectionsViewController: UIViewController {
     @IBAction func collectionButtonTapped(_ sender: UIButton) {
         switch sender {
         case new:
+            showingRequest = .new
             collectionRequest(type: .new)
             screenName = "New drinks"
         case pop:
+            showingRequest = .pop
             collectionRequest(type: .pop)
             screenName = "Popular drinks"
         case nonAlc:
+            showingRequest = .nonAlc
             collectionRequest(type: .nonAlc)
             screenName = "Non-Alcoholic drinks"
         case cocktails:
+            showingRequest = .cocktails
             collectionRequest(type: .cocktails)
             screenName = "Cocktails"
         case shake:
+            showingRequest = .shake
             collectionRequest(type: .shake)
             screenName = "Milk/Shake drinks"
         case coffee:
+            showingRequest = .coffee
             collectionRequest(type: .coffee)
             screenName = "Coffee/Tea drinks"
         case shot:
+            showingRequest = .shot
             collectionRequest(type: .shot)
             screenName = "Shot drinks"
         case punch:
+            showingRequest = .punch
             collectionRequest(type: .punch)
             screenName = "Punch drinks"
         case random:
+            showingRequest = .random
             collectionRequest(type: .random)
             screenName = "Random drinks"
         case beer:
+            showingRequest = .beer
             collectionRequest(type: .beer)
             screenName = "Beer drinks"
         default:

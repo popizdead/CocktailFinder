@@ -79,8 +79,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func searchChanged(_ sender: UITextField) {
         if sender.text == "" {
             resultSearchArray.removeAll()
+        } else {
+            searchItems(text: sender.text!)
         }
-        searchItems(text: sender.text!)
     }
     
     @IBAction func searchEnd(_ sender: UITextField) {

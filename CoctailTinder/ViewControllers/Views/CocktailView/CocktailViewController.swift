@@ -20,6 +20,8 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    var isFavoutite = false
+    
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewWillAppear(_ animated: Bool) {
         checkForDownloaded()
+        checkForFavourite()
         updateUI()
     }
     
@@ -37,6 +40,7 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         ingrCV.dataSource = self
     }
     
+    //MARK:UI
     func setupUI() {
         delegates()
         let viewArray = [cocktailImg, dismissButton, saveButton]
@@ -54,22 +58,41 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         ingrCV.reloadData()
     }
     
+    func checkForFavourite() {
+        isFavoutite = favArray.contains(where: {$0.name == reviewCocktail.name})
+        if isFavoutite {
+            saveButton.setTitle("Unsave", for: .normal)
+        } else {
+            saveButton.setTitle("Save", for: .normal)
+        }
+    }
+    
     func checkForDownloaded() {
-        if reviewCocktail.image == nil || reviewCocktail.ingrArray[0].ingrImage == nil {
+        if reviewCocktail.image == nil {
             requestedFrom = .review
-            reviewCocktail.getIngredientImage()
+            if reviewCocktail.ingrArray.count != 0 {
+                if reviewCocktail.ingrArray[0].ingrImage == nil {
+                    reviewCocktail.getIngredientImage()
+                }
+            }
             reviewCocktail.getCocktailImage()
         }
     }
     
     
+    //MARK:BUTTONS
     @IBAction func dismissButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        saveCocktailCoreData(object: reviewCocktail)
-        favArray.insert(reviewCocktail, at: 0)
+        if isFavoutite {
+            deleteSavedCocktail(name: reviewCocktail.name)
+            favArray = favArray.filter({$0.name != reviewCocktail.name})
+        } else {
+            saveCocktailCoreData(object: reviewCocktail)
+            favArray.insert(reviewCocktail, at: 0)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -13,6 +13,7 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var itemsCV: UICollectionView!
+    @IBOutlet weak var refreshButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,16 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     override func viewWillAppear(_ animated: Bool) {
         self.viewNameLbl.text = screenName
         requestedFrom = .collection
+        checkRefreshButton()
     }
     
+    func checkRefreshButton() {
+        if showingRequest == .new || showingRequest == .pop || showingRequest == .random {
+            refreshButton.isHidden = true
+        } else {
+            refreshButton.isHidden = false
+        }
+    }
     
     func delegates() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateItemsCV"), object: nil)
@@ -41,6 +50,12 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     @objc func update() {
         itemsCV.reloadData()
     }
+    
+    //MARK:BUTTONS
+    @IBAction func refreshButtonTapped(_ sender: UIButton) {
+        collectionRequest(type: showingRequest)
+    }
+    
     
     @IBAction func dismissTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

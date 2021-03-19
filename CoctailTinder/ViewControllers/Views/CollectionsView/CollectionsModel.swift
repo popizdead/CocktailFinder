@@ -25,6 +25,8 @@ enum typeRequest {
     case random
 }
 
+var showingRequest : typeRequest = .cocktails
+
 func createShort(dict: [String:Any]) -> ShortCocktail? {
     if let name = dict["strDrink"] as? String {
         if let id = dict["idDrink"] as? String {
@@ -99,8 +101,17 @@ func idCocktailArrayRequest(url: String) {
 }
 
 func showResponseFromArray() {
-    for index in Range(0...10) {
-        let object = responseArray[index]
-        getCocktailByID(id: object.id)
+    var preparingArray : [ShortCocktail] = []
+    var counter = 0
+    
+    while counter <= 10 {
+        let object = responseArray.randomElement()!
+        if !preparingArray.contains(where: {$0.id == object.id}) {
+            getCocktailByID(id: object.id)
+            preparingArray.append(object)
+            counter += 1
+        }
     }
+    
+    preparingArray.removeAll()
 }
