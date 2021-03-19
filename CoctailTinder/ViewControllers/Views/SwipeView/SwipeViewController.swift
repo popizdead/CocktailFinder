@@ -23,20 +23,27 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var instructionButton: UIButton!
     @IBOutlet weak var ingrCountLbl: UILabel!
     
+    func createLoadingAnimation() {
+        
+    }
+    
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateCard"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openCard), name: NSNotification.Name("openCard"), object: nil)
+        
         updateUI()
         setupUI()
         requestedFrom = .swipe
-        requestCocktail()
+        randomCoctailRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        isFilterChanged = true
+        requestedFrom = .swipe
     }
     
     //MARK:UI
@@ -109,7 +116,7 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
             requestedFrom = .swipe
             self.hideView(hidding: true)
-            requestCocktail()
+            randomCoctailRequest()
         }
     }
     

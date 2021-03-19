@@ -37,8 +37,4 @@ class FilterViewController: UIViewController {
         view.layer.cornerRadius = 10
     }
     
-    @IBAction func myBarTapped(_ sender: UIButton) {
-        currentRequest.ingr = .myBar
-        isFilterChanged = true
-    }
 }

@@ -31,6 +31,7 @@ class AlertIngredientViewController: UIViewController {
     func setupUI(){
         addButton.layer.cornerRadius = 10
         cancelButton.layer.cornerRadius = 10
+        view.layer.cornerRadius = 10
     }
     
     func updateUI(){

@@ -12,20 +12,13 @@ enum dataRequestedFrom {
     case swipe
     case favourite
     case collection
+    case search
+    case review
 }
 
-var requestedFrom = dataRequestedFrom.swipe
+var requestedFrom = dataRequestedFrom.favourite
 var screenName = String()
-
-var indexCurrentCocktail = 0
-var isFilterChanged = true
-
-func requestCocktail() {
-    if currentRequest.ingr == .all && currentRequest.alc == .all {
-        //Random
-        randomCoctailRequest()
-    }
-}
+var savedCocktailsGetting = false
 
 func randomCoctailRequest() {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
@@ -49,19 +42,29 @@ func getCocktailByID(id: String) {
         if let arrayData = dataDict["drinks"] as? [[String:Any]] {
             if let cocktailData = arrayData.first {
                 if let cocktail = createCoctail(from: cocktailData) {
-                    if requestedFrom == .favourite {
-                        cocktail.getCocktailImage()
-                        cocktail.getIngredientImage()
-                        favArray.append(cocktail)
-                        NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
-                    }
-                    else if requestedFrom == .collection {
+                    print("first downloading for \(requestedFrom)")
+                    if requestedFrom == .collection {
                         cocktail.getIngredientImage()
                         cocktail.getCocktailImage()
                         sourceItemsArray.append(cocktail)
                         NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
                     }
-                    
+                }
+            }
+        }
+    }
+}
+
+func getCoreCocktailByID(id: String) {
+    AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
+        guard let dataDict = data.value as? [String : Any] else { return }
+        if let arrayData = dataDict["drinks"] as? [[String:Any]] {
+            if let cocktailData = arrayData.first {
+                if let cocktail = createCoctail(from: cocktailData) {
+                    cocktail.getCocktailImage()
+                    cocktail.getIngredientImage()
+                    favArray.append(cocktail)
+                    NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
                 }
             }
         }

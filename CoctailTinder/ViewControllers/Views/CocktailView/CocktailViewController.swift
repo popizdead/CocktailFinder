@@ -23,12 +23,13 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        delegates()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateReviewScreen"), object: nil)
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setupUI()
+        checkForDownloaded()
+        updateUI()
     }
     
     func delegates() {
@@ -37,17 +38,30 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func setupUI() {
-        cocktailImg.image = reviewCocktail.image
-        nameLbl.text = reviewCocktail.name
-        typeLbl.text = reviewCocktail.category
-        ingredientsCount.text = "\(reviewCocktail.ingrArray.count) Ingredients"
-        instructionText.text = reviewCocktail.instruction
-        
+        delegates()
         let viewArray = [cocktailImg, dismissButton, saveButton]
         for view in viewArray {
             view?.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         }
     }
+    
+    @objc func updateUI() {
+        cocktailImg.image = reviewCocktail.image
+        nameLbl.text = reviewCocktail.name
+        typeLbl.text = reviewCocktail.category
+        ingredientsCount.text = "\(reviewCocktail.ingrArray.count) Ingredients"
+        instructionText.text = reviewCocktail.instruction
+        ingrCV.reloadData()
+    }
+    
+    func checkForDownloaded() {
+        if reviewCocktail.image == nil || reviewCocktail.ingrArray[0].ingrImage == nil {
+            requestedFrom = .review
+            reviewCocktail.getIngredientImage()
+            reviewCocktail.getCocktailImage()
+        }
+    }
+    
     
     @IBAction func dismissButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

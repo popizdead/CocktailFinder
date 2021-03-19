@@ -12,6 +12,7 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var ingredientsCV: UICollectionView!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var navView: UIView!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
         updateShowingArray()
         setDelegates()
         self.doneButton.layer.cornerRadius = 10
+        navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
     }
     
     func setDelegates() {

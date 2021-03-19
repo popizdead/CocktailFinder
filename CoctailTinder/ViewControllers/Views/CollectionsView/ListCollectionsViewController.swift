@@ -22,6 +22,7 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewNameLbl.text = screenName
+        requestedFrom = .collection
     }
     
     

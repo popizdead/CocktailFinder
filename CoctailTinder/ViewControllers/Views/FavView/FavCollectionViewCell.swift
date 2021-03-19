@@ -57,11 +57,9 @@ class FavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
         if indexPath.row <= cellCoctail.ingrArray.count {
-            print("Index: \(indexPath.row)")
-            print("Array: \(cellCoctail.ingrArray.count)")
             let ingr = cellCoctail.ingrArray[indexPath.row]
             
-            cell.img.image = ingr.ingrImage
+            cell.img.image = ingr.ingrImage 
             cell.nameLbl.text = ingr.name
         }
         return cell

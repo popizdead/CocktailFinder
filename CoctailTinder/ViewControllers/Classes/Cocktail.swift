@@ -62,6 +62,12 @@ class Coctail {
         else if requestedFrom == .collection {
             NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
         }
+        else if requestedFrom == .search {
+            NotificationCenter.default.post(name: NSNotification.Name("updateSearchResult"), object: nil)
+        }
+        else if requestedFrom == .review {
+            NotificationCenter.default.post(name: NSNotification.Name("updateReviewScreen"), object: nil)
+        }
     }
 }
 

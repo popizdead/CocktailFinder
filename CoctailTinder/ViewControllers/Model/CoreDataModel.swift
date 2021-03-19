@@ -26,10 +26,12 @@ func getSavedCocktails() {
         let cocktailsArray = try context.fetch(fetchRequest)
         for cocktailObject in cocktailsArray {
             if let id = cocktailObject.id {
-                getCocktailByID(id: id)
+                getCoreCocktailByID(id: id)
             }
         }
-    } catch {}
+    } catch {
+        print("failed to get saved")
+    }
 }
 
 func deleteSavedCocktail(name: String) {
@@ -61,7 +63,7 @@ func saveCocktailCoreData(object: Coctail) {
     cocktailObject.id = object.id
     
     do { try context.save() }
-    catch {}
+    catch {print("failed save")}
 }
 
 //MARK:BUY LIST
