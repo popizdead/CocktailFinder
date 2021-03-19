@@ -108,6 +108,7 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         cell.nameLbl.text = ingr.name
         cell.img.image = ingr.ingrImage
+        cell.mesureLbl.text = ingr.measure
         
         return cell
     }

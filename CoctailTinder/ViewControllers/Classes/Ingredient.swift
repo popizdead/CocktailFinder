@@ -26,20 +26,3 @@ class Ingredient {
     }
 }
 
-/*
-func getAllIngredients() {
-    AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list").responseJSON { (response) in
-        if let dataArray = response.value as? [String : Any] {
-            if let ingrDict = dataArray["drinks"] as? [[String:Any]] {
-                for ingr in ingrDict {
-                    if let name = ingr["strIngredient1"] as? String {
-                        getIngredientImage(toName: name)
-                    }
-                }
-                print(ingrDict.count)
-            }
-        }
-    }
-}
-*/
-

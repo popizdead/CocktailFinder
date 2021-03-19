@@ -42,7 +42,6 @@ func getCocktailByID(id: String) {
         if let arrayData = dataDict["drinks"] as? [[String:Any]] {
             if let cocktailData = arrayData.first {
                 if let cocktail = createCoctail(from: cocktailData) {
-                    print("first downloading for \(requestedFrom)")
                     if requestedFrom == .collection {
                         cocktail.getIngredientImage()
                         cocktail.getCocktailImage()

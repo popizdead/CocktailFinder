@@ -10,4 +10,5 @@ import UIKit
 class IngrCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var mesureLbl: UILabel!
 }

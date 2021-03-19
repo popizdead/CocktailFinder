@@ -52,7 +52,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         if userBuyList.contains(where: {$0.name == cellName}) {
             userBuyList = userBuyList.filter({$0.name != cellName})
             deleteBuyListItem(name: cellName)
-            print("Deleted")
         } else {
             let ingr = Ingredient(name: cellName)
             if let img = imgDict[cellName] {
@@ -60,7 +59,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
             }
             userBuyList.append(ingr)
             saveBuyListItem(ingr: ingr)
-            print("Added")
         }
         NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
         self.setupUI()
