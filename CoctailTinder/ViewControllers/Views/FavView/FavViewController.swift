@@ -12,13 +12,9 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     @IBOutlet weak var favCollectionView: UICollectionView!
     @IBOutlet weak var navView: UIView!
     
+    //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        favCollectionView.delegate = self
-        favCollectionView.dataSource = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(update), name: Notification.Name("updateFavCV"), object: nil)
         designSetup()
     }
     
@@ -26,16 +22,26 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
         favCollectionView.reloadData()
     }
     
+    //MARK:UI
     func designSetup() {
+        observers()
         self.navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         self.navView.backgroundColor = .white
         self.favCollectionView.backgroundColor = .white
+    }
+    
+    func observers() {
+        favCollectionView.delegate = self
+        favCollectionView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: Notification.Name("updateFavCV"), object: nil)
     }
     
     @objc func update() {
         favCollectionView.reloadData()
     }
     
+    //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favArray.count
     }

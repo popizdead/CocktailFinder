@@ -166,7 +166,6 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        attributesView = .buyList
         let ingrObject = currentCoctail.ingrArray[indexPath.row]
         alertIngredient = ingrObject
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
@@ -176,15 +175,9 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     func setupAttributes() -> EKAttributes {
         var attributes = EKAttributes.centerFloat
         
-        if attributesView == .buyList {
-            let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
-            let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
-            attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
-        } else {
-            let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
-            let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
-            attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
-        }
+        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
+        let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
+        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
         
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
         attributes.roundCorners = .all(radius: 15)

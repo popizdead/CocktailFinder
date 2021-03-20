@@ -75,3 +75,6 @@ struct ShortCocktail {
     var name : String
     var id: String
 }
+
+var currentCoctail = Coctail(name: "", category: "", id: "", imgUrl: "", glass: "", ingrArray: [], instr: "")
+var favArray : [Coctail] = []
