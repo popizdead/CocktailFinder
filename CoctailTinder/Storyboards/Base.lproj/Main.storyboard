@@ -751,6 +751,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8co-K8-4WK">
                                         <rect key="frame" x="20" y="57" width="374" height="602"/>
                                         <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K5J-IT-Xaj">
+                                                <rect key="frame" x="177" y="291" width="20" height="20"/>
+                                            </activityIndicatorView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Margrarita Margrarita Margrarita Margrarita" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPn-aD-MiQ">
                                                 <rect key="frame" x="15" y="216" width="344" height="63"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="23"/>
@@ -847,6 +850,7 @@
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="K5J-IT-Xaj" firstAttribute="centerY" secondItem="8co-K8-4WK" secondAttribute="centerY" id="8nF-PA-uSv"/>
                                             <constraint firstAttribute="bottom" secondItem="jrk-hq-Hgz" secondAttribute="bottom" id="Afg-7R-VZr"/>
                                             <constraint firstItem="MXu-Jc-Xyj" firstAttribute="leading" secondItem="8co-K8-4WK" secondAttribute="leadingMargin" constant="7" id="E7q-YH-JuJ"/>
                                             <constraint firstItem="oM5-nG-XxL" firstAttribute="leading" secondItem="8co-K8-4WK" secondAttribute="leadingMargin" constant="7" id="Hta-5V-MBx"/>
@@ -865,6 +869,7 @@
                                             <constraint firstItem="Seu-dh-3yK" firstAttribute="top" secondItem="oM5-nG-XxL" secondAttribute="bottom" constant="8" id="mej-xQ-xoW"/>
                                             <constraint firstAttribute="trailing" secondItem="YTr-EQ-bPu" secondAttribute="trailing" constant="87" id="o8q-Pi-tO4"/>
                                             <constraint firstItem="YTr-EQ-bPu" firstAttribute="top" secondItem="8co-K8-4WK" secondAttribute="top" constant="8" id="qTB-nJ-Gvs"/>
+                                            <constraint firstItem="K5J-IT-Xaj" firstAttribute="centerX" secondItem="8co-K8-4WK" secondAttribute="centerX" id="ra4-6B-POB"/>
                                             <constraint firstItem="oM5-nG-XxL" firstAttribute="top" secondItem="MXu-Jc-Xyj" secondAttribute="bottom" constant="8" id="uMY-4M-P4C"/>
                                         </constraints>
                                         <connections>
@@ -920,6 +925,7 @@
                         <outlet property="ingrCountLbl" destination="oM5-nG-XxL" id="SWx-tF-DKs"/>
                         <outlet property="ingredientCollectionView" destination="Seu-dh-3yK" id="LSz-4G-Mny"/>
                         <outlet property="instructionButton" destination="jrk-hq-Hgz" id="pQi-ps-Oee"/>
+                        <outlet property="loadingIndicator" destination="K5J-IT-Xaj" id="dbH-Jm-rZo"/>
                         <outlet property="nameLbl" destination="NPn-aD-MiQ" id="5WG-ci-fwd"/>
                         <outlet property="navView" destination="ZQ9-EI-v2s" id="jMV-zz-Two"/>
                         <outlet property="swipeView" destination="8co-K8-4WK" id="Etw-T6-jgn"/>

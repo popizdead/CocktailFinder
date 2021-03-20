@@ -17,7 +17,7 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
     }
     
@@ -25,6 +25,7 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
         self.viewNameLbl.text = screenName
         requestedFrom = .collection
         checkRefreshButton()
+        itemsCV.reloadData()
     }
     
     func checkRefreshButton() {

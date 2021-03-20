@@ -24,41 +24,47 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var ingrCountLbl: UILabel!
     @IBOutlet weak var bgView: UIView!
     
-    func createLoadingAnimation() {
-        
-    }
-    
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateCard"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(openCard), name: NSNotification.Name("openCard"), object: nil)
-        
-        updateUI()
         setupUI()
-        requestedFrom = .swipe
-        randomCoctailRequest()
+        firstRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         requestedFrom = .swipe
     }
     
+    func firstRequest() {
+        self.hideView(hidding: true)
+        requestedFrom = .swipe
+        randomCoctailRequest()
+    }
+    
     //MARK:UI
     func setupUI() {
-        swipeView.backgroundColor = .white
-        swipeView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
-        image.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
-        instructionButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
-        
-        navView.backgroundColor = .white
-        navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        loadingIndicator.startAnimating()
+        observers()
         
         ingredientCollectionView.delegate = self
         ingredientCollectionView.dataSource = self
+        
+        swipeView.backgroundColor = .white
+        navView.backgroundColor = .white
+        
+        swipeView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        image.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        instructionButton.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+        navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        
+    }
+    
+    func observers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateCard"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openCard), name: NSNotification.Name("openCard"), object: nil)
     }
     
     @objc func updateUI() {
@@ -74,14 +80,14 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.hideView(hidding: false)
     }
     
+    //MARK:DESIGN
     func hideView(hidding: Bool) {
         if hidding {
+            loadingIndicator.isHidden = false
             self.image.image = nil
             self.image.backgroundColor = .systemGray6
-            
-            currentCoctail.ingrArray.removeAll()
         } else {
-            swipeView.backgroundColor = .white
+            loadingIndicator.isHidden = true
         }
         let viewArray = [ingredientCollectionView, image, nameLbl, categoryLbl, ingrCountLbl, instructionButton]
         for view in viewArray {
@@ -89,9 +95,13 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
    
-    func fillView(toColor: UIColor) {
-        UIView.animate(withDuration: 0.2) {
-            
+    func fillViewAnimate(toColor: UIColor) {
+        hideView(hidding: true)
+        self.swipeView.backgroundColor = toColor
+        self.swipeView.alpha = 0.5
+        UIView.animate(withDuration: 0.5) {
+            self.swipeView.alpha = 1
+            self.swipeView.backgroundColor = .white
         }
     }
     
@@ -103,19 +113,23 @@ class SwipeViewController: UIViewController, UICollectionViewDelegate, UICollect
         if sender.state == .ended {
             if card.center.x > bgView.center.x {
                 //Green
-                self.swipeView.backgroundColor = .systemGreen
-                let newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
-                newCocktail.image = currentCoctail.image
-                saveCocktailCoreData(object: newCocktail)
-                favArray.insert(newCocktail, at: 0)
+                fillViewAnimate(toColor: .systemGreen)
+                if !favArray.contains(where: {$0.name == currentCoctail.name}) {
+                    var newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
+                    newCocktail.image = currentCoctail.image
+                    newCocktail = currentCoctail
+                    saveCocktailCoreData(object: newCocktail)
+                    favArray.insert(newCocktail, at: 0)
+                    print("but in source \(currentCoctail.ingrArray.count) ingredients")
+                    print("saving with \(newCocktail.ingrArray.count) ingredients")
+                }
             } else {
                 //Red
-                self.swipeView.backgroundColor = .systemRed
+                fillViewAnimate(toColor: .systemRed)
             }
             UIView.animate(withDuration: 0.2) {
                 card.center.x = self.bgView.center.x
                 card.center.y = self.bgView.center.y / 1.25
-                //card.center = self.bgView.center
             }
             self.swipeView.layoutIfNeeded()
             requestedFrom = .swipe

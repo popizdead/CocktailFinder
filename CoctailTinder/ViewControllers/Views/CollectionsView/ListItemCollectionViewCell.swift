@@ -33,6 +33,7 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         }
         
         nameLbl.text = cellCocktail.name
+        ingrCV.reloadData()
     }
     
     func delegates() {
