@@ -12,6 +12,8 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var ingrCV: UICollectionView!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var cleanButton: UIButton!
+    
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -29,6 +31,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         setupHidding()
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         navView.backgroundColor = .white
+        cleanButton.isHidden = true
     }
     
     func delegates() {
@@ -49,6 +52,11 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @objc func update() {
         self.ingrCV.reloadData()
+    }
+    
+    @IBAction func cleanButtonTapped(_ sender: UIButton) {
+        self.searchField.text = ""
+        resultSearchArray.removeAll()
     }
     
     //MARK:COLLECTION VIEW
@@ -74,6 +82,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK:FIELD
     @IBAction func searchStarted(_ sender: UITextField) {
+        cleanButton.animateHidding(hidding: false)
     }
     
     @IBAction func searchChanged(_ sender: UITextField) {
@@ -85,7 +94,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func searchEnd(_ sender: UITextField) {
-        
+        cleanButton.animateHidding(hidding: true)
     }
     
 }

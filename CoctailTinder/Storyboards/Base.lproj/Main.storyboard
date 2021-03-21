@@ -975,11 +975,21 @@
                                             <action selector="searchStarted:" destination="yEV-vK-K0F" eventType="editingDidBegin" id="ULD-Wh-jxe"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzi-3x-nBX">
+                                        <rect key="frame" x="8" y="56" width="32" height="32"/>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="cleanButtonTapped:" destination="yEV-vK-K0F" eventType="touchUpInside" id="bBo-qI-d6I"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
+                                    <constraint firstItem="Tzi-3x-nBX" firstAttribute="leading" secondItem="mAk-5R-4In" secondAttribute="leading" constant="8" id="02W-mG-VcR"/>
                                     <constraint firstAttribute="trailing" secondItem="a0D-be-j7G" secondAttribute="trailing" constant="52" id="0OG-PZ-TiM"/>
                                     <constraint firstItem="a0D-be-j7G" firstAttribute="leading" secondItem="mAk-5R-4In" secondAttribute="leading" constant="53" id="JBc-pm-ySp"/>
+                                    <constraint firstItem="a0D-be-j7G" firstAttribute="leading" secondItem="Tzi-3x-nBX" secondAttribute="trailing" constant="13" id="T6M-sp-Fpc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tzi-3x-nBX" secondAttribute="bottom" constant="20" symbolic="YES" id="TUX-KX-c0n"/>
                                     <constraint firstAttribute="bottom" secondItem="a0D-be-j7G" secondAttribute="bottom" constant="16" id="s4b-HT-MEF"/>
                                 </constraints>
                             </view>
@@ -999,6 +1009,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="search" id="Lf0-Ky-VEc"/>
                     <connections>
+                        <outlet property="cleanButton" destination="Tzi-3x-nBX" id="zIg-Qf-Eyp"/>
                         <outlet property="ingrCV" destination="mg5-qv-C6I" id="wVh-40-i5V"/>
                         <outlet property="navView" destination="mAk-5R-4In" id="3Dt-Ud-WOk"/>
                         <outlet property="searchField" destination="a0D-be-j7G" id="goa-tQ-O96"/>
@@ -1556,7 +1567,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="36a-ea-qtM"/>
+        <segue reference="lrS-JP-UhX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="32" height="32"/>
