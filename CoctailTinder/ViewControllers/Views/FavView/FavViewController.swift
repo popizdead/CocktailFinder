@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
-class FavViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FavViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var favCollectionView: UICollectionView!
     @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var settingsButton: UIButton!
+    
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -41,6 +44,11 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
         favCollectionView.reloadData()
     }
     
+    @IBAction func settingsButtonTapped(_ sender: UIButton) {
+        SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"favSettings"), using: setupAttributes())
+    }
+    
+    
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favArray.count
@@ -48,15 +56,59 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as! FavCollectionViewCell
-        cell.cellCoctail = favArray[indexPath.row]
-        cell.updateUI()
-        return cell
+        if favoriteCurrentView == .card {
+            let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as! FavCollectionViewCell
+            cell.cellCoctail = favArray[indexPath.row]
+            cell.updateUI()
+            return cell
+        } else {
+            let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "shortFavCell", for: indexPath) as! ShortFavCollectionViewCell
+            cell.cellCocktail = favArray[indexPath.row]
+            cell.updateUI()
+            return cell
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         reviewCocktail = favArray[indexPath.row]
         self.performSegue(withIdentifier: "favToReview", sender: self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if favoriteCurrentView == .card {
+            return CGSize(width: 350, height: 439)
+        } else {
+            return CGSize(width: 357, height: 178)
+        }
+    }
+    
+    //MARK:ATTRIBUTES
+    func setupAttributes() -> EKAttributes {
+        var attributes = EKAttributes.centerFloat
+        
+        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.95)
+        let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.5)
+        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
+        
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.8, radius: 10, offset: .zero))
+        attributes.roundCorners = .all(radius: 15)
+        
+        // Set its background to white
+        attributes.entryBackground = .color(color: .clear)
+        attributes.screenBackground = .color(color: EKColor(UIColor(white: 0, alpha: 0.5)))
+
+        // Animate in and out using default translation
+        attributes.entranceAnimation = .translation
+        attributes.exitAnimation = .translation
+        
+        attributes.displayDuration = .infinity
+        attributes.entryInteraction = .forward
+        
+        attributes.screenInteraction = .dismiss
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        
+        return attributes
     }
     
 }
