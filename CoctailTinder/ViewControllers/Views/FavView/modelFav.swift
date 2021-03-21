@@ -13,4 +13,10 @@ enum favoriteView {
     case short
 }
 
+enum favoriteState {
+    case searching
+    case hidden
+}
+
 var favoriteCurrentView : favoriteView = .short
+var favoriteCurrentState : favoriteState = .hidden

@@ -10,10 +10,22 @@ import SwiftEntryKit
 
 class FavViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    //MARK:OUTLET
+    //Views
     @IBOutlet weak var favCollectionView: UICollectionView!
     @IBOutlet weak var navView: UIView!
-    @IBOutlet weak var settingsButton: UIButton!
     
+    //Buttons
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var hideButton: UIButton!
+    @IBOutlet weak var searchField: UITextField!
+    
+    //Constraints
+    @IBOutlet weak var cvFromTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelFromBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingButtonFromBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchButtonFromBottomConstraint: NSLayoutConstraint!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -23,14 +35,6 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewWillAppear(_ animated: Bool) {
         favCollectionView.reloadData()
-    }
-    
-    //MARK:UI
-    func designSetup() {
-        observers()
-        self.navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
-        self.navView.backgroundColor = .white
-        self.favCollectionView.backgroundColor = .white
     }
     
     func observers() {
@@ -44,10 +48,55 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
         favCollectionView.reloadData()
     }
     
+    //MARK:UI
+    func designSetup() {
+        hideView()
+        observers()
+        self.navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        self.navView.backgroundColor = .white
+        self.favCollectionView.backgroundColor = .white
+    }
+    
+    func hideView() {
+        hideButton.isHidden = true
+        searchField.isHidden = true
+        UIView.animate(withDuration: 0.5) { [self] in
+            self.labelFromBottomConstraint.constant = self.labelFromBottomConstraint.constant - 42
+            self.settingButtonFromBottomConstraint.constant = self.settingButtonFromBottomConstraint.constant - 42
+            self.searchButtonFromBottomConstraint.constant = self.searchButtonFromBottomConstraint.constant - 42
+            self.cvFromTopConstraint.constant = self.cvFromTopConstraint.constant - 42
+        }
+        favoriteCurrentState = .hidden
+    }
+    
+    func openView() {
+        UIView.animate(withDuration: 0.5) { [self] in
+            self.labelFromBottomConstraint.constant = self.labelFromBottomConstraint.constant + 42
+            self.settingButtonFromBottomConstraint.constant = self.settingButtonFromBottomConstraint.constant + 42
+            self.searchButtonFromBottomConstraint.constant = self.searchButtonFromBottomConstraint.constant + 42
+            self.cvFromTopConstraint.constant = self.cvFromTopConstraint.constant + 42
+        }
+        hideButton.animateHidding(hidding: false)
+        searchField.animateHidding(hidding: false)
+        favoriteCurrentState = .searching
+    }
+    
+    //MARK:BUTTONS
     @IBAction func settingsButtonTapped(_ sender: UIButton) {
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"favSettings"), using: setupAttributes())
     }
     
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        if favoriteCurrentState == .searching {
+            hideView()
+        } else {
+            openView()
+        }
+    }
+    
+    @IBAction func hideButtonTapped(_ sender: UIButton) {
+        hideView()
+    }
     
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
