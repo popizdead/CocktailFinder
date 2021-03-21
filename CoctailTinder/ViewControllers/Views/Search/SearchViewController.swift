@@ -57,6 +57,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func cleanButtonTapped(_ sender: UIButton) {
         self.searchField.text = ""
         resultSearchArray.removeAll()
+        update()
     }
     
     //MARK:COLLECTION VIEW
