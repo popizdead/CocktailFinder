@@ -38,6 +38,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func observers() {
+        updateFavShowingArray()
         favCollectionView.delegate = self
         favCollectionView.dataSource = self
         
@@ -52,9 +53,21 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     func designSetup() {
         hideView()
         observers()
+        keyboardHidding()
+        
         self.navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         self.navView.backgroundColor = .white
         self.favCollectionView.backgroundColor = .white
+    }
+    
+    func keyboardHidding() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     func hideView() {
@@ -67,6 +80,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
             self.cvFromTopConstraint.constant = self.cvFromTopConstraint.constant - 42
         }
         favoriteCurrentState = .hidden
+        updateFavShowingArray()
     }
     
     func openView() {
@@ -98,21 +112,34 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
         hideView()
     }
     
+    //MARK:FIELD
+    @IBAction func searchStarted(_ sender: UITextField) {
+        
+    }
+    
+    @IBAction func searchChanged(_ sender: UITextField) {
+        searchInFavorite(text: sender.text!)
+    }
+    
+    @IBAction func searchEnded(_ sender: UITextField) {
+    }
+    
+    
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favArray.count
+        return showingArray.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if favoriteCurrentView == .card {
             let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as! FavCollectionViewCell
-            cell.cellCoctail = favArray[indexPath.row]
+            cell.cellCoctail = showingArray[indexPath.row]
             cell.updateUI()
             return cell
         } else {
             let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "shortFavCell", for: indexPath) as! ShortFavCollectionViewCell
-            cell.cellCocktail = favArray[indexPath.row]
+            cell.cellCocktail = showingArray[indexPath.row]
             cell.updateUI()
             return cell
         }
@@ -120,7 +147,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        reviewCocktail = favArray[indexPath.row]
+        reviewCocktail = showingArray[indexPath.row]
         self.performSegue(withIdentifier: "favToReview", sender: self)
     }
     

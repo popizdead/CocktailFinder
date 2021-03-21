@@ -77,4 +77,4 @@ struct ShortCocktail {
 }
 
 var currentCoctail = Coctail(name: "", category: "", id: "", imgUrl: "", glass: "", ingrArray: [], instr: "")
-var favArray : [Coctail] = []
+
