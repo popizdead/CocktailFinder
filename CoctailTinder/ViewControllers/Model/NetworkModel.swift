@@ -30,6 +30,8 @@ func randomCoctailRequest() {
                     currentCoctail.getIngredientImage()
                     currentCoctail.getCocktailImage()
                     NotificationCenter.default.post(name: NSNotification.Name("openCard"), object: nil)
+                } else {
+                    randomCoctailRequest()
                 }
             }
         }
@@ -80,8 +82,12 @@ func createCoctail(from dict: [String : Any]) -> Coctail? {
                     if let glass = coctailData["strGlass"] as? String {
                         if let imgUrl = coctailData["strDrinkThumb"] as? String {
                             let ingredientArray = createIngredients(from: coctailData)
-                            let cocktailObject = Coctail(name: name, category: category, id: id, imgUrl: imgUrl, glass: glass, ingrArray: ingredientArray, instr: instr)
-                            return cocktailObject
+                            if ingredientArray.count > 0 {
+                                let cocktailObject = Coctail(name: name, category: category, id: id, imgUrl: imgUrl, glass: glass, ingrArray: ingredientArray, instr: instr)
+                                return cocktailObject
+                            } else {
+                                return nil
+                            }
                         }
                     }
                 }
