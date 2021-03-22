@@ -18,10 +18,17 @@ class CollectionsViewController: UIViewController {
     @IBOutlet weak var coffee: UIButton!
     @IBOutlet weak var shot: UIButton!
     @IBOutlet weak var punch: UIButton!
-    @IBOutlet weak var random: UIButton!
     @IBOutlet weak var beer: UIButton!
+    @IBOutlet weak var cocoa: UIButton!
+    @IBOutlet weak var soda: UIButton!
+    @IBOutlet weak var others: UIButton!
+    @IBOutlet weak var ordinary: UIButton!
+    @IBOutlet weak var homemade: UIButton!
+    
     
     @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var leftBgView: UIView!
+    @IBOutlet weak var rightBgView: UIView!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -31,10 +38,12 @@ class CollectionsViewController: UIViewController {
     }
     
     func setupUI(){
-        let buttonsArray = [new, pop, nonAlc, cocktails, shake, coffee, shot, punch, random, beer]
+        let buttonsArray = [new, pop, nonAlc, cocktails, shake, coffee, shot, punch, soda, beer, others, homemade, ordinary, cocoa]
         for button in buttonsArray {
             button?.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         }
+        leftBgView.backgroundColor = .white
+        rightBgView.backgroundColor = .white
         navView.backgroundColor = .white
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
     }
@@ -74,10 +83,6 @@ class CollectionsViewController: UIViewController {
             showingRequest = .punch
             collectionRequest(type: .punch)
             screenName = "Punch drinks"
-        case random:
-            showingRequest = .random
-            collectionRequest(type: .random)
-            screenName = "Random drinks"
         case beer:
             showingRequest = .beer
             collectionRequest(type: .beer)
