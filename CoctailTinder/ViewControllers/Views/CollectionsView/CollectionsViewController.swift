@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CollectionsViewController: UIViewController {
-    
+class CollectionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+ 
     //MARK:OUTLETS
     @IBOutlet weak var new: UIButton!
     @IBOutlet weak var pop: UIButton!
@@ -30,6 +30,8 @@ class CollectionsViewController: UIViewController {
     @IBOutlet weak var leftBgView: UIView!
     @IBOutlet weak var rightBgView: UIView!
     
+    @IBOutlet weak var ingrTableView: UITableView!
+    
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +40,40 @@ class CollectionsViewController: UIViewController {
     }
     
     func setupUI(){
+        delegates()
+        getIngredientsData()
+        
         let buttonsArray = [new, pop, nonAlc, cocktails, shake, coffee, shot, punch, soda, beer, others, homemade, ordinary, cocoa]
         for button in buttonsArray {
             button?.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         }
+        
         leftBgView.backgroundColor = .white
         rightBgView.backgroundColor = .white
         navView.backgroundColor = .white
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+    }
+    
+    func delegates() {
+        ingrTableView.delegate = self
+        ingrTableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(countCocktailFromList), name: NSNotification.Name("countReady"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("collectionSourceReady"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sortArray), name: NSNotification.Name("collectionSourcePreparing"), object: nil)
+    }
+    
+    @objc func update() {
+        ingrTableView.reloadData()
+    }
+    
+    @objc func sortArray() {
+        tableSource.sort(by: {$0.count > $1.count })
+        update()
+    }
+    
+    @objc func countCocktailFromList() {
+        countCocktails()
     }
     
     //MARK:BUTTONS
@@ -94,6 +122,28 @@ class CollectionsViewController: UIViewController {
         
     }
   
+    //MARK:TABLE VIEW
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
+        let ingr = tableSource[indexPath.row]
+        
+        cell.nameLbl.text = ingr.name
+        cell.countLbl.text = "\(ingr.count)"
+        
+        if imgTableSource[ingr.name] != nil {
+            cell.ingrImg.image = imgTableSource[ingr.name]
+            cell.backgroundColor = .white
+        } else {
+            cell.ingrImg.image = nil
+            cell.backgroundColor = .systemGray6
+        }
+        
+        return cell
+    }
     
     
 }
