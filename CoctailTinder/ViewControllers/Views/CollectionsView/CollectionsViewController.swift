@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CollectionsViewController: UIViewController {
  
     //MARK:OUTLETS
     @IBOutlet weak var new: UIButton!
@@ -30,7 +30,6 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var leftBgView: UIView!
     @IBOutlet weak var rightBgView: UIView!
     
-    @IBOutlet weak var ingrTableView: UITableView!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -55,16 +54,13 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func delegates() {
-        ingrTableView.delegate = self
-        ingrTableView.dataSource = self
-        
         NotificationCenter.default.addObserver(self, selector: #selector(countCocktailFromList), name: NSNotification.Name("countReady"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("collectionSourceReady"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sortArray), name: NSNotification.Name("collectionSourcePreparing"), object: nil)
     }
     
     @objc func update() {
-        ingrTableView.reloadData()
+        //ingrTableView.reloadData()
     }
     
     @objc func sortArray() {
@@ -123,27 +119,27 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
   
     //MARK:TABLE VIEW
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableSource.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
-        let ingr = tableSource[indexPath.row]
-        
-        cell.nameLbl.text = ingr.name
-        cell.countLbl.text = "\(ingr.count)"
-        
-        if imgTableSource[ingr.name] != nil {
-            cell.ingrImg.image = imgTableSource[ingr.name]
-            cell.backgroundColor = .white
-        } else {
-            cell.ingrImg.image = nil
-            cell.backgroundColor = .systemGray6
-        }
-        
-        return cell
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return tableSource.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
+//        let ingr = tableSource[indexPath.row]
+//
+//        cell.nameLbl.text = ingr.name
+//        cell.countLbl.text = "\(ingr.count)"
+//
+//        if imgTableSource[ingr.name] != nil {
+//            cell.ingrImg.image = imgTableSource[ingr.name]
+//            cell.backgroundColor = .white
+//        } else {
+//            cell.ingrImg.image = nil
+//            cell.backgroundColor = .systemGray6
+//        }
+//
+//        return cell
+//    }
     
     
 }
