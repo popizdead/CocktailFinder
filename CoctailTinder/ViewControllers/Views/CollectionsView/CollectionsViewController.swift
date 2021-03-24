@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionsViewController: UIViewController {
+class CollectionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
     //MARK:OUTLETS
     @IBOutlet weak var new: UIButton!
@@ -25,11 +25,12 @@ class CollectionsViewController: UIViewController {
     @IBOutlet weak var ordinary: UIButton!
     @IBOutlet weak var homemade: UIButton!
     
-    
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var leftBgView: UIView!
     @IBOutlet weak var rightBgView: UIView!
     
+    @IBOutlet weak var ingrTableView: UITableView!
+    @IBOutlet weak var tableBg: UIView!
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -50,17 +51,21 @@ class CollectionsViewController: UIViewController {
         leftBgView.backgroundColor = .white
         rightBgView.backgroundColor = .white
         navView.backgroundColor = .white
+        
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        tableBg.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
     }
     
     func delegates() {
-        NotificationCenter.default.addObserver(self, selector: #selector(countCocktailFromList), name: NSNotification.Name("countReady"), object: nil)
+        ingrTableView.delegate = self
+        ingrTableView.dataSource = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("collectionSourceReady"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sortArray), name: NSNotification.Name("collectionSourcePreparing"), object: nil)
     }
     
     @objc func update() {
-        //ingrTableView.reloadData()
+        ingrTableView.reloadData()
     }
     
     @objc func sortArray() {
@@ -68,9 +73,6 @@ class CollectionsViewController: UIViewController {
         update()
     }
     
-    @objc func countCocktailFromList() {
-        countCocktails()
-    }
     
     //MARK:BUTTONS
     @IBAction func collectionButtonTapped(_ sender: UIButton) {
@@ -119,27 +121,32 @@ class CollectionsViewController: UIViewController {
     }
   
     //MARK:TABLE VIEW
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return tableSource.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
-//        let ingr = tableSource[indexPath.row]
-//
-//        cell.nameLbl.text = ingr.name
-//        cell.countLbl.text = "\(ingr.count)"
-//
-//        if imgTableSource[ingr.name] != nil {
-//            cell.ingrImg.image = imgTableSource[ingr.name]
-//            cell.backgroundColor = .white
-//        } else {
-//            cell.ingrImg.image = nil
-//            cell.backgroundColor = .systemGray6
-//        }
-//
-//        return cell
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableSource.count
+    }
+    
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
+        let ingr = tableSource[indexPath.row]
+        
+        cell.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        cell.contentView.layer.cornerRadius = 10
+        
+        cell.nameLbl.text = ingr.name
+        cell.countLbl.text = "\(ingr.count)"
+
+        if imgTableSource[ingr.name] != nil {
+            cell.ingrImg.image = imgTableSource[ingr.name]
+            cell.backgroundColor = .white
+        } else {
+            getTableIngrImage(toName: ingr.name)
+            cell.ingrImg.image = nil
+            cell.backgroundColor = .systemGray6
+        }
+
+        return cell
+    }
     
     
 }

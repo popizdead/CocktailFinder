@@ -29,11 +29,22 @@ func getListOfIngredients() {
             if let ingrDict = dataDict["drinks"] as? [[String:Any]] {
                 for ingrElem in ingrDict {
                     if let name = ingrElem["strIngredient1"] as? String {
-                        getTableIngrImage(toName: name)
                         allIngredients.append(name)
+                        countOfCocktailsTo(ingr: name)
                     }
                 }
-                NotificationCenter.default.post(name: NSNotification.Name("countReady"), object: nil)
+            }
+        }
+    }
+}
+
+func countOfCocktailsTo(ingr: String) {
+    AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(ingr)").responseJSON { (response) in
+        if let allData = response.value as? [String:Any] {
+            if let cocktails = allData["drinks"] as? [[String:Any]] {
+                let model = modelIngredient(name: ingr, count: cocktails.count)
+                tableSource.append(model)
+                NotificationCenter.default.post(name: NSNotification.Name("collectionSourcePreparing"), object: nil)
             }
         }
     }
@@ -45,20 +56,6 @@ func getTableIngrImage(toName: String) {
             if let img = UIImage(data: data) {
                 imgTableSource[toName] = img
                 NotificationCenter.default.post(name: NSNotification.Name("collectionSourceReady"), object: nil)
-            }
-        }
-    }
-}
-
-func countCocktails() {
-    for ingr in allIngredients {
-        AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(ingr)").responseJSON { (response) in
-            if let allData = response.value as? [String:Any] {
-                if let cocktails = allData["drinks"] as? [[String:Any]] {
-                    let model = modelIngredient(name: ingr, count: cocktails.count)
-                    tableSource.append(model)
-                    NotificationCenter.default.post(name: NSNotification.Name("collectionSourcePreparing"), object: nil)
-                }
             }
         }
     }
