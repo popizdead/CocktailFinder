@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CollectionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
@@ -39,6 +40,16 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getIngredientsData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AF.session.getAllTasks { (tasks) in
+            tasks.forEach({$0.cancel()})
+        }
+    }
+    
     func setupUI(){
         delegates()
         getIngredientsData()
@@ -67,6 +78,8 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     @objc func update() {
         ingrTableView.reloadData()
     }
+    
+    var sortCounter = 0
     
     @objc func sortArray() {
         tableSource.sort(by: {$0.count > $1.count })
@@ -130,21 +143,9 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
         let ingr = tableSource[indexPath.row]
         
-        cell.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
-        cell.contentView.layer.cornerRadius = 10
+        cell.ingrCell = ingr
+        cell.setupUI()
         
-        cell.nameLbl.text = ingr.name
-        cell.countLbl.text = "\(ingr.count)"
-
-        if imgTableSource[ingr.name] != nil {
-            cell.ingrImg.image = imgTableSource[ingr.name]
-            cell.backgroundColor = .white
-        } else {
-            getTableIngrImage(toName: ingr.name)
-            cell.ingrImg.image = nil
-            cell.backgroundColor = .systemGray6
-        }
-
         return cell
     }
     

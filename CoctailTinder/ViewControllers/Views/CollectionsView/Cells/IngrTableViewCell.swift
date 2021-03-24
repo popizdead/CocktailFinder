@@ -13,6 +13,7 @@ class IngrTableViewCell: UITableViewCell {
     @IBOutlet weak var ingrImg: UIImageView!
     @IBOutlet weak var countLbl: UILabel!
     
+    var ingrCell : modelIngredient!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,9 +26,20 @@ class IngrTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
-//    }
+    func setupUI() {
+        self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        self.contentView.layer.cornerRadius = 10
+        
+        self.nameLbl.text = ingrCell.name
+        self.countLbl.text = "\(ingrCell.count)"
+
+        if imgTableSource[ingrCell.name] != nil {
+            self.ingrImg.image = imgTableSource[ingrCell.name]
+            self.backgroundColor = .white
+        } else {
+            //getTableIngrImage(toName: ingrCell.name)
+            self.ingrImg.image = nil
+            self.backgroundColor = .systemGray6
+        }
+    }
 }
