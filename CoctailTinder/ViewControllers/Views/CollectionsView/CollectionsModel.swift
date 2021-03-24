@@ -15,7 +15,13 @@ enum collectionState {
     case categories
 }
 
+enum showCollectionState {
+    case search
+    case all
+}
+
 var colCurrentState : collectionState = .categories
+var searchColCurrentState : showCollectionState = .all
 
 extension CollectionsViewController {
     func changeState() {
@@ -47,12 +53,29 @@ struct modelIngredient {
     var count : Int
 }
 
-var tableSource : [modelIngredient] = []
-var imgTableSource : [String : UIImage] = [:]
-var allIngredients : [String] = []
+var ingrShowingArray : [modelIngredient] = []
 
-func getIngredientsData() {
-    getListOfIngredients()
+var ingrSearchArray : [modelIngredient] = []
+var tableSource : [modelIngredient] = []
+
+func updateCollectionShowingArray() {
+    if searchColCurrentState == .all {
+        ingrShowingArray = tableSource
+    } else {
+        ingrShowingArray = ingrSearchArray
+    }
+    NotificationCenter.default.post(name: NSNotification.Name("collectionSourceReady"), object: nil)
+}
+
+//Search ingredients
+func searchIngr(name: String) {
+    ingrSearchArray.removeAll()
+    for object in tableSource {
+        if object.name.lowercased().contains(name.lowercased()) {
+            ingrSearchArray.append(object)
+        }
+    }
+    updateCollectionShowingArray()
 }
 
 //Getting all ingredients
@@ -62,7 +85,6 @@ func getListOfIngredients() {
             if let ingrDict = dataDict["drinks"] as? [[String:Any]] {
                 for ingrElem in ingrDict {
                     if let name = ingrElem["strIngredient1"] as? String {
-                        allIngredients.append(name)
                         countOfCocktailsTo(ingr: name)
                     }
                 }

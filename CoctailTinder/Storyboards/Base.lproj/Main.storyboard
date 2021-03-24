@@ -597,7 +597,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErG-Ig-Glj" userLabel="TableBg">
                                         <rect key="frame" x="0.0" y="50" width="414" height="664"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vbm-Oz-04v">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vbm-Oz-04v">
                                                 <rect key="frame" x="8" y="50" width="398" height="614"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
@@ -609,7 +609,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ukc-On-1iV">
-                                                                    <rect key="frame" x="20" y="9.3333333333333339" width="295" height="27.333333333333329"/>
+                                                                    <rect key="frame" x="20.000000000000004" y="9.3333333333333339" width="50.333333333333343" height="27.333333333333329"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -623,9 +623,8 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="Mcy-jZ-diV" firstAttribute="leading" secondItem="eb3-xm-Jt4" secondAttribute="leading" constant="330" id="1fU-2R-i7H"/>
                                                                 <constraint firstItem="Mcy-jZ-diV" firstAttribute="centerY" secondItem="eb3-xm-Jt4" secondAttribute="centerY" id="IhA-ua-i2J"/>
-                                                                <constraint firstItem="Mcy-jZ-diV" firstAttribute="leading" secondItem="Ukc-On-1iV" secondAttribute="trailing" constant="15" id="MwG-cG-9Bn"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Mcy-jZ-diV" secondAttribute="trailing" constant="21.329999999999998" id="WSC-J6-Fo4"/>
                                                                 <constraint firstItem="Ukc-On-1iV" firstAttribute="centerY" secondItem="eb3-xm-Jt4" secondAttribute="centerY" id="nLg-Jq-Jf9"/>
                                                                 <constraint firstItem="Ukc-On-1iV" firstAttribute="leading" secondItem="eb3-xm-Jt4" secondAttribute="leading" constant="20" symbolic="YES" id="zAL-XZ-dP4"/>
                                                             </constraints>
@@ -637,10 +636,15 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YFV-Pj-3ir">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search.." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YFV-Pj-3ir">
                                                 <rect key="frame" x="38" y="8" width="339" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="searchChanged:" destination="1fm-eS-qL0" eventType="editingChanged" id="0rG-55-FbW"/>
+                                                    <action selector="searchEnd:" destination="1fm-eS-qL0" eventType="editingDidEnd" id="H9L-M8-eiN"/>
+                                                    <action selector="searchStart:" destination="1fm-eS-qL0" eventType="editingDidBegin" id="fif-fj-Xvh"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

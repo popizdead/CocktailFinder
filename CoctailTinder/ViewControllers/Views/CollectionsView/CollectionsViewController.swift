@@ -53,10 +53,12 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    //MARK:UI
     func setupUI(){
         delegates()
+        
         changeState()
-        getIngredientsData()
+        getListOfIngredients()
         
         let buttonsArray = [new, pop, nonAlc, cocktails, shake, coffee, shot, punch, soda, beer, others, homemade, ordinary, cocoa]
         for button in buttonsArray {
@@ -72,13 +74,27 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func delegates() {
+        hiddingSetup()
+        
         ingrTableView.delegate = self
         ingrTableView.dataSource = self
+        ingrTableView.separatorStyle = .none
         
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("collectionSourceReady"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sortArray), name: NSNotification.Name("collectionSourcePreparing"), object: nil)
     }
     
+    func hiddingSetup() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    //MARK:OBSERVERS
     @objc func update() {
         ingrTableView.reloadData()
     }
@@ -86,7 +102,7 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc func sortArray() {
         tableSource.sort(by: {$0.count > $1.count })
-        update()
+        updateCollectionShowingArray()
     }
     
     
@@ -136,7 +152,6 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     //State buttons
-    
     @IBAction func navButtonTapped(_ sender: UIButton) {
         if sender == catButtons {
             colCurrentState = .categories
@@ -147,17 +162,35 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         changeState()
     }
     
+    //MARK:FIELD
+    @IBAction func searchStart(_ sender: UITextField) {
+        searchColCurrentState = .search
+        updateCollectionShowingArray()
+    }
+    
+    @IBAction func searchChanged(_ sender: UITextField) {
+        if let text = sender.text {
+            searchIngr(name: text)
+        }
+    }
+    
+    @IBAction func searchEnd(_ sender: UITextField) {
+        if sender.text == "" {
+            searchColCurrentState = .all
+            updateCollectionShowingArray()
+        }
+    }
     
   
     //MARK:TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableSource.count
+        return ingrShowingArray.count
     }
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ingrTableView.dequeueReusableCell(withIdentifier: "ingrCell", for: indexPath) as! IngrTableViewCell
-        let ingr = tableSource[indexPath.row]
+        let ingr = ingrShowingArray[indexPath.row]
         
         cell.ingrCell = ingr
         cell.setupUI()
