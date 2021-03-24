@@ -46,13 +46,6 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         setupUI()
     }
     
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        AF.session.getAllTasks { (tasks) in
-            tasks.forEach({$0.cancel()})
-        }
-    }
-    
     //MARK:UI
     func setupUI(){
         delegates()
@@ -196,6 +189,16 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         cell.setupUI()
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ingr = ingrShowingArray[indexPath.row]
+        
+        showingRequest = .nonAlc
+        screenName = ingr.name
+        ingredientRequest(name: ingr.name)
+        
+        self.performSegue(withIdentifier: "toItemsList", sender: self)
     }
     
     

@@ -54,7 +54,11 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     //MARK:BUTTONS
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
-        collectionRequest(type: showingRequest)
+        if colCurrentState == .categories {
+            collectionRequest(type: showingRequest)
+        } else {
+            ingredientRequest(name: screenName)
+        }
     }
     
     

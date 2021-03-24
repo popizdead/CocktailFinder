@@ -169,6 +169,16 @@ func collectionRequest(type: typeRequest) {
     
 }
 
+func ingredientRequest(name: String) {
+    requestedFrom = .collection
+    
+    sourceItemsArray.removeAll()
+    responseArray.removeAll()
+    
+    let url = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(name.makeUrlable())"
+    idCocktailArrayRequest(url: url)
+}
+
 //Request for full cocktail
 func fullCocktailArrayRequest(url: String) {
     AF.request(url).responseJSON { (data) in
