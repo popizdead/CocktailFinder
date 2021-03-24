@@ -9,6 +9,38 @@ import Foundation
 import UIKit
 import Alamofire
 
+//MARK:STATE
+enum collectionState {
+    case ingr
+    case categories
+}
+
+var colCurrentState : collectionState = .categories
+
+extension CollectionsViewController {
+    func changeState() {
+        fillButtons()
+        
+        if colCurrentState == .ingr {
+            buttonsBg.animateHidding(hidding: true)
+            tableBg.animateHidding(hidding: false)
+        } else {
+            buttonsBg.animateHidding(hidding: false)
+            tableBg.animateHidding(hidding: true)
+        }
+    }
+    
+    func fillButtons() {
+        if colCurrentState == .ingr {
+            catButtons.setTitleColor(.black, for: .normal)
+            ingrButton.setTitleColor(.systemPink, for: .normal)
+        } else {
+            catButtons.setTitleColor(.systemPink, for: .normal)
+            ingrButton.setTitleColor(.black, for: .normal)
+        }
+    }
+}
+
 //MARK:INGREDIENTS
 struct modelIngredient {
     var name : String
@@ -23,6 +55,7 @@ func getIngredientsData() {
     getListOfIngredients()
 }
 
+//Getting all ingredients
 func getListOfIngredients() {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list").responseJSON { (response) in
         if let dataDict = response.value as? [String:Any] {
@@ -38,6 +71,7 @@ func getListOfIngredients() {
     }
 }
 
+//Counting cocktails of ingredient
 func countOfCocktailsTo(ingr: String) {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(ingr)").responseJSON { (response) in
         if let allData = response.value as? [String:Any] {
@@ -49,18 +83,6 @@ func countOfCocktailsTo(ingr: String) {
         }
     }
 }
-
-func getTableIngrImage(toName: String) {
-    AF.request("https://www.thecocktaildb.com/images/ingredients/\(toName.makeUrlable()).png").responseData { (response) in
-        if let data = response.data {
-            if let img = UIImage(data: data) {
-                imgTableSource[toName] = img
-                NotificationCenter.default.post(name: NSNotification.Name("collectionSourceReady"), object: nil)
-            }
-        }
-    }
-}
-
 
 //MARK:COLLECTIONS
 var sourceItemsArray : [Coctail] = []
@@ -90,6 +112,7 @@ func createShort(dict: [String:Any]) -> ShortCocktail? {
     return nil
 }
 
+//Creating request
 func collectionRequest(type: typeRequest) {
     requestedFrom = .collection
     
@@ -124,6 +147,7 @@ func collectionRequest(type: typeRequest) {
     
 }
 
+//Request for full cocktail
 func fullCocktailArrayRequest(url: String) {
     AF.request(url).responseJSON { (data) in
         guard let allDataDict = data.value as? [String : Any] else { return }
@@ -140,6 +164,7 @@ func fullCocktailArrayRequest(url: String) {
     }
 }
 
+//Request for id
 func idCocktailArrayRequest(url: String) {
     AF.request(url).responseJSON { (data) in
         guard let allDataDict = data.value as? [String : Any] else { return }
@@ -154,6 +179,7 @@ func idCocktailArrayRequest(url: String) {
     }
 }
 
+//Cocktail from array
 func showResponseFromArray() {
     var preparingArray : [ShortCocktail] = []
     var counter = 0

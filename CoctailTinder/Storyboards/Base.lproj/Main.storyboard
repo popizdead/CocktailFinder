@@ -676,6 +676,9 @@
                                         <state key="normal" title="Categories">
                                             <color key="titleColor" systemColor="systemPinkColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="navButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="vTD-Nv-FnP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33b-Uo-AE8">
                                         <rect key="frame" x="266.66666666666669" y="92" width="89" height="36"/>
@@ -683,6 +686,9 @@
                                         <state key="normal" title="Ingredients">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="navButtonTapped:" destination="1fm-eS-qL0" eventType="touchUpInside" id="suT-rf-SUQ"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84c-HQ-Bcq">
                                         <rect key="frame" x="143" y="52" width="128" height="34.333333333333343"/>
@@ -718,10 +724,13 @@
                     <tabBarItem key="tabBarItem" title="" image="collection" id="ah7-Tb-5fa"/>
                     <connections>
                         <outlet property="beer" destination="0yA-eQ-fgg" id="pKe-De-9DO"/>
+                        <outlet property="buttonsBg" destination="OgQ-cY-9mG" id="qyp-Y2-KL4"/>
+                        <outlet property="catButtons" destination="Bdl-2h-Wrh" id="YI4-Hb-dyX"/>
                         <outlet property="cocktails" destination="1Vg-xq-hHA" id="ggb-7A-Yuf"/>
                         <outlet property="cocoa" destination="jwW-as-X4q" id="f3C-O9-lBW"/>
                         <outlet property="coffee" destination="jIK-VB-ylf" id="nw9-N6-EAK"/>
                         <outlet property="homemade" destination="r5X-fO-Jzw" id="AGf-Ex-TiO"/>
+                        <outlet property="ingrButton" destination="33b-Uo-AE8" id="GcO-ab-Ooa"/>
                         <outlet property="ingrTableView" destination="Vbm-Oz-04v" id="cEI-bN-3zw"/>
                         <outlet property="leftBgView" destination="eWF-kQ-BqF" id="Eya-ZP-hWw"/>
                         <outlet property="navView" destination="yjZ-ZT-UEZ" id="u0J-Mj-nGN"/>

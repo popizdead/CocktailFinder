@@ -31,7 +31,13 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var rightBgView: UIView!
     
     @IBOutlet weak var ingrTableView: UITableView!
+    
     @IBOutlet weak var tableBg: UIView!
+    @IBOutlet weak var buttonsBg: UIStackView!
+    
+    @IBOutlet weak var catButtons: UIButton!
+    @IBOutlet weak var ingrButton: UIButton!
+    
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -49,6 +55,7 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func setupUI(){
         delegates()
+        changeState()
         getIngredientsData()
         
         let buttonsArray = [new, pop, nonAlc, cocktails, shake, coffee, shot, punch, soda, beer, others, homemade, ordinary, cocoa]
@@ -126,8 +133,21 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
             print("default")
         }
         self.performSegue(withIdentifier: "toItemsList", sender: self)
-        
     }
+    
+    //State buttons
+    
+    @IBAction func navButtonTapped(_ sender: UIButton) {
+        if sender == catButtons {
+            colCurrentState = .categories
+        }
+        else if sender == ingrButton {
+            colCurrentState = .ingr
+        }
+        changeState()
+    }
+    
+    
   
     //MARK:TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
