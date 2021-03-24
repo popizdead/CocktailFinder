@@ -40,9 +40,6 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        getIngredientsData()
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         AF.session.getAllTasks { (tasks) in
@@ -79,7 +76,6 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         ingrTableView.reloadData()
     }
     
-    var sortCounter = 0
     
     @objc func sortArray() {
         tableSource.sort(by: {$0.count > $1.count })

@@ -43,7 +43,6 @@ func countOfCocktailsTo(ingr: String) {
         if let allData = response.value as? [String:Any] {
             if let cocktails = allData["drinks"] as? [[String:Any]] {
                 let model = modelIngredient(name: ingr, count: cocktails.count)
-                getTableIngrImage(toName: model.name)
                 tableSource.append(model)
                 NotificationCenter.default.post(name: NSNotification.Name("collectionSourcePreparing"), object: nil)
             }

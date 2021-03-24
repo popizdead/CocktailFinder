@@ -10,7 +10,6 @@ import UIKit
 class IngrTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var ingrImg: UIImageView!
     @IBOutlet weak var countLbl: UILabel!
     
     var ingrCell : modelIngredient!
@@ -32,14 +31,5 @@ class IngrTableViewCell: UITableViewCell {
         
         self.nameLbl.text = ingrCell.name
         self.countLbl.text = "\(ingrCell.count)"
-
-        if imgTableSource[ingrCell.name] != nil {
-            self.ingrImg.image = imgTableSource[ingrCell.name]
-            self.backgroundColor = .white
-        } else {
-            //getTableIngrImage(toName: ingrCell.name)
-            self.ingrImg.image = nil
-            self.backgroundColor = .systemGray6
-        }
     }
 }
