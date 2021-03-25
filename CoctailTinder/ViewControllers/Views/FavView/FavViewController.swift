@@ -34,6 +34,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateFavShowingArray()
         favCollectionView.reloadData()
     }
     

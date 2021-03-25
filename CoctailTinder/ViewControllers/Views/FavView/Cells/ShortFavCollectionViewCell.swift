@@ -41,6 +41,7 @@ class ShortFavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         favArray = favArray.filter({$0.name != cellCocktail.name})
+        updateFavShowingArray()
         NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
         deleteSavedCocktail(name: cellCocktail.name)
     }
