@@ -22,8 +22,9 @@ func searchItems(text: String) {
                     cocktail.getIngredientImage()
                     resultSearchArray.append(cocktail)
                 }
+                NotificationCenter.default.post(name: NSNotification.Name("updateSearchResult"), object: nil)
             }
-            NotificationCenter.default.post(name: NSNotification.Name("updateSearchResult"), object: nil)
+            
         }
     }
 }

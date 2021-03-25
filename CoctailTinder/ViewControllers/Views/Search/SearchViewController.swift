@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -57,6 +58,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func cleanButtonTapped(_ sender: UIButton) {
         self.searchField.text = ""
         resultSearchArray.removeAll()
+        AF.session.getAllTasks { (tasks) in
+            tasks.forEach({$0.cancel()})
+        }
         update()
     }
     
@@ -87,6 +91,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func searchChanged(_ sender: UITextField) {
+        AF.session.getAllTasks { (tasks) in
+            tasks.forEach({$0.cancel()})
+        }
         if sender.text == "" {
             resultSearchArray.removeAll()
         } else {
