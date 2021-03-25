@@ -138,6 +138,26 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
             showingRequest = .beer
             collectionRequest(type: .beer)
             screenName = "Beer drinks"
+        case soda:
+            showingRequest = .soda
+            collectionRequest(type: .soda)
+            screenName = "Soft drink/Soda"
+        case others:
+            showingRequest = .others
+            collectionRequest(type: .others)
+            screenName = "Others"
+        case homemade:
+            showingRequest = .homemade
+            collectionRequest(type: .homemade)
+            screenName = "Homemade drinks"
+        case ordinary:
+            showingRequest = .ordinary
+            collectionRequest(type: .ordinary)
+            screenName = "Ordinary drinks"
+        case cocoa:
+            showingRequest = .cocoa
+            collectionRequest(type: .cocoa)
+            screenName = "Cocoa"
         default:
             print("default")
         }

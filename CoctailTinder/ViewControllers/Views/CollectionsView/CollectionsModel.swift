@@ -121,6 +121,12 @@ enum typeRequest {
     case beer
     case punch
     case random
+    
+    case soda
+    case others
+    case homemade
+    case ordinary
+    case cocoa
 }
 
 var showingRequest : typeRequest = .cocktails
@@ -165,6 +171,22 @@ func collectionRequest(type: typeRequest) {
         idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
     case .random:
         fullCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php")
+    case .soda:
+        let url = "Soft Drink / Soda"
+        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
+    case .others:
+        let url = "Other/Unknown"
+        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
+    case .homemade:
+        let url = "Homemade Liqueur"
+        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
+    case .ordinary:
+        let url = "Ordinary Drink"
+        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
+    case .cocoa:
+        let url = "Cocoa"
+        print("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
+        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
     }
     
 }
@@ -217,11 +239,15 @@ func showResponseFromArray() {
     var counter = 0
     
     while counter <= 10 {
-        let object = responseArray.randomElement()!
-        if !preparingArray.contains(where: {$0.id == object.id}) {
-            getCocktailByID(id: object.id)
-            preparingArray.append(object)
-            counter += 1
+        if counter <= responseArray.count - 1 {
+            let object = responseArray.randomElement()!
+            if !preparingArray.contains(where: {$0.id == object.id}) {
+                getCocktailByID(id: object.id)
+                preparingArray.append(object)
+                counter += 1
+            }
+        } else {
+            break
         }
     }
     

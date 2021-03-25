@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ListCollectionsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -26,6 +27,10 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
         requestedFrom = .collection
         checkRefreshButton()
         itemsCV.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
     
     func checkRefreshButton() {
@@ -63,6 +68,13 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     
     @IBAction func dismissTapped(_ sender: UIButton) {
+        AF.session.getAllTasks { (tasks) in
+            tasks.forEach({$0.cancel()})
+        }
+        
+        sourceItemsArray.removeAll()
+        responseArray.removeAll()
+        
         self.dismiss(animated: true, completion: nil)
     }
     
