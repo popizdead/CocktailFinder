@@ -78,8 +78,11 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func fieldEnd(_ sender: UITextField) {
-        curState = .all
-        updateCV()
+        if sender.text == "" {
+            searchArray.removeAll()
+            curState = .all
+            updateCV()
+        }
     }
     
     

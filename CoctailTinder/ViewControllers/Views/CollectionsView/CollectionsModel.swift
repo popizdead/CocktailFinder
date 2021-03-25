@@ -85,7 +85,7 @@ func getListOfIngredients() {
             if let ingrDict = dataDict["drinks"] as? [[String:Any]] {
                 for ingrElem in ingrDict {
                     if let name = ingrElem["strIngredient1"] as? String {
-                        countOfCocktailsTo(ingr: name)
+                        countOfCocktailsTo(ingr: name.capitalizingFirstLetter())
                     }
                 }
             }
