@@ -10,19 +10,23 @@ import SwiftEntryKit
 
 class CocktailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    //MARK:OUTLETS
+    //MARK: -OUTLETS
     @IBOutlet weak var cocktailImg: UIImageView!
+    
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var typeLbl: UILabel!
     @IBOutlet weak var ingredientsCount: UILabel!
+    
     @IBOutlet weak var ingrCV: UICollectionView!
     @IBOutlet weak var instructionText: UITextView!
+    
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
     var isFavoutite = false
+    private let network = NetworkService.shared
     
-    //MARK:VIEW LOAD
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateReviewScreen"), object: nil)
@@ -69,7 +73,7 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func checkForDownloaded() {
         if reviewCocktail.image == nil {
-            requestedFrom = .review
+            network.currentRequestFrom = .review
             if reviewCocktail.ingrArray.count != 0 {
                 if reviewCocktail.ingrArray[0].ingrImage == nil {
                     reviewCocktail.getIngredientImage()

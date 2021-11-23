@@ -40,6 +40,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     func observers() {
         updateFavShowingArray()
+        
         favCollectionView.delegate = self
         favCollectionView.dataSource = self
         

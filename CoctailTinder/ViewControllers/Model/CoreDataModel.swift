@@ -14,11 +14,21 @@ func getSavedData() {
     getSavedBuyList()
 }
 
+func saveCurrentCocktail() {
+    if !favArray.contains(where: {$0.name == currentCoctail.name}) {
+        var newCocktail = Coctail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
+        newCocktail.image = currentCoctail.image
+        newCocktail = currentCoctail
+        saveCocktailCoreData(object: newCocktail)
+        favArray.insert(newCocktail, at: 0)
+    }
+}
+
 //MARK:COCKTAIL
 func getSavedCocktails() {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = appDelegate.persistentContainer.viewContext
-    requestedFrom = .favourite
+    requestedFrom = .favorite
     
     let fetchRequest : NSFetchRequest<CocktailFav> = CocktailFav.fetchRequest()
 

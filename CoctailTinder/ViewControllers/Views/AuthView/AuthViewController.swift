@@ -17,8 +17,6 @@ class AuthViewController: UIViewController, UICollectionViewDelegate, UICollecti
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: "isLogin")
         setupUI()
         getAllIngredientsList()
         NotificationCenter.default.addObserver(self, selector: #selector(updateCV), name: NSNotification.Name("updateAuthCV"), object: nil)

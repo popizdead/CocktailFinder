@@ -8,53 +8,12 @@
 import Foundation
 import Alamofire
 
-enum dataRequestedFrom {
-    case swipe
-    case favourite
-    case collection
-    case search
-    case review
-}
 
-var requestedFrom = dataRequestedFrom.favourite
+//var requestedFrom = dataRequestedFrom.favorite
 var screenName = String()
 var savedCocktailsGetting = false
 
-func randomCoctailRequest() {
-    AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
-        guard let dataDict = data.value as? [String : Any] else { return }
-        if let arrayData = dataDict["drinks"] as? [[String:Any]] {
-            if let cocktailData = arrayData.first {
-                if let coctail = createCoctail(from: cocktailData) {
-                    currentCoctail = coctail
-                    currentCoctail.getIngredientImage()
-                    currentCoctail.getCocktailImage()
-                    NotificationCenter.default.post(name: NSNotification.Name("openCard"), object: nil)
-                } else {
-                    randomCoctailRequest()
-                }
-            }
-        }
-    }
-}
 
-func getCocktailByID(id: String) {
-    AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
-        guard let dataDict = data.value as? [String : Any] else { return }
-        if let arrayData = dataDict["drinks"] as? [[String:Any]] {
-            if let cocktailData = arrayData.first {
-                if let cocktail = createCoctail(from: cocktailData) {
-                    if requestedFrom == .collection {
-                        cocktail.getIngredientImage()
-                        cocktail.getCocktailImage()
-                        sourceItemsArray.append(cocktail)
-                        NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
-                    }
-                }
-            }
-        }
-    }
-}
 
 func getCoreCocktailByID(id: String) {
     AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
@@ -99,7 +58,7 @@ func createCoctail(from dict: [String : Any]) -> Coctail? {
 
 func createIngredients(from dict: [String:Any]) -> [Ingredient] {
     var ingrArray : [Ingredient] = []
-    
+
     for index in Range(1...15) {
         if let name = dict["strIngredient\(index)"] as? String {
             if let measure = dict["strMeasure\(index)"] as? String {
@@ -110,13 +69,13 @@ func createIngredients(from dict: [String:Any]) -> [Ingredient] {
                 } else {
                     break
                 }
-                
+
             }
         } else {
             break
         }
     }
-    
+
     return ingrArray
 }
 

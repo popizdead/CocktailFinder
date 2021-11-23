@@ -56,7 +56,7 @@ class Coctail {
         if requestedFrom == .swipe {
             NotificationCenter.default.post(name: NSNotification.Name("updateCard"), object: nil)
         }
-        else if requestedFrom == .favourite {
+        else if requestedFrom == .favorite {
             NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
         }
         else if requestedFrom == .collection {
