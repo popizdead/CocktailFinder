@@ -9,6 +9,38 @@ import Foundation
 import UIKit
 import Alamofire
 
+/*
+ Sometimes we're getting back couples of [Title:ID],
+ and sometimes it's full data of cocktails
+ 
+ So we have two ways of usage func categoryRequest() depends
+ on response
+ */
+
+
+extension CollectionsViewController {
+    func collectionRequest(type: Category) {
+        network.currentRequestFrom = .collection
+        
+        dataService.collectionCocktailSource.removeAll()
+        
+        network.categoryRequest(type.getUrl(), type.getRequestType()) { cocktail in
+            self.applyCocktail(cocktail)
+        }
+    }
+    
+    func applyCocktail(_ cocktail: Cocktail?) {
+        guard let cocktail = cocktail else { return }
+        cocktail.getImages {
+            self.update()
+            
+            NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
+        }
+        
+        dataService.collectionCocktailSource.append(cocktail)
+    }
+}
+
 //MARK:STATE
 enum collectionState {
     case ingr
@@ -106,150 +138,17 @@ func countOfCocktailsTo(ingr: String) {
     }
 }
 
-//MARK:COLLECTIONS
-var sourceItemsArray : [Coctail] = []
-var responseArray : [ShortCocktail] = []
-
-enum typeRequest {
-    case new
-    case pop
-    case nonAlc
-    case cocktails
-    case shake
-    case shot
-    case coffee
-    case beer
-    case punch
-    case random
-    
-    case soda
-    case others
-    case homemade
-    case ordinary
-    case cocoa
-}
-
-var showingRequest : typeRequest = .cocktails
-
-func createShort(dict: [String:Any]) -> ShortCocktail? {
-    if let name = dict["strDrink"] as? String {
-        if let id = dict["idDrink"] as? String {
-            return ShortCocktail(name: name, id: id)
-        }
-    }
-    return nil
-}
+var showingRequest : Category = .cocktails
 
 //Creating request
-func collectionRequest(type: typeRequest) {
-    requestedFrom = .collection
-    
-    sourceItemsArray.removeAll()
-    responseArray.removeAll()
-    
-    switch type {
-    case .new:
-        fullCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/latest.php")
-    case .pop:
-        fullCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/popular.php")
-    case .nonAlc:
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic")
-    case .cocktails:
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Cocktail")
-    case .shake:
-        let url = "Milk / Float / Shake"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .shot:
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Shot")
-    case .coffee:
-        let url = "Coffee / Tea"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .beer:
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Beer")
-    case .punch:
-        let url = "Punch / Party Drink"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .random:
-        fullCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php")
-    case .soda:
-        let url = "Soft Drink / Soda"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .others:
-        let url = "Other/Unknown"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .homemade:
-        let url = "Homemade Liqueur"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .ordinary:
-        let url = "Ordinary Drink"
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    case .cocoa:
-        let url = "Cocoa"
-        print("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-        idCocktailArrayRequest(url: "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=\(url.makeUrlable())")
-    }
-    
-}
 
-func ingredientRequest(name: String) {
-    requestedFrom = .collection
-    
-    sourceItemsArray.removeAll()
-    responseArray.removeAll()
-    
-    let url = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(name.makeUrlable())"
-    idCocktailArrayRequest(url: url)
-}
 
-//Request for full cocktail
-func fullCocktailArrayRequest(url: String) {
-    AF.request(url).responseJSON { (data) in
-        guard let allDataDict = data.value as? [String : Any] else { return }
-        if let cocktailsArray = allDataDict["drinks"] as? [[String:Any]] {
-            for object in cocktailsArray {
-                if let cocktail = createCoctail(from: object) {
-                    cocktail.getCocktailImage()
-                    cocktail.getIngredientImage()
-                    sourceItemsArray.append(cocktail)
-                }
-            }
-            NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
-        }
-    }
-}
-
-//Request for id
-func idCocktailArrayRequest(url: String) {
-    AF.request(url).responseJSON { (data) in
-        guard let allDataDict = data.value as? [String : Any] else { return }
-        if let cocktailsArray = allDataDict["drinks"] as? [[String:Any]] {
-            for object in cocktailsArray {
-                if let short = createShort(dict: object) {
-                    responseArray.append(short)
-                }
-            }
-            showResponseFromArray()
-        }
-    }
-}
-
-//Cocktail from array
-func showResponseFromArray() {
-    var preparingArray : [ShortCocktail] = []
-    var counter = 0
-    
-    while counter <= 10 {
-        if counter <= responseArray.count - 1 {
-            let object = responseArray.randomElement()!
-            if !preparingArray.contains(where: {$0.id == object.id}) {
-                getCocktailByID(id: object.id)
-                preparingArray.append(object)
-                counter += 1
-            }
-        } else {
-            break
-        }
-    }
-    
-    preparingArray.removeAll()
-}
+//func ingredientRequest(name: String) {
+//    requestedFrom = .collection
+//    
+//    sourceItemsArray.removeAll()
+//    responseArray.removeAll()
+//    
+//    let url = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(name.makeUrlable())"
+//    idCocktailArrayRequest(url: url)
+//}

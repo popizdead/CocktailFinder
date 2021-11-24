@@ -10,12 +10,19 @@ import Alamofire
 
 class ListCollectionsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    //MARK: -OUTLETS
     @IBOutlet weak var viewNameLbl: UILabel!
+    
     @IBOutlet weak var dismissButton: UIButton!
-    @IBOutlet weak var navView: UIView!
-    @IBOutlet weak var itemsCV: UICollectionView!
     @IBOutlet weak var refreshButton: UIButton!
     
+    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var itemsCV: UICollectionView!
+
+    private let network = NetworkService.shared
+    private let dataService = DataService.shared
+    
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,14 +31,12 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewNameLbl.text = screenName
-        requestedFrom = .collection
+        network.currentRequestFrom = .collection
+        
         checkRefreshButton()
         itemsCV.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
-    }
     
     func checkRefreshButton() {
         if showingRequest == .new || showingRequest == .pop || showingRequest == .random {
@@ -43,12 +48,14 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     func delegates() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateItemsCV"), object: nil)
+        
         itemsCV.delegate = self
         itemsCV.dataSource = self
     }
     
     func setupUI() {
         delegates()
+        
         navView.backgroundColor = .white
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
     }
@@ -57,13 +64,26 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
         itemsCV.reloadData()
     }
     
-    //MARK:BUTTONS
+    //MARK: BUTTONS
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         if colCurrentState == .categories {
-            collectionRequest(type: showingRequest)
+            network.categoryRequest(showingRequest.getUrl(), showingRequest.getRequestType()) { cocktail in
+                self.apply(cocktail)
+            }
         } else {
-            ingredientRequest(name: screenName)
+            network.byIngredientSearch(screenName) { cocktail in
+                self.apply(cocktail)
+            }
         }
+    }
+    
+    private func apply(_ cocktail: Cocktail?) {
+        guard let cocktail = cocktail else { return }
+        cocktail.getImages {
+            self.update()
+        }
+        
+        self.dataService.collectionCocktailSource.append(cocktail)
     }
     
     
@@ -72,28 +92,27 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
             tasks.forEach({$0.cancel()})
         }
         
-        sourceItemsArray.removeAll()
-        responseArray.removeAll()
-        
+        self.dataService.collectionCocktailSource.removeAll()
         self.dismiss(animated: true, completion: nil)
     }
     
     
     //MARK:COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sourceItemsArray.count
+        return self.dataService.collectionCocktailSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemsCV.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ListItemCollectionViewCell
-        cell.cellCocktail = sourceItemsArray[indexPath.row]
+        cell.cellCocktail = self.dataService.collectionCocktailSource[indexPath.row]
         cell.setupUI()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cocktail = sourceItemsArray[indexPath.row]
+        let cocktail = self.dataService.collectionCocktailSource[indexPath.row]
         reviewCocktail = cocktail
+        
         self.performSegue(withIdentifier: "collectionToReview", sender: self)
     }
     

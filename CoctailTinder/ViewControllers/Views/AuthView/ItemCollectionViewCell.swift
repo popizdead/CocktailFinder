@@ -14,6 +14,9 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     var cellIndex = Int()
     
+    private let dataService = DataService.shared
+    private let coreService = CoreDataService.shared
+    
     func setupUI() {
         let cellName = sourceArray[cellIndex]
         nameLbl.text = cellName
@@ -37,7 +40,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.cornerRadius = 10
         self.img.layer.cornerRadius = 10
         
-        if userBuyList.contains(where: {$0.name == cellName}) {
+        if dataService.userBuyList.contains(where: {$0.name == cellName}) {
             self.contentView.backgroundColor = .systemPink
             self.nameLbl.textColor = .white
         } else {
@@ -49,16 +52,16 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     func tappedCell() {
         let cellName = sourceArray[cellIndex]
-        if userBuyList.contains(where: {$0.name == cellName}) {
-            userBuyList = userBuyList.filter({$0.name != cellName})
-            deleteBuyListItem(name: cellName)
+        if dataService.userBuyList.contains(where: {$0.name == cellName}) {
+            dataService.userBuyList = dataService.userBuyList.filter({$0.name != cellName})
+            coreService.deleteBuyListItem(name: cellName)
         } else {
             let ingr = Ingredient(name: cellName)
             if let img = imgDict[cellName] {
                 ingr.ingrImage = img
             }
-            userBuyList.append(ingr)
-            saveBuyListItem(ingr: ingr)
+            dataService.userBuyList.append(ingr)
+            coreService.saveBuyListItem(ingr: ingr)
         }
         NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
         self.setupUI()

@@ -17,7 +17,9 @@ class ItemSearchCollectionViewCell: UICollectionViewCell, UICollectionViewDelega
     
     @IBOutlet weak var insideIngrCV: UICollectionView!
     
-    var cellCocktail : Coctail!
+    private let dataService = DataService.shared
+    
+    var cellCocktail : Cocktail!
     var isDownloading = false
     
     func setupUI() {
@@ -66,7 +68,8 @@ class ItemSearchCollectionViewCell: UICollectionViewCell, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ingrObject = cellCocktail.ingrArray[indexPath.row]
         let stor = UIStoryboard.init(name: "Main", bundle: nil)
-        alertIngredient = ingrObject
+        
+        dataService.alertIngredient = ingrObject
         SwiftEntryKit.display(entry: stor.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
     }
     

@@ -17,6 +17,9 @@ class AlertIngredientViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
+    private let dataService = DataService.shared
+    private let coreService = CoreDataService.shared
+    
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +38,17 @@ class AlertIngredientViewController: UIViewController {
     }
     
     func updateUI(){
-        ingrImage.image = alertIngredient.ingrImage
-        ingrNameLbl.text = alertIngredient.name
+        ingrImage.image = dataService.alertIngredient.ingrImage
+        ingrNameLbl.text = dataService.alertIngredient.name
     }
     
     //MARK:BUTTONS
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        userBuyList.append(alertIngredient)
-        saveBuyListItem(ingr: alertIngredient)
+        let ingr = dataService.alertIngredient
+        
+        dataService.userBuyList.append(ingr)
+        coreService.saveBuyListItem(ingr: ingr)
+        
         SwiftEntryKit.dismiss()
     }
     

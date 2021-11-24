@@ -15,6 +15,8 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var cleanButton: UIButton!
     
+    let network = NetworkService.shared
+    var resultSearchArray : [Cocktail] = []
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -24,7 +26,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        requestedFrom = .search
+        network.currentRequestFrom = .search
     }
     
     func setupUI() {
@@ -36,7 +38,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func delegates() {
-        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateSearchResult"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CVUpdate), name: NSNotification.Name("updateSearchResult"), object: nil)
         self.ingrCV.delegate = self
         self.ingrCV.dataSource = self
     }
@@ -51,7 +53,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         view.endEditing(true)
     }
     
-    @objc func update() {
+    @objc func CVUpdate() {
         self.ingrCV.reloadData()
     }
     
@@ -61,7 +63,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         AF.session.getAllTasks { (tasks) in
             tasks.forEach({$0.cancel()})
         }
-        update()
+       CVUpdate()
     }
     
     //MARK:COLLECTION VIEW
@@ -91,13 +93,13 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func searchChanged(_ sender: UITextField) {
-        AF.session.getAllTasks { (tasks) in
-            tasks.forEach({$0.cancel()})
-        }
-        if sender.text == "" {
-            resultSearchArray.removeAll()
-        } else {
-            searchItems(text: sender.text!)
+        network.stopAllRequests {
+            guard let text = sender.text else {
+                self.resultSearchArray.removeAll()
+                return
+            }
+            
+            self.search(text)
         }
     }
     

@@ -10,7 +10,7 @@ import SwiftEntryKit
 
 class FavViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    //MARK:OUTLET
+    //MARK: -OUTLET
     //Views
     @IBOutlet weak var favCollectionView: UICollectionView!
     @IBOutlet weak var navView: UIView!
@@ -27,19 +27,29 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     @IBOutlet weak var settingButtonFromBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButtonFromBottomConstraint: NSLayoutConstraint!
     
-    //MARK:VIEW LOAD
+    
+    var showingArray : [Cocktail] = []
+    var favSearchArray : [Cocktail] = []
+
+    var favoriteCurrentState : favoriteState = .hidden
+    
+    let UIService = UIUserService.shared
+    let dataService = DataService.shared
+    
+    
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         designSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateFavShowingArray()
+        updateShowingArray()
         favCollectionView.reloadData()
     }
     
     func observers() {
-        updateFavShowingArray()
+        updateShowingArray()
         
         favCollectionView.delegate = self
         favCollectionView.dataSource = self
@@ -82,7 +92,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
             self.cvFromTopConstraint.constant = self.cvFromTopConstraint.constant - 42
         }
         favoriteCurrentState = .hidden
-        updateFavShowingArray()
+        updateShowingArray()
     }
     
     func openView() {
@@ -134,7 +144,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if favoriteCurrentView == .card {
+        if UIService.userFavoriteSetting == .card {
             let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as! FavCollectionViewCell
             cell.cellCoctail = showingArray[indexPath.row]
             cell.updateUI()
@@ -142,6 +152,8 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
         } else {
             let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "shortFavCell", for: indexPath) as! ShortFavCollectionViewCell
             cell.cellCocktail = showingArray[indexPath.row]
+            cell.delegate = self
+            
             cell.updateUI()
             return cell
         }
@@ -154,7 +166,7 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if favoriteCurrentView == .card {
+        if UIService.userFavoriteSetting == .card {
             return CGSize(width: 350, height: 439)
         } else {
             return CGSize(width: 357, height: 178)

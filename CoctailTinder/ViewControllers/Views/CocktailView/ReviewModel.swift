@@ -7,4 +7,4 @@
 
 import Foundation
 
-var reviewCocktail : Coctail!
+var reviewCocktail : Cocktail!

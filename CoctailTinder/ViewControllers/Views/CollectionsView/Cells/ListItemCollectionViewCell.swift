@@ -14,7 +14,7 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     @IBOutlet weak var ingrCountLbl: UILabel!
     @IBOutlet weak var ingrCV: UICollectionView!
     
-    var cellCocktail : Coctail!
+    var cellCocktail : Cocktail!
     
     //MARK:UI
     func setupUI() {

@@ -25,7 +25,7 @@ extension SwipeViewController {
         if card.center.x > bgView.center.x {
             //Right
             fillView(.systemGreen)
-            saveCurrentCocktail()
+            currentCoctail.saveCore()
         } else {
             //Left
             fillView(.systemRed)

@@ -24,7 +24,10 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var saveButton: UIButton!
     
     var isFavoutite = false
+    
     private let network = NetworkService.shared
+    private let coreService = CoreDataService.shared
+    private let dataService = DataService.shared
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -63,7 +66,7 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func checkForFavourite() {
-        isFavoutite = favArray.contains(where: {$0.name == reviewCocktail.name})
+        isFavoutite = dataService.isFavorite(reviewCocktail)
         if isFavoutite {
             saveButton.setTitle("Unsave", for: .normal)
         } else {
@@ -74,12 +77,10 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     func checkForDownloaded() {
         if reviewCocktail.image == nil {
             network.currentRequestFrom = .review
-            if reviewCocktail.ingrArray.count != 0 {
-                if reviewCocktail.ingrArray[0].ingrImage == nil {
-                    reviewCocktail.getIngredientImage()
-                }
+            
+            reviewCocktail.getIngredientImage {
+                self.updateUI()
             }
-            reviewCocktail.getCocktailImage()
         }
     }
     
@@ -91,11 +92,12 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if isFavoutite {
-            deleteSavedCocktail(name: reviewCocktail.name)
-            favArray = favArray.filter({$0.name != reviewCocktail.name})
+            coreService.deleteSavedCocktail(name: reviewCocktail.name)
+            reviewCocktail.action(.deleteFavorite)
+            dataService.favArray = dataService.favArray.filter({$0.name != reviewCocktail.name})
         } else {
-            saveCocktailCoreData(object: reviewCocktail)
-            favArray.insert(reviewCocktail, at: 0)
+            coreService.saveCocktailCoreData(object: reviewCocktail)
+            reviewCocktail.action(.appendFavorite)
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -119,7 +121,8 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ingrObject = reviewCocktail.ingrArray[indexPath.row]
-        alertIngredient = ingrObject
+        dataService.alertIngredient = ingrObject
+        
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
     }
     

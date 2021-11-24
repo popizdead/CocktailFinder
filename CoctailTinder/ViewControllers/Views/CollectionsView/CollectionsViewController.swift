@@ -38,8 +38,11 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var catButtons: UIButton!
     @IBOutlet weak var ingrButton: UIButton!
     
+    let network = NetworkService.shared
+    let dataService = DataService.shared
+    let factory = Factory.shared
     
-    //MARK:VIEW LOAD
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -161,6 +164,7 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         default:
             print("default")
         }
+        
         self.performSegue(withIdentifier: "toItemsList", sender: self)
     }
     
@@ -216,9 +220,22 @@ class CollectionsViewController: UIViewController, UITableViewDelegate, UITableV
         
         showingRequest = .nonAlc
         screenName = ingr.name
-        ingredientRequest(name: ingr.name)
+        
+        network.byIngredientSearch(ingr.name) { cocktail in
+            self.apply(cocktail)
+        }
         
         self.performSegue(withIdentifier: "toItemsList", sender: self)
+    }
+    
+    private func apply(_ cocktail: Cocktail?) {
+        guard let cocktail = cocktail else { return }
+        cocktail.getImages {
+            NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
+        }
+        
+        dataService.collectionCocktailSource.append(cocktail)
+        NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
     }
     
     

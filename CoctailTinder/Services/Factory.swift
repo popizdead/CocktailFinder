@@ -10,7 +10,7 @@ import Foundation
 class Factory {
     static let shared = Factory()
     
-    func createCoctail(from dict: [String : Any]) -> Coctail? {
+    func createCoctail(from dict: [String : Any]) -> Cocktail? {
         let cocktailData = dict
         if let name = cocktailData["strDrink"] as? String {
             if let instrPrep = cocktailData["strInstructions"] as? String {
@@ -22,7 +22,7 @@ class Factory {
                                 
                                 let ingredientArray = createIngredients(from: cocktailData)
                                 if ingredientArray.count > 0 {
-                                    let cocktailObject = Coctail(name: name, category: category, id: id, imgUrl: imgUrl, glass: glass, ingrArray: ingredientArray, instr: instr)
+                                    let cocktailObject = Cocktail(name: name, category: category, id: id, imgUrl: imgUrl, glass: glass, ingrArray: ingredientArray, instr: instr)
                                     return cocktailObject
                                 } else {
                                     return nil

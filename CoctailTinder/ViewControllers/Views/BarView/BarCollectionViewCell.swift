@@ -12,14 +12,18 @@ class BarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     
+    private let dataService = DataService.shared
+    private let coreService = CoreDataService.shared
+    
     func setupUI() {
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         self.contentView.layer.cornerRadius = 10
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        userBuyList = userBuyList.filter({$0.name != self.nameLbl.text})
-        deleteBuyListItem(name: self.nameLbl.text!)
+        dataService.userBuyList = dataService.userBuyList.filter({$0.name != self.nameLbl.text})
+        coreService.deleteBuyListItem(name: self.nameLbl.text!)
+        
         NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
     }
     

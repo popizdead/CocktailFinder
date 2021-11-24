@@ -17,7 +17,12 @@ class FavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UIC
     @IBOutlet weak var ingrCountLbl: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     
-    var cellCoctail : Coctail!
+    var cellCoctail : Cocktail!
+    
+    var delegate: FavoriteActionsProtocol?
+    
+    private let dataService = DataService.shared
+    private let coreService = CoreDataService.shared
     
     func delegates() {
         ingrCV.delegate = self
@@ -44,10 +49,9 @@ class FavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UIC
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        favArray = favArray.filter({$0.name != cellCoctail.name})
-        updateFavShowingArray()
-        NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
-        deleteSavedCocktail(name: cellCoctail.name)
+        dataService.favArray = dataService.favArray.filter({$0.name != cellCoctail.name})
+        delegate?.updateShowingArray()
+        coreService.deleteSavedCocktail(name: cellCoctail.name)
     }
     
     //MARK:COLLECTION VIEW

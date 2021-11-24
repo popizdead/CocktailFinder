@@ -17,6 +17,8 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var addButton: UIButton!
     
+    private let dataService = DataService.shared
+    
     //MARK:VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +57,12 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     //MARK:COLLECTION VIEW
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userBuyList.count
+        return dataService.userBuyList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! BarCollectionViewCell
-        let ingr = userBuyList[indexPath.row]
+        let ingr = dataService.userBuyList[indexPath.row]
     
         cell.setupUI()
         cell.ingrImage.image = ingr.ingrImage

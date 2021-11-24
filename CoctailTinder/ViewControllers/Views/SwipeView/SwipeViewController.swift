@@ -28,12 +28,13 @@ class SwipeViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     let network = NetworkService.shared
+    private let dataService = DataService.shared
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        VCConfigure()
         request()
     }
     
@@ -73,7 +74,7 @@ class SwipeViewController: UIViewController {
     }
     
     //MARK: -UPDATE UI
-    @objc private func openCard() {
+    @objc func openCard() {
         self.updateUI()
         self.showLoading(false)
     }
@@ -139,7 +140,8 @@ extension SwipeViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ingrObject = currentCoctail.ingrArray[indexPath.row]
-        alertIngredient = ingrObject
+        
+        dataService.alertIngredient = ingrObject
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
     }
 }

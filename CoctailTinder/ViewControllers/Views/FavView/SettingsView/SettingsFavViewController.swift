@@ -35,6 +35,8 @@ class SettingsFavViewController: UIViewController {
     @IBOutlet var cardTapRecognizer: UITapGestureRecognizer!
     @IBOutlet var shortTapRecognizer: UITapGestureRecognizer!
     
+    private let UIService = UIUserService.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,7 +61,7 @@ class SettingsFavViewController: UIViewController {
         let shortArray = [shortImg, shortTitle, shortIngr1, shortIngr2, shortIngr3]
         let cardArray = [cardImg, cardTitle, cardTitle1, cardTitle2, cardTitle3, cardIngr, cardIngr1, cardIngr2, cardIngr3]
         
-        if favoriteCurrentView == .card {
+        if UIService.userFavoriteSetting == .card {
             cardBgView.backgroundColor = .systemPink
             for obj in cardArray {
                 obj?.backgroundColor = .systemGray6
@@ -84,14 +86,14 @@ class SettingsFavViewController: UIViewController {
     
     //MARK:BUTTONS
     @IBAction func cardTapped(_ sender: UITapGestureRecognizer) {
-        favoriteCurrentView = .card
+        UIService.userFavoriteSetting = .card
         fillViews()
         NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
         SwiftEntryKit.dismiss()
     }
     
     @IBAction func shortTapped(_ sender: UITapGestureRecognizer) {
-        favoriteCurrentView = .short
+        UIService.userFavoriteSetting = .short
         fillViews()
         NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
         SwiftEntryKit.dismiss()
