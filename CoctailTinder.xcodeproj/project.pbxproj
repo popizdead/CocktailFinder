@@ -24,7 +24,6 @@
 		634F5D1C26028ABC00EFECD9 /* ReviewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F5D1B26028ABC00EFECD9 /* ReviewCategoryViewController.swift */; };
 		634F5D1F26028AED00EFECD9 /* ListItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F5D1E26028AED00EFECD9 /* ListItemCollectionViewCell.swift */; };
 		636C272325FCE9CD009C9DA3 /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C272225FCE9CD009C9DA3 /* BarViewController.swift */; };
-		636C272625FCE9DB009C9DA3 /* BarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C272525FCE9DB009C9DA3 /* BarModel.swift */; };
 		637F1EFD27514BEA00DCB21F /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F1EFC27514BEA00DCB21F /* CategoryCollectionViewCell.swift */; };
 		637F1EFF2751506500DCB21F /* IngredientCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F1EFE2751506500DCB21F /* IngredientCollectionViewCell.swift */; };
 		637F1F01275192B200DCB21F /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F1F00275192B200DCB21F /* CategoryModel.swift */; };
@@ -71,7 +70,6 @@
 		634F5D1B26028ABC00EFECD9 /* ReviewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryViewController.swift; sourceTree = "<group>"; };
 		634F5D1E26028AED00EFECD9 /* ListItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		636C272225FCE9CD009C9DA3 /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
-		636C272525FCE9DB009C9DA3 /* BarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarModel.swift; sourceTree = "<group>"; };
 		637F1EFC27514BEA00DCB21F /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		637F1EFE2751506500DCB21F /* IngredientCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCollectionViewCell.swift; sourceTree = "<group>"; };
 		637F1F00275192B200DCB21F /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -190,21 +188,28 @@
 				634F5D172602872700EFECD9 /* CategoryScreen */,
 				63D74B1625F2D4A100503326 /* FavoriteScreen */,
 				637F1EFB2750697200DCB21F /* BuyListScreen */,
-				636C272825FCE9DF009C9DA3 /* BarView */,
+				636C272825FCE9DF009C9DA3 /* BarScreen */,
 				63FC0DA22603EBAF00ADAF67 /* Search */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		636C272825FCE9DF009C9DA3 /* BarView */ = {
+		635BDD162751A64500F2CE5E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6319D56225FD071400CB2DD1 /* BarCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		636C272825FCE9DF009C9DA3 /* BarScreen */ = {
 			isa = PBXGroup;
 			children = (
 				636C272225FCE9CD009C9DA3 /* BarViewController.swift */,
-				636C272525FCE9DB009C9DA3 /* BarModel.swift */,
-				6319D56225FD071400CB2DD1 /* BarCollectionViewCell.swift */,
 				632F83AE25FF6B4B004D9A42 /* AlertIngredientViewController.swift */,
+				635BDD162751A64500F2CE5E /* Cells */,
 			);
-			path = BarView;
+			path = BarScreen;
 			sourceTree = "<group>";
 		};
 		637F1EFA2750694D00DCB21F /* Cells */ = {
@@ -467,7 +472,6 @@
 				6340B68F25F152BC006F7672 /* AppDelegate.swift in Sources */,
 				633325BE25F839A4001B399F /* Cocktail.swift in Sources */,
 				6340B69125F152BC006F7672 /* SceneDelegate.swift in Sources */,
-				636C272625FCE9DB009C9DA3 /* BarModel.swift in Sources */,
 				634F5D122602870A00EFECD9 /* CategoryViewController.swift in Sources */,
 				63909F852607ACFB00E3956B /* FavModel.swift in Sources */,
 				63F4BEEB274E81A100E90F93 /* DataService.swift in Sources */,

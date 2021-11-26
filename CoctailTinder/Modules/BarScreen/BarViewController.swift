@@ -9,7 +9,7 @@ import UIKit
 
 class BarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    //MARK:OUTLETS
+    //MARK: -OUTLETS
     @IBOutlet weak var navView: UIView!
     
     @IBOutlet weak var ingrCV: UICollectionView!
@@ -19,7 +19,7 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     private let dataService = DataService.shared
     
-    //MARK:VIEW LOAD
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate()
@@ -34,27 +34,27 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         ingrCV.reloadData()
     }
     
-    func delegate() {
+    private func delegate() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateBar"), object: nil)
+        
         ingrCV.dataSource = self
         ingrCV.delegate = self
     }
     
-    //MARK:UI
-    func setupUI() {
+    //MARK: -UI
+    private func setupUI() {
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         
         buttonView.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         navView.backgroundColor = .white
     }
     
-    //MARK:BUTTONS
+    //MARK: -BUTTONS
     @IBAction func addButtonTapped(_ sender: UIButton) {
         self.performSegue(withIdentifier: "barToIngr", sender: self)
     }
     
-    //MARK:COLLECTION VIEW
-    
+    //MARK: -COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataService.userBuyList.count
     }

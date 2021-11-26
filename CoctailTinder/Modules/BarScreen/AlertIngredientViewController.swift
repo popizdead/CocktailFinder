@@ -10,7 +10,7 @@ import SwiftEntryKit
 
 class AlertIngredientViewController: UIViewController {
     
-    //MARK:OUTLETS
+    //MARK: -OUTLETS
     @IBOutlet weak var ingrImage: UIImageView!
     @IBOutlet weak var ingrNameLbl: UILabel!
     
@@ -19,7 +19,7 @@ class AlertIngredientViewController: UIViewController {
     
     private let dataService = DataService.shared
     
-    //MARK:VIEW LOAD
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -29,7 +29,7 @@ class AlertIngredientViewController: UIViewController {
         updateUI()
     }
     
-    //MARK:UI
+    //MARK: -UI
     func setupUI(){
         addButton.layer.cornerRadius = 10
         cancelButton.layer.cornerRadius = 10
@@ -41,7 +41,7 @@ class AlertIngredientViewController: UIViewController {
         ingrNameLbl.text = dataService.alertIngredient.name
     }
     
-    //MARK:BUTTONS
+    //MARK: -BUTTONS
     @IBAction func addButtonTapped(_ sender: UIButton) {
         let ingr = dataService.alertIngredient
         

@@ -32,7 +32,13 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         network.currentRequestFrom = .search
     }
     
-    func setupUI() {
+    //MARK: -UI
+    private func delegates() {
+        self.ingrCV.delegate = self
+        self.ingrCV.dataSource = self
+    }
+    
+    private func setupUI() {
         delegates()
         hideKeyboardSetting()
         
@@ -42,25 +48,19 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         cleanButton.isHidden = true
     }
     
-    func delegates() {
-        NotificationCenter.default.addObserver(self, selector: #selector(CVUpdate), name: NSNotification.Name("updateSearchResult"), object: nil)
-        
-        self.ingrCV.delegate = self
-        self.ingrCV.dataSource = self
-    }
-    
-    
-    @objc func CVUpdate() {
+    func CVUpdate() {
         self.ingrCV.reloadData()
     }
     
+    //MARK: -ACTION
     @IBAction func cleanButtonTapped(_ sender: UIButton) {
         self.searchField.text = ""
         resultSearchArray.removeAll()
-        AF.session.getAllTasks { (tasks) in
-            tasks.forEach({$0.cancel()})
+        self.CVUpdate()
+        
+        network.stopAllRequests {
+            
         }
-       CVUpdate()
     }
     
     //MARK: -COLLECTION VIEW
@@ -70,10 +70,13 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "resCell", for: indexPath) as! ItemSearchCollectionViewCell
+        
+        //Bag catcher
         if indexPath.row <= resultSearchArray.count - 1 {
             cell.cellCocktail = resultSearchArray[indexPath.row]
             cell.setupUI()
         }
+        
         return cell
     }
     
@@ -90,12 +93,12 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func searchChanged(_ sender: UITextField) {
+        guard let text = sender.text else {
+            self.resultSearchArray.removeAll()
+            return
+        }
+        
         network.stopAllRequests {
-            guard let text = sender.text else {
-                self.resultSearchArray.removeAll()
-                return
-            }
-            
             self.search(text)
         }
     }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Alamofire
+import SwiftEntryKit
 
 extension SearchViewController {
     func search(_ text: String) {
@@ -20,25 +20,38 @@ extension SearchViewController {
                 self.CVUpdate()
             }
         }
-        
-        AF.request("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=\(text)").responseJSON { (response) in
-            guard let data = response.value as? [String:Any] else { return }
-            if let allDrinks = data["drinks"] as? [[String:Any]] {
-                for object in allDrinks {
-                    if let cocktail = Factory.shared.createCoctail(from: object) {
-                        cocktail.getImages {
-                            NotificationCenter.default.post(name: NSNotification.Name("updateSearchResult"), object: nil)
-                        }
-                        self.resultSearchArray.append(cocktail)
-                    }
-                    
-                }
-                
-            }
-        }
     }
 }
 
+//MARK: -SEGUE
+extension ItemSearchCollectionViewCell {
+    func setupAttributes() -> EKAttributes {
+        var attributes = EKAttributes.centerFloat
+        
+        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
+        let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
+        
+        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
+        
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
+        attributes.roundCorners = .all(radius: 15)
+        
+        // Set its background to white
+        attributes.entryBackground = .color(color: .clear)
+        attributes.screenBackground = .color(color: EKColor(UIColor(white: 0, alpha: 0.5)))
 
+        // Animate in and out using default translation
+        attributes.entranceAnimation = .translation
+        attributes.exitAnimation = .translation
+        
+        attributes.displayDuration = .infinity
+        attributes.entryInteraction = .forward
+        
+        attributes.screenInteraction = .dismiss
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        
+        return attributes
+    }
+}
 
 

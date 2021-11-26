@@ -8,6 +8,7 @@
 import UIKit
 
 class BarCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var ingrImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
