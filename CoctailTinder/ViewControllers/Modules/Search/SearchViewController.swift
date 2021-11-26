@@ -63,7 +63,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
        CVUpdate()
     }
     
-    //MARK:COLLECTION VIEW
+    //MARK: -COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return resultSearchArray.count
     }
@@ -84,7 +84,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    //MARK:FIELD
+    //MARK: -FIELD
     @IBAction func searchStarted(_ sender: UITextField) {
         cleanButton.animateHidding(hidding: false)
     }
