@@ -69,7 +69,15 @@ class NetworkService {
     public enum ResponseType {
         case id
         case fullInfo
+        
     }
+    /*
+     Sometimes we're getting back couples of [Title:ID],
+     and sometimes it's full data of cocktails
+     
+     So we have two ways of usage func categoryRequest() depends
+     on response
+     */
     
     func categoryRequest(_ url: String, _ type: ResponseType, _ action: @escaping (Cocktail?) -> Void) {
         switch type {
@@ -137,6 +145,25 @@ class NetworkService {
                         }
                     }
                     NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
+                }
+            }
+        }
+    }
+    
+    func getIngredientCategory(_ action: @escaping (CategoryIngredient) -> Void) {
+        self.getAllIngredientsList { ingredient in
+            self.getCountToIngredient(ingredient) { category in
+                action(category)
+            }
+        }
+    }
+    
+    private func getCountToIngredient(_ ingredient: Ingredient, _ action: @escaping (CategoryIngredient) -> Void) {
+        AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(ingredient.name)").responseJSON { (response) in
+            if let allData = response.value as? [String:Any] {
+                if let cocktails = allData["drinks"] as? [[String:Any]] {
+                    let model = CategoryIngredient(name: ingredient.name, count: cocktails.count)
+                    action(model)
                 }
             }
         }

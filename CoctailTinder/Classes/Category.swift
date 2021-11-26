@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum Category {
+//MARK: -ENUM
+enum CategoryType {
     case new
     case pop
     case nonAlc
@@ -25,6 +26,7 @@ enum Category {
     case ordinary
     case cocoa
     
+    //MARK: -URL
     func getUrl() -> String {
         switch self {
         case .new:
@@ -68,6 +70,43 @@ enum Category {
         }
     }
     
+    //MARK: -TITLE
+    func getTitle() -> String {
+        switch self {
+        case .new:
+            return "New drinks"
+        case .pop:
+            return "Popular drinks"
+        case .nonAlc:
+            return "Non-alcoholic"
+        case .cocktails:
+            return "Cocktais"
+        case .shake:
+            return "Milk shake"
+        case .shot:
+            return "Shot drinks"
+        case .coffee:
+            return "Coffee & Tea"
+        case .beer:
+            return "Beer"
+        case .punch:
+            return "Party drinks"
+        case .random:
+            return "Random"
+        case .soda:
+            return "Soft drinks & Soda"
+        case .others:
+            return "Others"
+        case .homemade:
+            return "Homemade"
+        case .ordinary:
+            return "Ordinary"
+        case .cocoa:
+            return "Cocoa"
+        }
+    }
+    
+    //MARK: -RESPONSE TYPE
     func getRequestType() -> NetworkService.ResponseType {
         switch self {
         case .new:

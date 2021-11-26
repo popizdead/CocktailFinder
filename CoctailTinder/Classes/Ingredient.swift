@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Alamofire
 
+//MARK: -CLASS
 class Ingredient {
     let name : String
     var ingrImage : UIImage?
@@ -35,3 +36,8 @@ class Ingredient {
     }
 }
 
+//MARK: -CATEGORY
+struct CategoryIngredient {
+    let name : String
+    let count : Int
+}

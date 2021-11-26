@@ -17,7 +17,9 @@ class DataService {
     var userBuyList : [Ingredient] = []
     var favArray : [Cocktail] = []
     
-    var collectionCocktailSource : [Cocktail] = []
+    //Categories
+    var categoryReview : CategoryType = .cocoa
+    var ingrCategoryReview : Ingredient = Ingredient(name: "")
     
     let network = NetworkService.shared
     
@@ -43,6 +45,15 @@ class DataService {
             self.userBuyList = self.userBuyList.filter({$0.name != ingr.name})
             self.deleteBuyListItem(name: ingr.name)
         }
+    }
+    
+    //MARK: -CATEGORIES
+    func getCategoryList() -> [CategoryType] {
+        let array : [CategoryType] = [
+            .new, .pop, .nonAlc, .cocktails, .shake, .shot, .coffee, .beer, .punch, .random, .soda, .others, .homemade, .ordinary, .cocoa
+        ]
+        
+        return array
     }
     
 }
