@@ -11,6 +11,7 @@ class DataService {
     static let shared = DataService()
     
     var alertIngredient = Ingredient(name: "")
+    var reviewCocktail: Cocktail?
     
     //User source
     var userBuyList : [Ingredient] = []

@@ -9,13 +9,6 @@ import Foundation
 import UIKit
 import Alamofire
 
-struct IngredientShort {
-    var name = String()
-    var measure = String()
-}
-
-var ingredientDict : [String : UIImage] = [:]
-
 class Ingredient {
     let name : String
     var ingrImage : UIImage?

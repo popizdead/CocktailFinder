@@ -16,18 +16,10 @@ class BuyListViewController: UIViewController {
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
     
-//    var ingrNameArray : [String] = []
-//    var imgDict : [String:UIImage] = [:]
-//    var searchArray : [String] = []
-//
-//    var sourceArray : [String] = []
-    
     var searchSource : [Ingredient] = []
     var ingredientsSource : [Ingredient] = []
-    //var appearingSource : [Ingredient] = []
     
     let network = NetworkService.shared
-    
     var appearingState : VCState = .all
     
     //MARK: -VIEW LOAD
@@ -133,8 +125,5 @@ extension BuyListViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         cell.ingredient = ingredient
         cell.action()
-        
-        //ingredientsCV.reloadData()
     }
-    
 }

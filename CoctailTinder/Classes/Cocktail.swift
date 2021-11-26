@@ -51,10 +51,14 @@ class Cocktail {
         switch action {
         case .appendFavorite:
             dataService.favArray.insert(self, at: 0)
+            
+            dataService.saveCocktailCoreData(object: self)
         case .deleteFavorite:
             dataService.favArray.removeAll(where: {
                 $0.id == self.id
             })
+            
+            dataService.deleteSavedCocktail(name: self.name)
         }
     }
     
@@ -96,23 +100,9 @@ class Cocktail {
         action()
     }
     
-//    func updateController() {
-//        if requestedFrom == .swipe {
-//            NotificationCenter.default.post(name: NSNotification.Name("updateCard"), object: nil)
-//        }
-//        else if requestedFrom == .favorite {
-//            NotificationCenter.default.post(name: Notification.Name("updateFavCV"), object: nil)
-//        }
-//        else if requestedFrom == .collection {
-//            NotificationCenter.default.post(name: NSNotification.Name("updateItemsCV"), object: nil)
-//        }
-//        else if requestedFrom == .search {
-//            NotificationCenter.default.post(name: NSNotification.Name("updateSearchResult"), object: nil)
-//        }
-//        else if requestedFrom == .review {
-//            NotificationCenter.default.post(name: NSNotification.Name("updateReviewScreen"), object: nil)
-//        }
-//    }
+    func isFavorite() -> Bool {
+        return dataService.isFavoriteCocktail(self)
+    }
 }
 
 struct ShortCocktail {

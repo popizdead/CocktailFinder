@@ -111,7 +111,7 @@ class ListCollectionsViewController: UIViewController, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cocktail = self.dataService.collectionCocktailSource[indexPath.row]
-        reviewCocktail = cocktail
+        dataService.reviewCocktail = cocktail
         
         self.performSegue(withIdentifier: "collectionToReview", sender: self)
     }

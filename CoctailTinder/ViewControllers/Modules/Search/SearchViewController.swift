@@ -17,6 +17,8 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var cleanButton: UIButton!
     
     let network = NetworkService.shared
+    private let dataService = DataService.shared
+    
     var resultSearchArray : [Cocktail] = []
     
     //MARK: -VIEW LOAD
@@ -77,7 +79,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row <= resultSearchArray.count - 1 {
-            reviewCocktail = resultSearchArray[indexPath.row]
+            dataService.reviewCocktail = resultSearchArray[indexPath.row]
             self.performSegue(withIdentifier: "searchToReview", sender: self)
         }
     }

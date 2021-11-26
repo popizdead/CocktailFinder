@@ -120,7 +120,7 @@ extension FavViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        reviewCocktail = showingArray[indexPath.row]
+        dataService.reviewCocktail = showingArray[indexPath.row]
         
         self.performSegue(withIdentifier: "favToReview", sender: self)
     }

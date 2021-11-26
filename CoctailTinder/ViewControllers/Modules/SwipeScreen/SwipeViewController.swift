@@ -118,7 +118,7 @@ class SwipeViewController: UIViewController {
     }
     
     @IBAction func instructionButtonTapped(_ sender: UIButton) {
-        reviewCocktail = currentCoctail
+        dataService.reviewCocktail = currentCoctail
         self.performSegue(withIdentifier: "mainToReview", sender: self)
     }
 }

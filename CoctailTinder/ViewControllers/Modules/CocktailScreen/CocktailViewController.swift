@@ -8,7 +8,7 @@
 import UIKit
 import SwiftEntryKit
 
-class CocktailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class CocktailViewController: UIViewController {
     
     //MARK: -OUTLETS
     @IBOutlet weak var cocktailImg: UIImageView!
@@ -26,19 +26,17 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     var isFavoutite = false
     
     private let network = NetworkService.shared
-    private let dataService = DataService.shared
+    let dataService = DataService.shared
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateReviewScreen"), object: nil)
-        setupUI()
+        
+        UISetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkForDownloaded()
-        checkForFavourite()
-        updateUI()
+        UIUpdate()
     }
     
     func delegates() {
@@ -46,8 +44,8 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         ingrCV.dataSource = self
     }
     
-    //MARK:UI
-    func setupUI() {
+    //MARK: -UI
+    private func UISetup() {
         delegates()
         let viewArray = [cocktailImg, dismissButton, saveButton]
         for view in viewArray {
@@ -55,17 +53,27 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    @objc func updateUI() {
+    private func UIUpdate() {
+        guard let cocktail = dataService.reviewCocktail else { return }
+        
+        updateFavoriteState(cocktail)
+        cocktailUpdate(cocktail)
+        
+        UIImageUpdate(cocktail)
+        UIButtonsUpdate()
+    }
+    
+    private func cocktailUpdate(_ reviewCocktail: Cocktail) {
         cocktailImg.image = reviewCocktail.image
         nameLbl.text = reviewCocktail.name
         typeLbl.text = reviewCocktail.category
         ingredientsCount.text = "\(reviewCocktail.ingrArray.count) Ingredients"
         instructionText.text = reviewCocktail.instruction
+        
         ingrCV.reloadData()
     }
     
-    func checkForFavourite() {
-        isFavoutite = dataService.isFavoriteCocktail(reviewCocktail)
+    func UIButtonsUpdate() {
         if isFavoutite {
             saveButton.setTitle("Unsave", for: .normal)
         } else {
@@ -73,16 +81,15 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    func checkForDownloaded() {
-        if reviewCocktail.image == nil {
+    private func UIImageUpdate(_ cocktail: Cocktail) {
+        if cocktail.image == nil {
             network.currentRequestFrom = .review
             
-            reviewCocktail.getIngredientImage {
-                self.updateUI()
+            cocktail.getIngredientImage {
+                self.UIUpdate()
             }
         }
     }
-    
     
     //MARK:BUTTONS
     @IBAction func dismissButtonTapped(_ sender: UIButton) {
@@ -90,26 +97,29 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        if isFavoutite {
-            dataService.deleteSavedCocktail(name: reviewCocktail.name)
-            reviewCocktail.action(.deleteFavorite)
-            dataService.favArray = dataService.favArray.filter({$0.name != reviewCocktail.name})
-        } else {
-            dataService.saveCocktailCoreData(object: reviewCocktail)
-            reviewCocktail.action(.appendFavorite)
+        if let cocktail = dataService.reviewCocktail {
+            if isFavoutite {
+                cocktail.action(.deleteFavorite)
+            } else {
+                cocktail.action(.appendFavorite)
+            }
         }
+        
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
-    //MARK:COLLECTION VIEW
+}
+
+extension CocktailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return reviewCocktail.ingrArray.count
+        guard let cocktail = dataService.reviewCocktail else { return 0 }
+        return cocktail.ingrArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
-        let ingr = reviewCocktail.ingrArray[indexPath.row]
+        guard let cocktail = dataService.reviewCocktail else { return cell }
+        
+        let ingr = cocktail.ingrArray[indexPath.row]
         
         cell.nameLbl.text = ingr.name
         cell.img.image = ingr.ingrImage
@@ -119,39 +129,10 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let ingrObject = reviewCocktail.ingrArray[indexPath.row]
+        guard let cocktail = dataService.reviewCocktail else { return }
+        let ingrObject = cocktail.ingrArray[indexPath.row]
         dataService.alertIngredient = ingrObject
         
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
     }
-    
-    //MARK:ATTRIBUTES
-    func setupAttributes() -> EKAttributes {
-        var attributes = EKAttributes.centerFloat
-        
-        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
-        let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
-        
-        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
-        
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
-        attributes.roundCorners = .all(radius: 15)
-        
-        // Set its background to white
-        attributes.entryBackground = .color(color: .clear)
-        attributes.screenBackground = .color(color: EKColor(UIColor(white: 0, alpha: 0.5)))
-
-        // Animate in and out using default translation
-        attributes.entranceAnimation = .translation
-        attributes.exitAnimation = .translation
-        
-        attributes.displayDuration = .infinity
-        attributes.entryInteraction = .forward
-        
-        attributes.screenInteraction = .dismiss
-        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-        
-        return attributes
-    }
-    
 }

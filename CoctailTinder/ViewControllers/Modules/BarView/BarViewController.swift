@@ -50,7 +50,6 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     //MARK:BUTTONS
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        ingrCalled = .bar
         self.performSegue(withIdentifier: "barToIngr", sender: self)
     }
     
