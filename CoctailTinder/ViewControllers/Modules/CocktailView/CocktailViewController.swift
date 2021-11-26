@@ -26,7 +26,6 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     var isFavoutite = false
     
     private let network = NetworkService.shared
-    private let coreService = CoreDataService.shared
     private let dataService = DataService.shared
     
     //MARK: -VIEW LOAD
@@ -66,7 +65,7 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func checkForFavourite() {
-        isFavoutite = dataService.isFavorite(reviewCocktail)
+        isFavoutite = dataService.isFavoriteCocktail(reviewCocktail)
         if isFavoutite {
             saveButton.setTitle("Unsave", for: .normal)
         } else {
@@ -92,11 +91,11 @@ class CocktailViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if isFavoutite {
-            coreService.deleteSavedCocktail(name: reviewCocktail.name)
+            dataService.deleteSavedCocktail(name: reviewCocktail.name)
             reviewCocktail.action(.deleteFavorite)
             dataService.favArray = dataService.favArray.filter({$0.name != reviewCocktail.name})
         } else {
-            coreService.saveCocktailCoreData(object: reviewCocktail)
+            dataService.saveCocktailCoreData(object: reviewCocktail)
             reviewCocktail.action(.appendFavorite)
         }
         self.dismiss(animated: true, completion: nil)

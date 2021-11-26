@@ -241,8 +241,6 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="searchChanged:" destination="zhW-VM-bYp" eventType="editingChanged" id="q2n-1i-E1f"/>
-                                            <action selector="searchEnded:" destination="zhW-VM-bYp" eventType="editingDidEnd" id="gvx-hE-X2q"/>
-                                            <action selector="searchStarted:" destination="zhW-VM-bYp" eventType="editingDidBegin" id="0kC-bb-Pt7"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-Uv-eDq">
@@ -1801,10 +1799,10 @@
             </objects>
             <point key="canvasLocation" x="912" y="161"/>
         </scene>
-        <!--Auth View Controller-->
+        <!--Buy List View Controller-->
         <scene sceneID="Ya7-Oo-Xpb">
             <objects>
-                <viewController storyboardIdentifier="auth" id="Vmf-nQ-gbW" customClass="AuthViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="auth" id="Vmf-nQ-gbW" customClass="BuyListViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4M-Ye-Bk9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2066,7 +2064,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="36a-ea-qtM"/>
+        <segue reference="eJG-Ms-Xbn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="32" height="32"/>

@@ -131,17 +131,16 @@ extension SwipeViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingredientCollectionView.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
-        
-        cell.ingrCell = currentCoctail.ingrArray[indexPath.row]
-        cell.configureUI()
+        let ingr = currentCoctail.ingrArray[indexPath.row]
+        cell.configureUI(ingr)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ingrObject = currentCoctail.ingrArray[indexPath.row]
-        
         dataService.alertIngredient = ingrObject
+        
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
     }
 }

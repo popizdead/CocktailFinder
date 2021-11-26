@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: VIEW
 extension UIView {
     func makeShadowAndRadius(shadow: Bool, opacity: Float, radius: Float) {
         if shadow {
@@ -33,6 +34,7 @@ extension UIView {
     }
 }
 
+//MARK: STRING
 extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
@@ -40,5 +42,18 @@ extension String {
     
     func makeUrlable() -> String {
         return self.replacingOccurrences(of: " ", with: "%20")
+    }
+}
+
+//MARK: KEYBOARD
+extension UIViewController {
+    func hideKeyboardSetting() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hide() {
+        view.endEditing(true)
     }
 }

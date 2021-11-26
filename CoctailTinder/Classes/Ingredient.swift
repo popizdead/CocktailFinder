@@ -17,12 +17,28 @@ struct IngredientShort {
 var ingredientDict : [String : UIImage] = [:]
 
 class Ingredient {
-    var name : String
+    let name : String
     var ingrImage : UIImage?
     var measure : String?
     
+    var isDownloading: Bool = false
+    
     init(name: String) {
         self.name = name
+    }
+    
+    func getImage(_ action: @escaping () -> Void) {
+        isDownloading = true
+        AF.request("https://www.thecocktaildb.com/images/ingredients/\(self.name.makeUrlable()).png").responseData { (response) in
+            if let data = response.data {
+                if let img = UIImage(data: data) {
+                    self.ingrImage = img
+                    self.isDownloading = false
+                    
+                    action()
+                }
+            }
+        }
     }
 }
 

@@ -9,13 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class CoreDataService {
-    static let shared = CoreDataService()
-    private let network = NetworkService.shared
-    
-    //MARK: -REFERENCE ATTENTION
-    private let dataService = DataService.shared
-    
+extension DataService {
     func getSavedData() {
         getSavedCocktails()
         getSavedBuyList()
@@ -54,7 +48,7 @@ class CoreDataService {
                                 NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
                             }
                             
-                            self.dataService.favArray.append(cocktail)
+                            self.favArray.append(cocktail)
                         }
                     }
                 }
@@ -145,7 +139,7 @@ class CoreDataService {
                     if let imgData = object.img {
                         ingr.ingrImage = UIImage(data: imgData)!
                     }
-                    dataService.userBuyList.append(ingr)
+                    self.userBuyList.append(ingr)
                 }
             }
         } catch {}

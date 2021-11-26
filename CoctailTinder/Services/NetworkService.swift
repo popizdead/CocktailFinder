@@ -125,6 +125,23 @@ class NetworkService {
         }
     }
     
+    //MARK: -INGREDIENTS LIST
+    func getAllIngredientsList(_ action: @escaping (Ingredient) -> Void) {
+        AF.request("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").responseJSON { (response) in
+            if let dataDict = response.value as? [String:Any] {
+                if let ingrDict = dataDict["drinks"] as? [[String:Any]] {
+                    for ingrElem in ingrDict {
+                        if let name = ingrElem["strIngredient1"] as? String {
+                            let ingredient = Ingredient(name: name)
+                            action(ingredient)
+                        }
+                    }
+                    NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
+                }
+            }
+        }
+    }
+    
     
     //MARK: -NAME SEARCH
     func search(_ text: String, _ action: @escaping (Cocktail) -> Void) {

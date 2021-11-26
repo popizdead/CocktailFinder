@@ -18,7 +18,6 @@ class AlertIngredientViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     
     private let dataService = DataService.shared
-    private let coreService = CoreDataService.shared
     
     //MARK:VIEW LOAD
     override func viewDidLoad() {
@@ -47,7 +46,7 @@ class AlertIngredientViewController: UIViewController {
         let ingr = dataService.alertIngredient
         
         dataService.userBuyList.append(ingr)
-        coreService.saveBuyListItem(ingr: ingr)
+        dataService.saveBuyListItem(ingr: ingr)
         
         SwiftEntryKit.dismiss()
     }

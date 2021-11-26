@@ -22,7 +22,6 @@ class Cocktail {
     let instruction : String
     
     private let dataService = DataService.shared
-    private let coreService = CoreDataService.shared
     
     init(name: String, category: String, id: String, imgUrl: String, glass: String, ingrArray: [Ingredient], instr: String) {
         self.name = name
@@ -38,7 +37,7 @@ class Cocktail {
     
     //MARK: -CORE DATA
     func saveCore() {
-        coreService.saveCocktailCoreData(object: self)
+        dataService.saveCocktailCoreData(object: self)
         dataService.favArray.insert(self, at: 0)
     }
     

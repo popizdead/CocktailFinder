@@ -18,10 +18,30 @@ class DataService {
     
     var collectionCocktailSource : [Cocktail] = []
     
-    //Object states
-    func isFavorite(_ cocktail: Cocktail) -> Bool {
+    let network = NetworkService.shared
+    
+    //MARK: -COCKTAIL
+    func isFavoriteCocktail(_ cocktail: Cocktail) -> Bool {
         return self.favArray.contains(where: {
             $0.id == cocktail.id
         })
     }
+    
+    //MARK: -INGREDIENT
+    public enum IngredientAction {
+        case add
+        case remove
+    }
+    
+    func buyListAction(_ ingr: Ingredient, _ action: IngredientAction) {
+        switch action {
+        case .add:
+            self.userBuyList.append(ingr)
+            self.saveBuyListItem(ingr: ingr)
+        case .remove:
+            self.userBuyList = self.userBuyList.filter({$0.name != ingr.name})
+            self.deleteBuyListItem(name: ingr.name)
+        }
+    }
+    
 }

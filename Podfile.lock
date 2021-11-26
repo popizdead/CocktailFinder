@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.4.1)
+  - QuickLayout (3.0.0)
+  - SwiftEntryKit (1.2.7):
+    - QuickLayout (= 3.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - SwiftEntryKit
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - QuickLayout
+    - SwiftEntryKit
+
+SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+  SwiftEntryKit: 537c92699d6034efb1ef9c32b11e0b37c97aa589
+
+PODFILE CHECKSUM: 07d1fc246c077f8f2d8983caf4bf6210113f746d
+
+COCOAPODS: 1.10.0

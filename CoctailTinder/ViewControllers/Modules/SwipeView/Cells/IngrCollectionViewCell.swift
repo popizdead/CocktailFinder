@@ -12,12 +12,10 @@ class IngrCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var mesureLbl: UILabel!
     
-    var ingrCell : Ingredient!
-    
-    func configureUI() {
+    func configureUI(_ ingr: Ingredient) {
         self.img.layer.cornerRadius = 10
-        self.nameLbl.text = ingrCell.name
-        if let img = ingrCell.ingrImage {
+        self.nameLbl.text = ingr.name
+        if let img = ingr.ingrImage {
             self.img.image = img
             self.img.backgroundColor = .white
         } else {

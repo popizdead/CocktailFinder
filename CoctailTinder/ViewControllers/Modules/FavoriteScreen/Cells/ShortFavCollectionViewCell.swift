@@ -20,7 +20,6 @@ class ShortFavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     var delegate: FavoriteActionsProtocol?
     
     private let dataService = DataService.shared
-    private let coreService = CoreDataService.shared
     
     func delegates() {
         insideIngrCV.delegate = self
@@ -46,9 +45,9 @@ class ShortFavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         dataService.favArray = dataService.favArray.filter({$0.name != cellCocktail.name})
-        delegate?.updateShowingArray()
+        delegate?.updateAppearingArray()
         
-        coreService.deleteSavedCocktail(name: cellCocktail.name)
+        dataService.deleteSavedCocktail(name: cellCocktail.name)
     }
     
     //MARK:COLLECTION VIEW

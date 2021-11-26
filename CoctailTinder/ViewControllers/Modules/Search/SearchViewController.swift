@@ -12,13 +12,14 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     @IBOutlet weak var ingrCV: UICollectionView!
     @IBOutlet weak var searchField: UITextField!
+    
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var cleanButton: UIButton!
     
     let network = NetworkService.shared
     var resultSearchArray : [Cocktail] = []
     
-    //MARK:VIEW LOAD
+    //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,27 +32,21 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func setupUI() {
         delegates()
-        setupHidding()
+        hideKeyboardSetting()
+        
         navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         navView.backgroundColor = .white
+        
         cleanButton.isHidden = true
     }
     
     func delegates() {
         NotificationCenter.default.addObserver(self, selector: #selector(CVUpdate), name: NSNotification.Name("updateSearchResult"), object: nil)
+        
         self.ingrCV.delegate = self
         self.ingrCV.dataSource = self
     }
     
-    func setupHidding() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func hide() {
-        view.endEditing(true)
-    }
     
     @objc func CVUpdate() {
         self.ingrCV.reloadData()
