@@ -187,10 +187,10 @@
 			children = (
 				639DDDE925F286EC0010CA4A /* SwipeScreen */,
 				63BB121825FB97300079F279 /* CocktailScreen */,
+				634F5D172602872700EFECD9 /* CategoryScreen */,
 				63D74B1625F2D4A100503326 /* FavoriteScreen */,
 				637F1EFB2750697200DCB21F /* BuyListScreen */,
 				636C272825FCE9DF009C9DA3 /* BarView */,
-				634F5D172602872700EFECD9 /* CategoryScreen */,
 				63FC0DA22603EBAF00ADAF67 /* Search */,
 			);
 			path = Modules;

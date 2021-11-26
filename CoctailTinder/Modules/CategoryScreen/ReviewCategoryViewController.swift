@@ -33,7 +33,12 @@ class ReviewCategoryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.viewNameLbl.text = ""
         sourceUpdate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        network.stopAllRequests { }    
     }
     
     private func delegates() {
@@ -50,9 +55,14 @@ class ReviewCategoryViewController: UIViewController {
     }
     
     @objc func update() {
-        self.viewNameLbl.text = dataService.ingrCategoryReview.name
-        UIRefreshButton()
+        switch requestFrom {
+        case .ingr:
+            self.viewNameLbl.text = dataService.ingrCategoryReview.name
+        case .categories:
+            self.viewNameLbl.text = dataService.categoryReview.getTitle()
+        }
         
+        UIRefreshButton()
         itemsCV.reloadData()
     }
     
@@ -69,10 +79,6 @@ class ReviewCategoryViewController: UIViewController {
     }
     
     @IBAction func dismissTapped(_ sender: UIButton) {
-        network.stopAllRequests {
-            print("Stopped")
-        }
-        
         self.dismiss(animated: true, completion: nil)
     }
 }
