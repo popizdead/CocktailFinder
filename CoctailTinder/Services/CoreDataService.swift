@@ -15,21 +15,6 @@ extension DataService {
         getSavedBuyList()
     }
 
-//    func saveCurrentCocktail() {
-//        if !dataService.isFavorite(currentCoctail) {
-//            saveCocktailCoreData(object: currentCoctail)
-//            dataService.favArray.insert(currentCoctail, at: 0)
-//        }
-//
-////        if !favArray.contains(where: {$0.name == currentCoctail.name}) {
-////            var newCocktail = Cocktail(name: currentCoctail.name, category: currentCoctail.category, id: currentCoctail.id, imgUrl: currentCoctail.imageURL, glass: currentCoctail.glass, ingrArray: currentCoctail.ingrArray, instr: currentCoctail.instruction)
-////            newCocktail.image = currentCoctail.image
-////            newCocktail = currentCoctail
-////            saveCocktailCoreData(object: newCocktail)
-////            favArray.insert(newCocktail, at: 0)
-////        }
-//    }
-
     //MARK: -COCKTAIL
     func getSavedCocktails() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

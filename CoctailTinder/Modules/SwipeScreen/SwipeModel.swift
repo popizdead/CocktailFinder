@@ -16,7 +16,14 @@ extension SwipeViewController {
         
         network.stopAllRequests {
             self.network.currentRequestFrom = .swipe
-            self.network.randomCoctailRequest()
+            self.network.randomCoctailRequest { cocktail in
+                self.cardCocktail = cocktail
+                self.cardCocktail?.getImages {
+                    self.updateUI()
+                }
+                
+                self.openCard()
+            }
         }
     }
     
@@ -25,7 +32,7 @@ extension SwipeViewController {
         if card.center.x > bgView.center.x {
             //Right
             fillView(.systemGreen)
-            currentCoctail.saveCore()
+            cardCocktail?.saveCore()
         } else {
             //Left
             fillView(.systemRed)

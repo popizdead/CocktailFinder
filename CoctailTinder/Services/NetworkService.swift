@@ -26,22 +26,16 @@ class NetworkService {
     }
     
     //MARK: -COCKTAILS REQUESTS
-    func randomCoctailRequest() {
+    func randomCoctailRequest(_ action: @escaping (Cocktail?) -> Void) {
         AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
             guard let dataDict = data.value as? [String : Any] else { return }
             if let arrayData = dataDict["drinks"] as? [[String:Any]] {
                 if let cocktailData = arrayData.first {
-                    if let coctail = self.factory.createCoctail(from: cocktailData) {
-                        currentCoctail = coctail
-                        
-                        currentCoctail.getImages {
-                            NotificationCenter.default.post(name: NSNotification.Name("openCard"), object: nil)
-                        }
-                        
-                        NotificationCenter.default.post(name: NSNotification.Name("openCard"), object: nil)
+                    if let cocktail = self.factory.createCoctail(from: cocktailData) {
+                        action(cocktail)
                     } else {
                         self.stopAllRequests {
-                            self.randomCoctailRequest()
+                            self.randomCoctailRequest(action)
                         }
                     }
                 }

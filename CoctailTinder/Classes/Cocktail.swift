@@ -76,7 +76,6 @@ class Cocktail {
             if let dataImg = data.data {
                 let cocktailImage = UIImage(data: dataImg)
                 self.image = cocktailImage
-                //self.updateController()
             }
             
             action()
@@ -90,7 +89,6 @@ class Cocktail {
                     if let img = UIImage(data: data) {
                         ingr.ingrImage = img
                         action()
-                        //self.updateController()
                     }
                 }
             }
@@ -104,11 +102,4 @@ class Cocktail {
         return dataService.isFavoriteCocktail(self)
     }
 }
-
-struct ShortCocktail {
-    var name : String
-    var id: String
-}
-
-var currentCoctail = Cocktail(name: "", category: "", id: "", imgUrl: "", glass: "", ingrArray: [], instr: "")
 

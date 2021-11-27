@@ -30,6 +30,8 @@ class SwipeViewController: UIViewController {
     let network = NetworkService.shared
     private let dataService = DataService.shared
     
+    var cardCocktail : Cocktail?
+    
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,19 +43,12 @@ class SwipeViewController: UIViewController {
     //MARK: -CONFIGURE VC
     private func VCConfigure() {
         delegates()
-        observers()
-        
         setupUI()
     }
     
     private func delegates() {
         ingredientCollectionView.delegate = self
         ingredientCollectionView.dataSource = self
-    }
-    
-    private func observers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name("updateCard"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(openCard), name: NSNotification.Name("openCard"), object: nil)
     }
     
     //MARK: -SETUP UI
@@ -79,12 +74,14 @@ class SwipeViewController: UIViewController {
         self.showLoading(false)
     }
     
-    @objc private func updateUI() {
-        self.categoryLbl.text = currentCoctail.category
-        self.nameLbl.text = currentCoctail.name
-        self.ingrCountLbl.text = "\(currentCoctail.ingrArray.count) Ingredients"
+    @objc func updateUI() {
+        guard let currentCocktail = cardCocktail else { return }
         
-        self.image.image = currentCoctail.image
+        self.categoryLbl.text = currentCocktail.category
+        self.nameLbl.text = currentCocktail.name
+        self.ingrCountLbl.text = "\(currentCocktail.ingrArray.count) Ingredients"
+        
+        self.image.image = currentCocktail.image
         ingredientCollectionView.reloadData()
     }
     
@@ -118,7 +115,9 @@ class SwipeViewController: UIViewController {
     }
     
     @IBAction func instructionButtonTapped(_ sender: UIButton) {
-        dataService.reviewCocktail = currentCoctail
+        guard let currentCocktail = cardCocktail else { return }
+        
+        dataService.reviewCocktail = currentCocktail
         self.performSegue(withIdentifier: "mainToReview", sender: self)
     }
 }
@@ -126,19 +125,24 @@ class SwipeViewController: UIViewController {
 //MARK: -CV
 extension SwipeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentCoctail.ingrArray.count
+        guard let currentCocktail = cardCocktail else { return 0 }
+        return currentCocktail.ingrArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingredientCollectionView.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
-        let ingr = currentCoctail.ingrArray[indexPath.row]
+        guard let currentCocktail = cardCocktail else { return cell }
+        
+        let ingr = currentCocktail.ingrArray[indexPath.row]
         cell.configureUI(ingr)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let ingrObject = currentCoctail.ingrArray[indexPath.row]
+        guard let currentCocktail = cardCocktail else { return }
+        
+        let ingrObject = currentCocktail.ingrArray[indexPath.row]
         dataService.alertIngredient = ingrObject
         
         SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
