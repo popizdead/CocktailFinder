@@ -73,7 +73,7 @@ class CocktailViewController: UIViewController {
         ingrCV.reloadData()
     }
     
-    func UIButtonsUpdate() {
+    private func UIButtonsUpdate() {
         if isFavoutite {
             saveButton.setTitle("Unsave", for: .normal)
         } else {
@@ -91,7 +91,7 @@ class CocktailViewController: UIViewController {
         }
     }
     
-    //MARK:BUTTONS
+    //MARK: BUTTONS
     @IBAction func dismissButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -109,6 +109,7 @@ class CocktailViewController: UIViewController {
     }
 }
 
+//MARK: -COLLECTION VIEW
 extension CocktailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let cocktail = dataService.reviewCocktail else { return 0 }

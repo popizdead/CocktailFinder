@@ -26,7 +26,6 @@ class FavViewController: UIViewController {
     @IBOutlet weak var settingButtonFromBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButtonFromBottomConstraint: NSLayoutConstraint!
     
-    
     var showingArray : [Cocktail] = []
     var favSearchArray : [Cocktail] = []
 

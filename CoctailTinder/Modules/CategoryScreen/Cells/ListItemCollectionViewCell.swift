@@ -15,10 +15,13 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var ingrCountLbl: UILabel!
     
-    var cellCocktail : Cocktail!
+    var cellCocktail : Cocktail?
     
-    //MARK:UI
+    //MARK: -UI
     func setupUI() {
+        guard let cellCocktail = cellCocktail else {
+            return
+        }
         delegates()
         
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
@@ -45,12 +48,18 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     //MARK: -CV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let cellCocktail = cellCocktail else {
+            return 0
+        }
         return cellCocktail.ingrArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! InsideIngrCollectionViewCell
         cell.img.layer.cornerRadius = 10
+        guard let cellCocktail = cellCocktail else {
+            return cell
+        }
         
         //Bug catcher
         if indexPath.row <= cellCocktail.ingrArray.count - 1 {
