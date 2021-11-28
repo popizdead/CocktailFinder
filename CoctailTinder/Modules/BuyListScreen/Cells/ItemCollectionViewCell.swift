@@ -52,7 +52,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     private func favoriteFill() {
         if isFavorite() {
-            self.contentView.backgroundColor = .darkGray
+            self.contentView.backgroundColor = .black
             self.nameLbl.textColor = .white
         } else {
             self.contentView.backgroundColor = .white

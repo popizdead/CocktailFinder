@@ -10,30 +10,49 @@ import CoreData
 import UIKit
 
 extension DataService {
-    func getSavedData() {
-        getSavedCocktails()
+    func getSavedData(_ action: @escaping () -> Void) {
+        getSavedCocktails(action)
         getSavedBuyList()
     }
-
+    
     //MARK: -COCKTAIL
-    func getSavedCocktails() {
+    func getSavedCocktails(_ action: @escaping () -> Void) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         network.currentRequestFrom = .favorite
         
         let fetchRequest : NSFetchRequest<CocktailFav> = CocktailFav.fetchRequest()
-
+        self.isFavoriteLoading = true
+        
         do {
             let cocktailsArray = try context.fetch(fetchRequest)
-            for cocktailObject in cocktailsArray {
-                if let id = cocktailObject.id {
-                    network.getCocktailByID(id) { cocktail in
-                        if let cocktail = cocktail {
+            if cocktailsArray.count == 0 {
+                self.isFavoriteLoading = false
+                action()
+            } else {
+                //Fetch
+                for cocktailObject in cocktailsArray {
+                    if let id = cocktailObject.id {
+                        network.getCocktailByID(id) { cocktail in
+                            guard let cocktail = cocktail else {
+                                self.isFavoriteLoading = false
+                                action()
+                                return
+                            }
+                            
                             cocktail.getImages {
+                                if let last = cocktailsArray.last {
+                                    if cocktailObject == last {
+                                        self.isFavoriteLoading = false
+                                        action()
+                                    }
+                                }
+                                
                                 NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
                             }
                             
                             self.favArray.append(cocktail)
+                            
                         }
                     }
                 }
@@ -42,7 +61,7 @@ extension DataService {
             print("failed to get saved")
         }
     }
-
+    
     func deleteSavedCocktail(name: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -60,7 +79,7 @@ extension DataService {
         do { try context.save() }
         catch {}
     }
-
+    
     func saveCocktailCoreData(object: Cocktail) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -74,7 +93,7 @@ extension DataService {
         do { try context.save() }
         catch {print("failed save")}
     }
-
+    
     //MARK: -BUY LIST
     func saveBuyListItem(ingr: Ingredient) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -91,7 +110,7 @@ extension DataService {
         do { try context.save() }
         catch {}
     }
-
+    
     func deleteBuyListItem(name: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -109,13 +128,13 @@ extension DataService {
         do { try context.save() }
         catch {}
     }
-
+    
     func getSavedBuyList() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-
+        
         let fetchRequest : NSFetchRequest<IngredientBuy> = IngredientBuy.fetchRequest()
-
+        
         do {
             let ingredientArray = try context.fetch(fetchRequest)
             for object in ingredientArray {

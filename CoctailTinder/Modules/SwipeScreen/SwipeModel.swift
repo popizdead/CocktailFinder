@@ -21,10 +21,16 @@ extension SwipeViewController {
                 self.cardCocktail?.getImages {
                     self.updateUI()
                 }
-                
+
                 self.openCard()
             }
         }
+    }
+    
+    func fetchCoreData() {
+        DataService.shared.getSavedData({
+            print()
+        })
     }
     
     //MARK: -ANIMATION & SWIPE LOGIC

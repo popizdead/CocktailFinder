@@ -37,11 +37,14 @@ class SwipeViewController: UIViewController {
         super.viewDidLoad()
         
         VCConfigure()
-        request()
     }
     
     //MARK: -CONFIGURE VC
     private func VCConfigure() {
+        dataService.getSavedData {
+            self.request()
+        }
+        
         delegates()
         setupUI()
     }
@@ -58,11 +61,14 @@ class SwipeViewController: UIViewController {
         swipeView.backgroundColor = .white
         navView.backgroundColor = .white
         
+        image.layer.cornerRadius = 10
+        instructionButton.layer.cornerRadius = 10
+        
         shadows()
     }
     
     private func shadows() {
-        let views : [UIView] = [swipeView, image, instructionButton, navView]
+        let views : [UIView] = [swipeView, navView]
         views.forEach({
             $0.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
         })

@@ -16,12 +16,16 @@ class NetworkService {
     
     //MARK: -SESSION MANAGER
     func stopAllRequests(_ compilation: @escaping () -> Void) {
-        AF.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
-            dataTasks.forEach { $0.cancel() }
-            uploadTasks.forEach { $0.cancel() }
-            downloadTasks.forEach { $0.cancel() }
-            
+        if DataService.shared.isFavoriteLoading == true {
             compilation()
+        } else {
+            AF.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+                dataTasks.forEach { $0.cancel() }
+                uploadTasks.forEach { $0.cancel() }
+                downloadTasks.forEach { $0.cancel() }
+                
+                compilation()
+            }
         }
     }
     
@@ -44,19 +48,25 @@ class NetworkService {
     }
     
     func getCocktailByID(_ id: String, _ action: @escaping (Cocktail?) -> Void) {
-        AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
-            guard let dataDict = data.value as? [String : Any] else { return }
-            if let arrayData = dataDict["drinks"] as? [[String:Any]] {
-                if let cocktailData = arrayData.first {
-                    if let cocktail = self.factory.createCoctail(from: cocktailData) {
-                        action(cocktail)
-                        return
+        print(id)
+        self.stopAllRequests {
+            AF.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
+                guard let dataDict = data.value as? [String : Any] else { return }
+                if let arrayData = dataDict["drinks"] as? [[String:Any]] {
+                    if let cocktailData = arrayData.first {
+                        if let cocktail = self.factory.createCoctail(from: cocktailData) {
+                            action(cocktail)
+                            return
+                        }
                     }
                 }
+                
+                action(nil)
             }
-            
-            action(nil)
         }
+        
+        
+        
     }
     
     //MARK: -COLLECTION REQUEST
