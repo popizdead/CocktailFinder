@@ -10,14 +10,15 @@ import SwiftEntryKit
 
 extension SearchViewController {
     func search(_ text: String) {
-        network.currentRequestFrom = .search
         resultSearchArray.removeAll()
-        
-        network.search(text) { cocktail in
-            self.resultSearchArray.append(cocktail)
-            
-            cocktail.getImages {
-                self.CVUpdate()
+        network.stopAllRequests {
+            self.network.search(text) { cocktail in
+                
+                self.resultSearchArray.append(cocktail)
+                
+                cocktail.getImages {
+                    self.CVUpdate()
+                }
             }
         }
     }

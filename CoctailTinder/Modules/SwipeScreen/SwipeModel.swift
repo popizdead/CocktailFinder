@@ -15,7 +15,6 @@ extension SwipeViewController {
         self.showLoading(true)
         
         network.stopAllRequests {
-            self.network.currentRequestFrom = .swipe
             self.network.randomCoctailRequest { cocktail in
                 self.cardCocktail = cocktail
                 self.cardCocktail?.getImages {
@@ -25,12 +24,6 @@ extension SwipeViewController {
                 self.openCard()
             }
         }
-    }
-    
-    func fetchCoreData() {
-        DataService.shared.getSavedData({
-            print()
-        })
     }
     
     //MARK: -ANIMATION & SWIPE LOGIC

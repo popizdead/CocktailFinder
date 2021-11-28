@@ -15,5 +15,5 @@ class UIUserService {
         case short
     }
     
-    var userFavoriteSetting : favoriteView = .card
+    var userFavoriteSetting : favoriteView = .short
 }

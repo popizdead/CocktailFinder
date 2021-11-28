@@ -39,7 +39,7 @@ class CocktailViewController: UIViewController {
         UIUpdate()
     }
     
-    func delegates() {
+    private func delegates() {
         ingrCV.delegate = self
         ingrCV.dataSource = self
     }
@@ -83,8 +83,6 @@ class CocktailViewController: UIViewController {
     
     private func UIImageUpdate(_ cocktail: Cocktail) {
         if cocktail.image == nil {
-            network.currentRequestFrom = .review
-            
             cocktail.getIngredientImage {
                 self.UIUpdate()
             }

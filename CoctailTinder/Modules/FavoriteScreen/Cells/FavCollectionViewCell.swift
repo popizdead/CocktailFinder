@@ -23,7 +23,7 @@ class FavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UIC
     
     private let dataService = DataService.shared
     
-    func delegates() {
+    private func delegates() {
         ingrCV.delegate = self
         ingrCV.dataSource = self
     }
@@ -53,7 +53,7 @@ class FavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UIC
         dataService.deleteSavedCocktail(name: cellCoctail.name)
     }
     
-    //MARK:COLLECTION VIEW
+    //MARK: -COLLECTION VIEW
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellCoctail.ingrArray.count
     }

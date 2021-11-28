@@ -36,17 +36,16 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dataService.getSavedData()
         VCConfigure()
     }
     
     //MARK: -CONFIGURE VC
     private func VCConfigure() {
-        dataService.getSavedData {
-            self.request()
-        }
-        
         delegates()
         setupUI()
+        
+        request()
     }
     
     private func delegates() {
@@ -55,7 +54,7 @@ class SwipeViewController: UIViewController {
     }
     
     //MARK: -SETUP UI
-    func setupUI() {
+    private func setupUI() {
         loadingIndicator.startAnimating()
         
         swipeView.backgroundColor = .white

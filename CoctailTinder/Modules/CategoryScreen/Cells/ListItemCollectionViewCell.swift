@@ -19,31 +19,40 @@ class ListItemCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     //MARK: -UI
     func setupUI() {
-        guard let cellCocktail = cellCocktail else {
-            return
-        }
+        guard let cellCocktail = cellCocktail else { return }
+        
         delegates()
+        shadows()
         
-        self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
-        self.contentView.layer.cornerRadius = 10
-        self.cocktailImg.layer.cornerRadius = 10
+        imageSet(cellCocktail)
+        labelsSet(cellCocktail)
         
-        ingrCountLbl.text = "\(cellCocktail.ingrArray.count) Ingredients"
-        
-        if cellCocktail.image != nil {
-            cocktailImg.image = cellCocktail.image
-        } else {
-            cocktailImg.image = nil
-            cocktailImg.backgroundColor = .systemGray6
-        }
-        
-        nameLbl.text = cellCocktail.name
         ingrCV.reloadData()
     }
     
     private func delegates() {
         ingrCV.delegate = self
         ingrCV.dataSource = self
+    }
+    
+    private func shadows() {
+        self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        self.contentView.layer.cornerRadius = 10
+        self.cocktailImg.layer.cornerRadius = 10
+    }
+    
+    private func imageSet(_ cocktail: Cocktail) {
+        if cocktail.image != nil {
+            cocktailImg.image = cocktail.image
+        } else {
+            cocktailImg.image = nil
+            cocktailImg.backgroundColor = .systemGray6
+        }
+    }
+    
+    private func labelsSet(_ cocktail: Cocktail) {
+        ingrCountLbl.text = "\(cocktail.ingrArray.count) Ingredients"
+        nameLbl.text = cocktail.name
     }
     
     //MARK: -CV

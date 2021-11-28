@@ -10,8 +10,6 @@ import Foundation
 class DataService {
     static let shared = DataService()
     
-    var isFavoriteLoading : Bool = false
-    
     var alertIngredient = Ingredient(name: "")
     var reviewCocktail: Cocktail?
     

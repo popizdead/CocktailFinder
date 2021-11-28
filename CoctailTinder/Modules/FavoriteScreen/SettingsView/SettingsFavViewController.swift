@@ -48,7 +48,7 @@ class SettingsFavViewController: UIViewController {
         fillViews()
     }
     
-    func setupUI() {
+    private func setupUI() {
         view.layer.cornerRadius = 10
         let radiusArray = [shortBgView, shortImg, shortIngr1, shortIngr2, shortIngr3, cardImg, cardBgView, cardIngr, cardIngr1, cardIngr2, cardIngr3, shortTitle, cardTitle1, cardTitle2, cardTitle3, cardTitle]
         for element in radiusArray {
@@ -57,27 +57,27 @@ class SettingsFavViewController: UIViewController {
     }
     
     //MARK:UI
-    func fillViews() {
+    private func fillViews() {
         let shortArray = [shortImg, shortTitle, shortIngr1, shortIngr2, shortIngr3]
         let cardArray = [cardImg, cardTitle, cardTitle1, cardTitle2, cardTitle3, cardIngr, cardIngr1, cardIngr2, cardIngr3]
         
         if UIService.userFavoriteSetting == .card {
-            cardBgView.backgroundColor = .systemPink
+            cardBgView.backgroundColor = .black
             for obj in cardArray {
                 obj?.backgroundColor = .systemGray6
             }
             
-            shortBgView.backgroundColor = .darkGray
+            shortBgView.backgroundColor = .lightGray
             for obj in shortArray {
                 obj?.backgroundColor = .systemGray6
             }
         } else {
-            cardBgView.backgroundColor = .darkGray
+            cardBgView.backgroundColor = .lightGray
             for obj in cardArray {
                 obj?.backgroundColor = .systemGray6
             }
             
-            shortBgView.backgroundColor = .systemPink
+            shortBgView.backgroundColor = .black
             for obj in shortArray {
                 obj?.backgroundColor = .systemGray6
             }

@@ -21,7 +21,7 @@ class ShortFavCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     
     private let dataService = DataService.shared
     
-    func delegates() {
+    private func delegates() {
         insideIngrCV.delegate = self
         insideIngrCV.dataSource = self
     }

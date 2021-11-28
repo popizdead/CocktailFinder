@@ -47,7 +47,7 @@ class FavViewController: UIViewController {
     }
     
     //MARK: UI
-    func UISetup() {
+    private func UISetup() {
         searchViewAnimate(.hidden)
         
         observers()
@@ -58,7 +58,7 @@ class FavViewController: UIViewController {
         self.favCollectionView.backgroundColor = .white
     }
     
-    func observers() {
+    private func observers() {
         favCollectionView.delegate = self
         favCollectionView.dataSource = self
         
@@ -70,7 +70,7 @@ class FavViewController: UIViewController {
     }
     
     
-    //MARK:BUTTONS
+    //MARK: -BUTTONS
     @IBAction func settingsButtonTapped(_ sender: UIButton) {
         displaySettings()
     }

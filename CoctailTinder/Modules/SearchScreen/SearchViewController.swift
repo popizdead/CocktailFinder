@@ -28,10 +28,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        network.currentRequestFrom = .search
-    }
-    
     //MARK: -UI
     private func delegates() {
         self.ingrCV.delegate = self
@@ -58,9 +54,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         resultSearchArray.removeAll()
         self.CVUpdate()
         
-        network.stopAllRequests {
-            
-        }
+        network.stopAllRequests { }
     }
     
     //MARK: -COLLECTION VIEW

@@ -30,13 +30,13 @@ class AlertIngredientViewController: UIViewController {
     }
     
     //MARK: -UI
-    func setupUI(){
+    private func setupUI(){
         addButton.layer.cornerRadius = 10
         cancelButton.layer.cornerRadius = 10
         view.layer.cornerRadius = 10
     }
     
-    func updateUI(){
+    private func updateUI(){
         ingrImage.image = dataService.alertIngredient.ingrImage
         ingrNameLbl.text = dataService.alertIngredient.name
     }

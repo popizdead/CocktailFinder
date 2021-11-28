@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class ItemCollectionViewCell: UICollectionViewCell {
+class BuyIngredientCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     

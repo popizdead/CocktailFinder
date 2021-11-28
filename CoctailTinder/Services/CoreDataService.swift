@@ -10,53 +10,33 @@ import CoreData
 import UIKit
 
 extension DataService {
-    func getSavedData(_ action: @escaping () -> Void) {
-        getSavedCocktails(action)
+    func getSavedData() {
+        getSavedCocktails()
         getSavedBuyList()
     }
     
     //MARK: -COCKTAIL
-    func getSavedCocktails(_ action: @escaping () -> Void) {
+    func getSavedCocktails() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        network.currentRequestFrom = .favorite
         
         let fetchRequest : NSFetchRequest<CocktailFav> = CocktailFav.fetchRequest()
-        self.isFavoriteLoading = true
         
         do {
             let cocktailsArray = try context.fetch(fetchRequest)
-            if cocktailsArray.count == 0 {
-                self.isFavoriteLoading = false
-                action()
-            } else {
-                //Fetch
                 for cocktailObject in cocktailsArray {
                     if let id = cocktailObject.id {
-                        network.getCocktailByID(id) { cocktail in
-                            guard let cocktail = cocktail else {
-                                self.isFavoriteLoading = false
-                                action()
-                                return
-                            }
-                            
-                            cocktail.getImages {
-                                if let last = cocktailsArray.last {
-                                    if cocktailObject == last {
-                                        self.isFavoriteLoading = false
-                                        action()
-                                    }
+                        network.getCacheCocktailByID(id) { cocktail in
+                            if let cocktail = cocktail {
+                                cocktail.getImages {
+                                    NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
                                 }
                                 
-                                NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
+                                self.favArray.append(cocktail)
                             }
-                            
-                            self.favArray.append(cocktail)
-                            
                         }
                     }
                 }
-            }
         } catch {
             print("failed to get saved")
         }
