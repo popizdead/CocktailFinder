@@ -59,7 +59,7 @@
 		633325C325F8FF58001B399F /* IngrCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngrCollectionViewCell.swift; sourceTree = "<group>"; };
 		633325D425F922D2001B399F /* BuyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyListViewController.swift; sourceTree = "<group>"; };
 		633325DD25F92917001B399F /* BuyIngredientCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyIngredientCollectionViewCell.swift; sourceTree = "<group>"; };
-		6340B68B25F152BC006F7672 /* CoctailTinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoctailTinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6340B68B25F152BC006F7672 /* CoctailFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoctailFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340B68E25F152BC006F7672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6340B69025F152BC006F7672 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6340B69525F152BC006F7672 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		6340B68C25F152BC006F7672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6340B68B25F152BC006F7672 /* CoctailTinder.app */,
+				6340B68B25F152BC006F7672 /* CoctailFinder.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,9 +348,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6340B68A25F152BC006F7672 /* CoctailTinder */ = {
+		6340B68A25F152BC006F7672 /* CoctailFinder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6340B69F25F152BF006F7672 /* Build configuration list for PBXNativeTarget "CoctailTinder" */;
+			buildConfigurationList = 6340B69F25F152BF006F7672 /* Build configuration list for PBXNativeTarget "CoctailFinder" */;
 			buildPhases = (
 				AF367CC495998552F5EDE0E8 /* [CP] Check Pods Manifest.lock */,
 				6340B68725F152BC006F7672 /* Sources */,
@@ -362,9 +362,9 @@
 			);
 			dependencies = (
 			);
-			name = CoctailTinder;
+			name = CoctailFinder;
 			productName = CoctailTinder;
-			productReference = 6340B68B25F152BC006F7672 /* CoctailTinder.app */;
+			productReference = 6340B68B25F152BC006F7672 /* CoctailFinder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -381,7 +381,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6340B68625F152BC006F7672 /* Build configuration list for PBXProject "CoctailTinder" */;
+			buildConfigurationList = 6340B68625F152BC006F7672 /* Build configuration list for PBXProject "CoctailFinder" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -394,7 +394,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6340B68A25F152BC006F7672 /* CoctailTinder */,
+				6340B68A25F152BC006F7672 /* CoctailFinder */,
 			);
 		};
 /* End PBXProject section */
@@ -682,7 +682,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6340B68625F152BC006F7672 /* Build configuration list for PBXProject "CoctailTinder" */ = {
+		6340B68625F152BC006F7672 /* Build configuration list for PBXProject "CoctailFinder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6340B69D25F152BF006F7672 /* Debug */,
@@ -691,7 +691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6340B69F25F152BF006F7672 /* Build configuration list for PBXNativeTarget "CoctailTinder" */ = {
+		6340B69F25F152BF006F7672 /* Build configuration list for PBXNativeTarget "CoctailFinder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6340B6A025F152BF006F7672 /* Debug */,

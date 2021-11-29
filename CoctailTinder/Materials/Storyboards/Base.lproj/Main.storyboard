@@ -13,7 +13,7 @@
         <!--Fav View Controller-->
         <scene sceneID="yIm-78-HK4">
             <objects>
-                <viewController id="zhW-VM-bYp" customClass="FavViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zhW-VM-bYp" customClass="FavViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cZe-s1-nr3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shortFavCell" id="0zr-aQ-Yzo" customClass="ShortFavCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shortFavCell" id="0zr-aQ-Yzo" customClass="ShortFavCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="23.666666666666668" y="15" width="367" height="178"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h4D-z4-LjU">
@@ -66,7 +66,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="7Ze-jH-7WD" customClass="InsideIngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="7Ze-jH-7WD" customClass="InsideIngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="1.6666666666666667" width="58" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="P8p-Mg-2du">
@@ -110,7 +110,7 @@
                                             <outlet property="nameLbl" destination="9X2-UF-aOY" id="I6b-cJ-102"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favCell" id="OCN-DO-MS7" customClass="FavCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favCell" id="OCN-DO-MS7" customClass="FavCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="32" y="203" width="350" height="439"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sLX-me-D8u">
@@ -161,7 +161,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="IyB-8C-wr1" customClass="IngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="IyB-8C-wr1" customClass="IngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="9" width="124" height="179"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gZ5-j0-g1f">
@@ -318,7 +318,7 @@
         <!--Category View Controller-->
         <scene sceneID="XwF-JA-9OP">
             <objects>
-                <viewController id="1fm-eS-qL0" customClass="CategoryViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1fm-eS-qL0" customClass="CategoryViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mki-Y3-3PG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,7 +327,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84c-HQ-Bcq">
-                                        <rect key="frame" x="143" y="52" width="128" height="34.333333333333343"/>
+                                        <rect key="frame" x="143" y="57.666666666666657" width="128" height="34.333333333333343"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -336,7 +336,7 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="1gn-ca-QCm"/>
-                                    <constraint firstAttribute="bottom" secondItem="84c-HQ-Bcq" secondAttribute="bottom" constant="13.67" id="Vdg-rN-1hU"/>
+                                    <constraint firstAttribute="bottom" secondItem="84c-HQ-Bcq" secondAttribute="bottom" constant="8" id="Vdg-rN-1hU"/>
                                     <constraint firstItem="84c-HQ-Bcq" firstAttribute="centerX" secondItem="yjZ-ZT-UEZ" secondAttribute="centerX" id="Y5B-o5-sdo"/>
                                 </constraints>
                             </view>
@@ -389,7 +389,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="wDA-d8-UYb" customClass="CategoryCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="wDA-d8-UYb" customClass="CategoryCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                 <rect key="frame" x="32.666666666666664" y="10" width="349" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iAM-sq-1zO">
@@ -414,7 +414,7 @@
                                                     <outlet property="categoryNameLbl" destination="CwY-uS-e81" id="fQv-oG-Zt5"/>
                                                 </connections>
                                             </collectionViewCell>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ingredientCell" id="MGD-AU-d3d" customClass="IngredientCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ingredientCell" id="MGD-AU-d3d" customClass="IngredientCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                 <rect key="frame" x="32.666666666666664" y="60" width="349" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LyZ-8f-MXf">
@@ -496,7 +496,7 @@
         <!--Review Category View Controller-->
         <scene sceneID="pEU-m0-zaf">
             <objects>
-                <viewController id="SLH-AW-1lq" customClass="ReviewCategoryViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SLH-AW-1lq" customClass="ReviewCategoryViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aY1-qu-jpN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -512,7 +512,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="mdW-Ux-mUq" customClass="ListItemCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="mdW-Ux-mUq" customClass="ListItemCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="29.666666666666668" y="15" width="355" height="137"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jOF-sB-lEx">
@@ -549,7 +549,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="ro8-Em-sed" customClass="InsideIngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="ro8-Em-sed" customClass="InsideIngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="1.6666666666666667" width="58" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6xR-30-6yI">
@@ -656,7 +656,7 @@
         <!--Alert Ingredient View Controller-->
         <scene sceneID="TK0-nI-Rzi">
             <objects>
-                <viewController storyboardIdentifier="alertIngr" id="fHp-hO-N8U" customClass="AlertIngredientViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="alertIngr" id="fHp-hO-N8U" customClass="AlertIngredientViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2YT-Ly-hzP">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -753,7 +753,7 @@
         <!--Settings Fav View Controller-->
         <scene sceneID="gjJ-gq-nBK">
             <objects>
-                <viewController storyboardIdentifier="favSettings" id="MvV-jl-BLT" customClass="SettingsFavViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favSettings" id="MvV-jl-BLT" customClass="SettingsFavViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C63-zt-98W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="420"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -906,7 +906,7 @@
         <!--Swipe View Controller-->
         <scene sceneID="sl3-YG-2Mp">
             <objects>
-                <viewController id="ggl-Se-Nqb" customClass="SwipeViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ggl-Se-Nqb" customClass="SwipeViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c0G-mM-xeG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -953,7 +953,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="VRn-hb-Hev" customClass="IngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="VRn-hb-Hev" customClass="IngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="9" width="124" height="179"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sma-qo-HfK">
@@ -1110,7 +1110,7 @@
         <!--Search View Controller-->
         <scene sceneID="Q7u-Wx-isd">
             <objects>
-                <viewController id="yEV-vK-K0F" customClass="SearchViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yEV-vK-K0F" customClass="SearchViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5zO-Da-gIq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1126,7 +1126,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="resCell" id="uMB-xN-gdQ" customClass="ItemSearchCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="resCell" id="uMB-xN-gdQ" customClass="ItemSearchCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="29.666666666666668" y="15" width="355" height="137"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="843-Iv-9BV">
@@ -1163,7 +1163,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="TRA-uV-wps" customClass="InsideIngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="TRA-uV-wps" customClass="InsideIngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="1.6666666666666667" width="58" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yb4-Uk-V9e">
@@ -1264,7 +1264,7 @@
                         <inset key="sectionInset" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <cells>
-                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="dUc-h2-Iq9" customClass="ListItemCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="dUc-h2-Iq9" customClass="ListItemCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                             <rect key="frame" x="29.666666666666668" y="15" width="355" height="137"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ph7-0F-GbN">
@@ -1301,7 +1301,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="KdE-SC-4Y9" customClass="InsideIngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="KdE-SC-4Y9" customClass="InsideIngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="1.6666666666666667" width="58" height="58"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kxL-DI-gc2">
@@ -1363,7 +1363,7 @@
         <!--Cocktail View Controller-->
         <scene sceneID="22Z-DE-7Nq">
             <objects>
-                <viewController id="7VX-dS-RoT" customClass="CocktailViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7VX-dS-RoT" customClass="CocktailViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gDF-ZC-Hrk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1389,7 +1389,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="1pr-DM-JRR" customClass="IngrCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="1pr-DM-JRR" customClass="IngrCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="6.666666666666667" width="124" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TqI-4u-wye">
@@ -1540,7 +1540,7 @@
         <!--Buy List View Controller-->
         <scene sceneID="Ya7-Oo-Xpb">
             <objects>
-                <viewController storyboardIdentifier="auth" id="Vmf-nQ-gbW" customClass="BuyListViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="auth" id="Vmf-nQ-gbW" customClass="BuyListViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4M-Ye-Bk9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1556,7 +1556,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="6fo-LD-poO" customClass="BuyIngredientCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="6fo-LD-poO" customClass="BuyIngredientCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="87.666666666666671" y="20" width="239" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QJ2-Y4-Pnq">
@@ -1676,7 +1676,7 @@
         <!--Bar View Controller-->
         <scene sceneID="QcN-8t-VSK">
             <objects>
-                <viewController id="ycf-Nd-KvD" customClass="BarViewController" customModule="CoctailTinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ycf-Nd-KvD" customClass="BarViewController" customModule="CoctailFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IJf-ak-SDr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1692,7 +1692,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="9L3-bI-8Y7" customClass="BarCollectionViewCell" customModule="CoctailTinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ingrCell" id="9L3-bI-8Y7" customClass="BarCollectionViewCell" customModule="CoctailFinder" customModuleProvider="target">
                                         <rect key="frame" x="55.666666666666664" y="20" width="303" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UKc-Zr-oKT">
@@ -1802,7 +1802,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lrS-JP-UhX"/>
+        <segue reference="eJG-Ms-Xbn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="32" height="32"/>
