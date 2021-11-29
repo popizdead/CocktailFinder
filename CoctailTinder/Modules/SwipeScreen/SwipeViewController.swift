@@ -57,11 +57,11 @@ class SwipeViewController: UIViewController {
     private func setupUI() {
         loadingIndicator.startAnimating()
         
-        swipeView.backgroundColor = .white
-        navView.backgroundColor = .white
-        
         image.layer.cornerRadius = 10
         instructionButton.layer.cornerRadius = 10
+        
+        swipeView.backgroundColor = .white
+        navView.backgroundColor = .white
         
         shadows()
     }
