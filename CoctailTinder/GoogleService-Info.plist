@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>946200601489-9le04ko69kaq4vjie332u8s8ua5eki3m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.946200601489-9le04ko69kaq4vjie332u8s8ua5eki3m</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAJtMoSWzXwRs_N9eFRphmuq2lROEII3g4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>946200601489</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>popizdead.CoctailTinder</string>
+	<key>PROJECT_ID</key>
+	<string>cocktailfinder-b39e5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cocktailfinder-b39e5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:946200601489:ios:78de61fc11c9e172de7030</string>
+</dict>
+</plist>

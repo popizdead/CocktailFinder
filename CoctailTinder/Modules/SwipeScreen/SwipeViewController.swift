@@ -11,6 +11,7 @@ import SwiftEntryKit
 class SwipeViewController: UIViewController {
 
     //MARK: -OUTLETS
+    @IBOutlet weak var navigationLbl: UILabel!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var swipeView: UIView!
     @IBOutlet weak var bgView: UIView!

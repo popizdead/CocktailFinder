@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171234953EDD9C6A72FAA4C7 /* Pods_CoctailFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5304784D15EC7B51F765F7A /* Pods_CoctailFinder.framework */; };
 		6319D56325FD071400CB2DD1 /* BarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319D56225FD071400CB2DD1 /* BarCollectionViewCell.swift */; };
 		6319D56625FD0BAD00CB2DD1 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319D56525FD0BAD00CB2DD1 /* FavCollectionViewCell.swift */; };
 		631D4E5C2755357500B38FEA /* ColorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D4E5B2755357500B38FEA /* ColorService.swift */; };
@@ -34,6 +35,7 @@
 		639DDDEC25F2870C0010CA4A /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DDDEB25F2870C0010CA4A /* SwipeViewController.swift */; };
 		639DDDF425F289D00010CA4A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DDDF325F289D00010CA4A /* Extensions.swift */; };
 		63A0FC6325FA8F4A00E89B32 /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63A0FC6125FA8F4A00E89B32 /* dataModel.xcdatamodeld */; };
+		63AC97952755564000854563 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63AC97942755564000854563 /* GoogleService-Info.plist */; };
 		63BB121325FB971B0079F279 /* CocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BB121225FB971B0079F279 /* CocktailViewController.swift */; };
 		63BB121625FB972A0079F279 /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BB121525FB972A0079F279 /* CocktailModel.swift */; };
 		63D74B1425F2D49B00503326 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D74B1325F2D49B00503326 /* FavViewController.swift */; };
@@ -48,7 +50,6 @@
 		63FC0D9D2603E8E200ADAF67 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC0D9C2603E8E200ADAF67 /* SearchViewController.swift */; };
 		63FC0DA02603E8EC00ADAF67 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC0D9F2603E8EC00ADAF67 /* SearchModel.swift */; };
 		63FC0DA52603FF8100ADAF67 /* ItemSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC0DA42603FF8100ADAF67 /* ItemSearchCollectionViewCell.swift */; };
-		C15205C9755D6D7AA238D2D2 /* Pods_CoctailTinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71595DBF42E90CF5E0F9ED1 /* Pods_CoctailTinder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		639DDDEB25F2870C0010CA4A /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		639DDDF325F289D00010CA4A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		63A0FC6225FA8F4A00E89B32 /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
+		63AC97942755564000854563 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63BB121225FB971B0079F279 /* CocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailViewController.swift; sourceTree = "<group>"; };
 		63BB121525FB972A0079F279 /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
 		63D74B1325F2D49B00503326 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
@@ -95,8 +97,10 @@
 		63FC0D9C2603E8E200ADAF67 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		63FC0D9F2603E8EC00ADAF67 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		63FC0DA42603FF8100ADAF67 /* ItemSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		82ECC167479BCDA7330A6395 /* Pods-CoctailFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailFinder.release.xcconfig"; path = "Target Support Files/Pods-CoctailFinder/Pods-CoctailFinder.release.xcconfig"; sourceTree = "<group>"; };
+		85307A39DE7E8E65F3709696 /* Pods-CoctailFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailFinder.debug.xcconfig"; path = "Target Support Files/Pods-CoctailFinder/Pods-CoctailFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		9F2F2B1DD27F3ED1E8BD16B2 /* Pods-CoctailTinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTinder.release.xcconfig"; path = "Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder.release.xcconfig"; sourceTree = "<group>"; };
-		D71595DBF42E90CF5E0F9ED1 /* Pods_CoctailTinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailTinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5304784D15EC7B51F765F7A /* Pods_CoctailFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BADE432189863B61DCED0B /* Pods-CoctailTinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTinder.debug.xcconfig"; path = "Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C15205C9755D6D7AA238D2D2 /* Pods_CoctailTinder.framework in Frameworks */,
+				171234953EDD9C6A72FAA4C7 /* Pods_CoctailFinder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +119,7 @@
 		3D694A01982DCA5B9D2D65DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D71595DBF42E90CF5E0F9ED1 /* Pods_CoctailTinder.framework */,
+				B5304784D15EC7B51F765F7A /* Pods_CoctailFinder.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,6 +170,7 @@
 				634F5D192602873800EFECD9 /* Modules */,
 				639DDDE425F286BF0010CA4A /* Materials */,
 				6340B69C25F152BF006F7672 /* Info.plist */,
+				63AC97942755564000854563 /* GoogleService-Info.plist */,
 			);
 			path = CoctailTinder;
 			sourceTree = "<group>";
@@ -344,6 +349,8 @@
 			children = (
 				E8BADE432189863B61DCED0B /* Pods-CoctailTinder.debug.xcconfig */,
 				9F2F2B1DD27F3ED1E8BD16B2 /* Pods-CoctailTinder.release.xcconfig */,
+				85307A39DE7E8E65F3709696 /* Pods-CoctailFinder.debug.xcconfig */,
+				82ECC167479BCDA7330A6395 /* Pods-CoctailFinder.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -408,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6340B69B25F152BF006F7672 /* LaunchScreen.storyboard in Resources */,
+				63AC97952755564000854563 /* GoogleService-Info.plist in Resources */,
 				6340B69825F152BF006F7672 /* Assets.xcassets in Resources */,
 				6340B69625F152BC006F7672 /* Main.storyboard in Resources */,
 			);
@@ -422,15 +430,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CoctailFinder/Pods-CoctailFinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CoctailFinder/Pods-CoctailFinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoctailTinder/Pods-CoctailTinder-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoctailFinder/Pods-CoctailFinder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AF367CC495998552F5EDE0E8 /* [CP] Check Pods Manifest.lock */ = {
@@ -448,7 +456,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CoctailTinder-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CoctailFinder-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -643,7 +651,7 @@
 		};
 		6340B6A025F152BF006F7672 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8BADE432189863B61DCED0B /* Pods-CoctailTinder.debug.xcconfig */;
+			baseConfigurationReference = 85307A39DE7E8E65F3709696 /* Pods-CoctailFinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -664,7 +672,7 @@
 		};
 		6340B6A125F152BF006F7672 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F2F2B1DD27F3ED1E8BD16B2 /* Pods-CoctailTinder.release.xcconfig */;
+			baseConfigurationReference = 82ECC167479BCDA7330A6395 /* Pods-CoctailFinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

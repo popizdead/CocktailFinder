@@ -1096,6 +1096,7 @@
                         <outlet property="loadingIndicator" destination="K5J-IT-Xaj" id="dbH-Jm-rZo"/>
                         <outlet property="nameLbl" destination="NPn-aD-MiQ" id="5WG-ci-fwd"/>
                         <outlet property="navView" destination="ZQ9-EI-v2s" id="jMV-zz-Two"/>
+                        <outlet property="navigationLbl" destination="uhL-NQ-LfD" id="a4A-P3-Xza"/>
                         <outlet property="swipeView" destination="8co-K8-4WK" id="Etw-T6-jgn"/>
                         <segue destination="7VX-dS-RoT" kind="presentation" identifier="mainToReview" modalPresentationStyle="fullScreen" id="36a-ea-qtM"/>
                     </connections>

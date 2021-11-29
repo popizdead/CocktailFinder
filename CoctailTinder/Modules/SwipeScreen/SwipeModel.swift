@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAnalytics
 import SwiftEntryKit
 
 extension SwipeViewController {
@@ -53,12 +54,24 @@ extension SwipeViewController {
     private func fillView(_ toColor: UIColor) {
         showLoading(true)
         
-        self.swipeView.backgroundColor = toColor
-        self.swipeView.alpha = 0.5
+        let items : [UIView] = [swipeView, navView]
+        
+        items.forEach({
+            $0.backgroundColor = toColor
+            self.swipeView.alpha = 0.5
+        })
+        
+        self.tabBarController?.tabBar.backgroundColor = toColor
+        self.navigationLbl.textColor = .white
         
         UIView.animate(withDuration: 0.5) {
-            self.swipeView.alpha = 1
-            self.swipeView.backgroundColor = .white
+            items.forEach({
+                $0.alpha = 1
+                $0.backgroundColor = .white
+            })
+            
+            self.tabBarController?.tabBar.backgroundColor = .white
+            self.navigationLbl.textColor = .black
         }
     }
     
@@ -90,3 +103,4 @@ extension SwipeViewController {
         return attributes
     }
 }
+
