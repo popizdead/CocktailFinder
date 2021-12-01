@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FirebaseAnalytics
 import SwiftEntryKit
 
 extension SwipeViewController {
@@ -16,13 +15,13 @@ extension SwipeViewController {
         self.showLoading(true)
         
         network.stopAllRequests {
-            self.network.randomCoctailRequest { cocktail in
-                self.cardCocktail = cocktail
-                self.cardCocktail?.getImages {
-                    self.updateUI()
+            self.network.randomCoctailRequest { [weak self] cocktail in
+                self?.cardCocktail = cocktail
+                self?.cardCocktail?.getImages {
+                    self?.updateUI()
                 }
 
-                self.openCard()
+                self?.openCard()
             }
         }
     }
@@ -74,33 +73,17 @@ extension SwipeViewController {
             self.navigationLbl.textColor = .black
         }
     }
-    
-    //MARK: -POPUP
-    func setupAttributes() -> EKAttributes {
-        var attributes = EKAttributes.centerFloat
-        
-        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.8)
-        let heightConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.3)
-        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
-        
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
-        attributes.roundCorners = .all(radius: 15)
-        
-        // Set its background to white
-        attributes.entryBackground = .color(color: .clear)
-        attributes.screenBackground = .color(color: EKColor(UIColor(white: 0, alpha: 0.5)))
-
-        // Animate in and out using default translation
-        attributes.entranceAnimation = .translation
-        attributes.exitAnimation = .translation
-        
-        attributes.displayDuration = .infinity
-        attributes.entryInteraction = .forward
-        
-        attributes.screenInteraction = .dismiss
-        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-        
-        return attributes
-    }
 }
 
+//MARK: -SEGUE
+extension SwipeViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mainToReview" {
+            guard let vc = segue.destination as? CocktailViewController else {
+                return
+            }
+            
+            vc.reviewCocktail = self.cardCocktail
+        }
+    }
+}

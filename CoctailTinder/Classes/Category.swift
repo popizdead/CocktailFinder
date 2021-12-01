@@ -107,6 +107,15 @@ enum CategoryType {
     }
     
     //MARK: -RESPONSE TYPE
+    
+    /*
+     Sometimes we're getting back couples of [Title:ID],
+     and sometimes it's full data of cocktails
+     
+     So we have two ways of usage func categoryRequest() depends
+     on response
+     */
+    
     func getRequestType() -> NetworkService.ResponseType {
         switch self {
         case .new:

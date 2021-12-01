@@ -30,10 +30,11 @@ class FavViewController: UIViewController {
     var favSearchArray : [Cocktail] = []
 
     var favoriteCurrentState : favoriteState = .hidden
+    var UIState : UIFavoriteState = .short
     
-    let UIService = UIUserService.shared
     let dataService = DataService.shared
     
+    weak var selectedCocktail : Cocktail?
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -69,7 +70,6 @@ class FavViewController: UIViewController {
         favCollectionView.reloadData()
     }
     
-    
     //MARK: -BUTTONS
     @IBAction func settingsButtonTapped(_ sender: UIButton) {
         displaySettings()
@@ -102,7 +102,7 @@ extension FavViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if UIService.userFavoriteSetting == .card {
+        if UIState == .card {
             let cell = favCollectionView.dequeueReusableCell(withReuseIdentifier: "favCell", for: indexPath) as! FavCollectionViewCell
             cell.cellCoctail = showingArray[indexPath.row]
             cell.updateUI()
@@ -119,13 +119,12 @@ extension FavViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        dataService.reviewCocktail = showingArray[indexPath.row]
-        
+        selectedCocktail = showingArray[indexPath.row]
         self.performSegue(withIdentifier: "favToReview", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if UIService.userFavoriteSetting == .card {
+        if UIState == .card {
             return CGSize(width: 350, height: 439)
         } else {
             return CGSize(width: 357, height: 178)

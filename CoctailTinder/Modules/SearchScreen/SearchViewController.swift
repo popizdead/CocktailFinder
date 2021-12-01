@@ -20,6 +20,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     private let dataService = DataService.shared
     
     var resultSearchArray : [Cocktail] = []
+    weak var selectedCocktail : Cocktail?
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -76,7 +77,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row <= resultSearchArray.count - 1 {
-            dataService.reviewCocktail = resultSearchArray[indexPath.row]
+            selectedCocktail = resultSearchArray[indexPath.row]
             self.performSegue(withIdentifier: "searchToReview", sender: self)
         }
     }

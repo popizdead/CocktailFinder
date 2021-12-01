@@ -10,8 +10,7 @@ import SwiftEntryKit
 
 class SettingsFavViewController: UIViewController {
     
-    //MARK:OUTLETS
-    
+    //MARK: -OUTLETS
     //Short view
     @IBOutlet weak var shortBgView: UIView!
     @IBOutlet weak var shortImg: UIView!
@@ -35,7 +34,8 @@ class SettingsFavViewController: UIViewController {
     @IBOutlet var cardTapRecognizer: UITapGestureRecognizer!
     @IBOutlet var shortTapRecognizer: UITapGestureRecognizer!
     
-    private let UIService = UIUserService.shared
+    var currentState = UIFavoriteState.short
+    weak var delegate : FavoriteActionsProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class SettingsFavViewController: UIViewController {
         setupUI()
     }
     
-    //MARK:VIEW LOAD
+    //MARK: -VIEW LOAD
     override func viewWillAppear(_ animated: Bool) {
         fillViews()
     }
@@ -61,7 +61,7 @@ class SettingsFavViewController: UIViewController {
         let shortArray = [shortImg, shortTitle, shortIngr1, shortIngr2, shortIngr3]
         let cardArray = [cardImg, cardTitle, cardTitle1, cardTitle2, cardTitle3, cardIngr, cardIngr1, cardIngr2, cardIngr3]
         
-        if UIService.userFavoriteSetting == .card {
+        if currentState == .card {
             cardBgView.backgroundColor = .black
             for obj in cardArray {
                 obj?.backgroundColor = .systemGray6
@@ -86,14 +86,20 @@ class SettingsFavViewController: UIViewController {
     
     //MARK:BUTTONS
     @IBAction func cardTapped(_ sender: UITapGestureRecognizer) {
-        UIService.userFavoriteSetting = .card
-        fillViews()
-        NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
-        SwiftEntryKit.dismiss()
+        delegate?.UIUpdateState(.card)
+        self.currentState = .card
+        
+        self.close()
     }
     
     @IBAction func shortTapped(_ sender: UITapGestureRecognizer) {
-        UIService.userFavoriteSetting = .short
+        delegate?.UIUpdateState(.short)
+        self.currentState = .short
+        
+        self.close()
+    }
+    
+    private func close() {
         fillViews()
         NotificationCenter.default.post(name: NSNotification.Name("updateFavCV"), object: nil)
         SwiftEntryKit.dismiss()

@@ -75,12 +75,12 @@ class SwipeViewController: UIViewController {
     }
     
     //MARK: -UPDATE UI
-    @objc func openCard() {
+    func openCard() {
         self.updateUI()
         self.showLoading(false)
     }
     
-    @objc func updateUI() {
+    func updateUI() {
         guard let currentCocktail = cardCocktail else { return }
         
         self.categoryLbl.text = currentCocktail.category
@@ -121,9 +121,6 @@ class SwipeViewController: UIViewController {
     }
     
     @IBAction func instructionButtonTapped(_ sender: UIButton) {
-        guard let currentCocktail = cardCocktail else { return }
-        
-        dataService.reviewCocktail = currentCocktail
         self.performSegue(withIdentifier: "mainToReview", sender: self)
     }
 }
@@ -147,10 +144,8 @@ extension SwipeViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let currentCocktail = cardCocktail else { return }
-        
         let ingrObject = currentCocktail.ingrArray[indexPath.row]
-        dataService.alertIngredient = ingrObject
         
-        SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
+        showIngredient(ingrObject)
     }
 }

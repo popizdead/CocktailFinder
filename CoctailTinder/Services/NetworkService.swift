@@ -13,18 +13,18 @@ class NetworkService {
     private let factory = Factory.shared
     
     //MARK: -SESSION MANAGER
-    private let AFRequestSession : Session = Session()
-    private let AFCacheSession : Session = Session()
+    private let requestSession : Session = Session()
+    private let cacheSession : Session = Session()
     
     func stopAllRequests(_ compilation: @escaping () -> Void) {
-        AFRequestSession.cancelAllRequests(completingOnQueue: DispatchQueue.main, completion: {
+        requestSession.cancelAllRequests(completingOnQueue: DispatchQueue.main, completion: {
             compilation()
         })
     }
     
     //MARK: -COCKTAILS REQUESTS
     func randomCoctailRequest(_ action: @escaping (Cocktail?) -> Void) {
-        AFRequestSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
+        requestSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/random.php").responseJSON { (data) in
             guard let dataDict = data.value as? [String : Any] else { return }
             if let arrayData = dataDict["drinks"] as? [[String:Any]] {
                 if let cocktailData = arrayData.first {
@@ -41,7 +41,7 @@ class NetworkService {
     }
     
     func getCocktailByID(_ id: String, _ action: @escaping (Cocktail?) -> Void) {
-        self.AFRequestSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
+        self.requestSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
             guard let dataDict = data.value as? [String : Any] else { return }
             if let arrayData = dataDict["drinks"] as? [[String:Any]] {
                 if let cocktailData = arrayData.first {
@@ -56,7 +56,7 @@ class NetworkService {
     }
     
     func getCacheCocktailByID(_ id: String, _ action: @escaping (Cocktail?) -> Void) {
-        AFCacheSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
+        cacheSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=\(id)").responseJSON { (data) in
             guard let dataDict = data.value as? [String : Any] else { return }
             if let arrayData = dataDict["drinks"] as? [[String:Any]] {
                 if let cocktailData = arrayData.first {
@@ -70,7 +70,7 @@ class NetworkService {
         }
     }
     
-    //MARK: -COLLECTION REQUEST
+    //MARK: -CATEGORY REQUEST
     public enum ResponseType {
         case id
         case fullInfo
@@ -98,7 +98,7 @@ class NetworkService {
     }
     
     private func fullInfoRequest(_ url: String, _ action: @escaping (Cocktail?) -> Void) {
-        AFRequestSession.request(url).responseJSON { (data) in
+        requestSession.request(url).responseJSON { (data) in
             guard let allDataDict = data.value as? [String : Any] else { return }
             if let cocktailsArray = allDataDict["drinks"] as? [[String:Any]] {
                 for object in cocktailsArray {
@@ -115,7 +115,7 @@ class NetworkService {
     }
     
     private func idRequest(_ url: String, _ action: @escaping (Cocktail?) -> Void) {
-        AFRequestSession.request(url).responseJSON { (data) in
+        requestSession.request(url).responseJSON { (data) in
             guard let allDataDict = data.value as? [String : Any] else { return }
             if let cocktailsArray = allDataDict["drinks"] as? [[String:Any]] {
                 self.stopAllRequests {
@@ -141,7 +141,7 @@ class NetworkService {
     
     //MARK: -INGREDIENTS LIST
     func getAllIngredientsList(_ action: @escaping (Ingredient) -> Void) {
-        AFRequestSession.request("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").responseJSON { (response) in
+        requestSession.request("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").responseJSON { (response) in
             if let dataDict = response.value as? [String:Any] {
                 if let ingrDict = dataDict["drinks"] as? [[String:Any]] {
                     for ingrElem in ingrDict {
@@ -165,7 +165,7 @@ class NetworkService {
     }
     
     private func getCountToIngredient(_ ingredient: Ingredient, _ action: @escaping (CategoryIngredient) -> Void) {
-        AFRequestSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(ingredient.name)").responseJSON { (response) in
+        requestSession.request("https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=\(ingredient.name)").responseJSON { (response) in
             if let allData = response.value as? [String:Any] {
                 if let cocktails = allData["drinks"] as? [[String:Any]] {
                     let model = CategoryIngredient(name: ingredient.name, count: cocktails.count)
@@ -177,8 +177,8 @@ class NetworkService {
     
     
     //MARK: -NAME SEARCH
-    func    search(_ text: String, _ action: @escaping (Cocktail) -> Void) {
-        AFRequestSession.request("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=\(text)").responseJSON { (response) in
+    func search(_ text: String, _ action: @escaping (Cocktail) -> Void) {
+        requestSession.request("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=\(text)").responseJSON { (response) in
             guard let data = response.value as? [String:Any] else { return }
             if let allDrinks = data["drinks"] as? [[String:Any]] {
                 for object in allDrinks {

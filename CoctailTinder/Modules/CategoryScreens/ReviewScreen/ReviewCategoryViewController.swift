@@ -23,7 +23,8 @@ class ReviewCategoryViewController: UIViewController {
     
     var requestFrom : UIStateType = .ingr
     
-    var collectionCocktailSource : [Cocktail] = []
+    var categoryCocktailSource : [Cocktail] = []
+    weak var selectedCocktail : Cocktail?
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -86,19 +87,19 @@ class ReviewCategoryViewController: UIViewController {
 //MARK: -COLLECTION VIEW
 extension ReviewCategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.collectionCocktailSource.count
+        return self.categoryCocktailSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemsCV.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ListItemCollectionViewCell
-        cell.cellCocktail = self.collectionCocktailSource[indexPath.row]
+        cell.cellCocktail = self.categoryCocktailSource[indexPath.row]
         cell.setupUI()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cocktail = self.collectionCocktailSource[indexPath.row]
-        dataService.reviewCocktail = cocktail
+        let cocktail = categoryCocktailSource[indexPath.row]
+        selectedCocktail = cocktail
         
         self.performSegue(withIdentifier: "collectionToReview", sender: self)
     }

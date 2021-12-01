@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftEntryKit
 
 class CocktailViewController: UIViewController {
     
@@ -23,10 +22,7 @@ class CocktailViewController: UIViewController {
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    var isFavoutite = false
-    
-    private let network = NetworkService.shared
-    let dataService = DataService.shared
+    var reviewCocktail : Cocktail?
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -47,23 +43,22 @@ class CocktailViewController: UIViewController {
     //MARK: -UI
     private func UISetup() {
         delegates()
-        let viewArray = [cocktailImg, dismissButton, saveButton]
+        
+        let viewArray : [UIView] = [cocktailImg, dismissButton, saveButton]
         for view in viewArray {
-            view?.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
+            view.makeShadowAndRadius(shadow: false, opacity: 0.5, radius: 10)
         }
     }
     
     private func UIUpdate() {
-        guard let cocktail = dataService.reviewCocktail else { return }
+        guard let cocktail = reviewCocktail else { return }
         
-        updateFavoriteState(cocktail)
-        cocktailUpdate(cocktail)
-        
+        UILabelsUpdate(cocktail)
         UIImageUpdate(cocktail)
         UIButtonsUpdate()
     }
     
-    private func cocktailUpdate(_ reviewCocktail: Cocktail) {
+    private func UILabelsUpdate(_ reviewCocktail: Cocktail) {
         cocktailImg.image = reviewCocktail.image
         nameLbl.text = reviewCocktail.name
         typeLbl.text = reviewCocktail.category
@@ -74,7 +69,11 @@ class CocktailViewController: UIViewController {
     }
     
     private func UIButtonsUpdate() {
-        if isFavoutite {
+        guard let reviewCocktail = reviewCocktail else {
+            return
+        }
+
+        if reviewCocktail.isFavorite() {
             saveButton.setTitle("Unsave", for: .normal)
         } else {
             saveButton.setTitle("Save", for: .normal)
@@ -95,8 +94,8 @@ class CocktailViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        if let cocktail = dataService.reviewCocktail {
-            if isFavoutite {
+        if let cocktail = reviewCocktail {
+            if cocktail.isFavorite() {
                 cocktail.action(.deleteFavorite)
             } else {
                 cocktail.action(.appendFavorite)
@@ -110,13 +109,13 @@ class CocktailViewController: UIViewController {
 //MARK: -COLLECTION VIEW
 extension CocktailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let cocktail = dataService.reviewCocktail else { return 0 }
+        guard let cocktail = reviewCocktail else { return 0 }
         return cocktail.ingrArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ingrCV.dequeueReusableCell(withReuseIdentifier: "ingrCell", for: indexPath) as! IngrCollectionViewCell
-        guard let cocktail = dataService.reviewCocktail else { return cell }
+        guard let cocktail = reviewCocktail else { return cell }
         
         let ingr = cocktail.ingrArray[indexPath.row]
         
@@ -128,10 +127,9 @@ extension CocktailViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cocktail = dataService.reviewCocktail else { return }
-        let ingrObject = cocktail.ingrArray[indexPath.row]
-        dataService.alertIngredient = ingrObject
+        guard let cocktail = reviewCocktail else { return }
+        let ingredient = cocktail.ingrArray[indexPath.row]
         
-        SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"alertIngr"), using: setupAttributes())
+        showIngredient(ingredient)
     }
 }

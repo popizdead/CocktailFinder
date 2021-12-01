@@ -9,8 +9,14 @@ import Foundation
 import UIKit
 import SwiftEntryKit
 
-protocol FavoriteActionsProtocol {
+protocol FavoriteActionsProtocol: AnyObject {
     func updateAppearingArray()
+    func UIUpdateState(_ state: UIFavoriteState)
+}
+
+enum UIFavoriteState {
+   case card
+   case short
 }
 
 //MARK: -PROTOCOL
@@ -20,6 +26,13 @@ extension FavViewController: FavoriteActionsProtocol {
         case hidden
     }
     
+    //MARK: -UI
+    func UIUpdateState(_ state: UIFavoriteState) {
+        self.UIState = state
+        UIUpdate()
+    }
+    
+    //MARK: -SOURCE
     func updateAppearingArray() {
         if favoriteCurrentState == .searching {
             showingArray = favSearchArray
@@ -104,7 +117,25 @@ extension FavViewController {
     }
     
     func displaySettings() {
-        SwiftEntryKit.display(entry: storyboard!.instantiateViewController(withIdentifier:"favSettings"), using: setupAttributes())
+        guard let vc = storyboard!.instantiateViewController(withIdentifier:"favSettings") as? SettingsFavViewController else {
+            return
+        }
+        
+        vc.currentState = UIState
+        vc.delegate = self
+        
+        SwiftEntryKit.display(entry: vc, using: setupAttributes())
+    }
+}
+
+extension FavViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedCocktail = selectedCocktail else { return }
+        if segue.identifier == "favToReview" {
+            if let vc = segue.destination as? CocktailViewController {
+                vc.reviewCocktail = selectedCocktail
+            }
+        }
     }
 }
 

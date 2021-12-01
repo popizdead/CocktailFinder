@@ -23,16 +23,11 @@ class CategoryViewController: UIViewController {
     
     let network = NetworkService.shared
     let dataService = DataService.shared
-    let factory = Factory.shared
     
-    var categoriesSource : [CategoryType] = []
-    var categoriesSearch : [CategoryType] = []
+    var source = CategorySource()
     
-    var ingredientSource : [CategoryIngredient] = []
-    var ingredientSearch : [CategoryIngredient] = []
-    
-    var UIState : UIStateType = .categories
-    var sourceState : SourceStateType = .all
+    var UIState = UIStateType.categories
+    var sourceState = SourceStateType.all
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -51,12 +46,13 @@ class CategoryViewController: UIViewController {
     
     //MARK: -UI
     private func UISetup(){
-        navView.backgroundColor = .white
-        itemsCV.backgroundColor = .white
-        bgView.backgroundColor = .white
+        let items : [UIView] = [navView, bgView]
+        items.forEach({
+            $0.backgroundColor = .white
+            $0.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        })
         
-        navView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
-        bgView.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
+        itemsCV.backgroundColor = .white
     }
     
     private func delegates() {
@@ -118,16 +114,16 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         case .all:
             switch UIState {
             case .categories:
-                return categoriesSource.count
+                return source.categoriesSource.count
             case .ingr:
-                return ingredientSource.count
+                return source.ingredientSource.count
             }
         case .search:
             switch UIState {
             case .categories:
-                return categoriesSearch.count
+                return source.categoriesSearch.count
             case .ingr:
-                return ingredientSearch.count
+                return source.ingredientSearch.count
             }
         }
     }
@@ -140,18 +136,18 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         case .ingr:
             switch sourceState {
                 case .all:
-                ingredient = ingredientSource[indexPath.row]
+                ingredient = source.ingredientSource[indexPath.row]
                 case .search:
-                ingredient = ingredientSearch[indexPath.row]
+                ingredient = source.ingredientSearch[indexPath.row]
             }
             
             return ingredientCell(ingredient, indexPath: indexPath)
         case .categories:
             switch sourceState {
                 case .all:
-                category = categoriesSource[indexPath.row]
+                category = source.categoriesSource[indexPath.row]
                 case .search:
-                category = categoriesSearch[indexPath.row]
+                category = source.categoriesSearch[indexPath.row]
             }
             
             return categoryCell(category, indexPath: indexPath)
@@ -182,9 +178,9 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             
             switch sourceState {
                 case .all:
-                ingr = ingredientSource[indexPath.row]
+                ingr = source.ingredientSource[indexPath.row]
                 case .search:
-                ingr = ingredientSearch[indexPath.row]
+                ingr = source.ingredientSearch[indexPath.row]
             }
             
             dataService.categoryReview = .nonAlc
@@ -194,9 +190,9 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             
             switch sourceState {
                 case .all:
-                category = categoriesSource[indexPath.row]
+                category = source.categoriesSource[indexPath.row]
                 case .search:
-                category = categoriesSearch[indexPath.row]
+                category = source.categoriesSearch[indexPath.row]
             }
             
             dataService.categoryReview = category
