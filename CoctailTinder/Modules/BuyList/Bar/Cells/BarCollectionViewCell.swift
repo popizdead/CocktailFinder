@@ -25,7 +25,7 @@ class BarCollectionViewCell: UICollectionViewCell {
         dataService.userBuyList = dataService.userBuyList.filter({$0.name != self.nameLbl.text})
         dataService.deleteBuyListItem(name: self.nameLbl.text!)
         
-        delegate?.update()
+        delegate?.UIUpdate()
     }
     
 }

@@ -12,12 +12,12 @@ extension SearchViewController {
     func search(_ text: String) {
         resultSearchArray.removeAll()
         network.stopAllRequests {
-            self.network.search(text) { cocktail in
+            self.network.search(text) { [weak self] cocktail in
                 
-                self.resultSearchArray.append(cocktail)
+                self?.resultSearchArray.append(cocktail)
                 
                 cocktail.getImages {
-                    self.CVUpdate()
+                    self?.CVUpdate()
                 }
             }
         }

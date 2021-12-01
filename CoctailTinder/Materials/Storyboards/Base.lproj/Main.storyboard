@@ -1756,13 +1756,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy list" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="6IE-zY-hH4">
-                                        <rect key="frame" x="25" y="52" width="306" height="35"/>
+                                        <rect key="frame" x="25" y="52.666666666666657" width="306" height="34.333333333333343"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Drh-GY-0va">
-                                        <rect key="frame" x="339" y="47" width="46" height="40"/>
+                                        <rect key="frame" x="339" y="50" width="46" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNG-VB-KJK">
                                                 <rect key="frame" x="8" y="5" width="30" height="30"/>
@@ -1787,7 +1787,7 @@
                                 <constraints>
                                     <constraint firstItem="Drh-GY-0va" firstAttribute="leading" secondItem="6IE-zY-hH4" secondAttribute="trailing" constant="8" symbolic="YES" id="Mcx-sV-p27"/>
                                     <constraint firstItem="6IE-zY-hH4" firstAttribute="leading" secondItem="GuC-qa-Y70" secondAttribute="leading" constant="25" id="X5o-MS-I72"/>
-                                    <constraint firstAttribute="bottom" secondItem="Drh-GY-0va" secondAttribute="bottom" constant="13" id="XoQ-Qx-XhN"/>
+                                    <constraint firstItem="Drh-GY-0va" firstAttribute="centerY" secondItem="6IE-zY-hH4" secondAttribute="centerY" id="cMQ-dO-k0G"/>
                                     <constraint firstAttribute="bottom" secondItem="6IE-zY-hH4" secondAttribute="bottom" constant="13" id="euj-II-oZ3"/>
                                     <constraint firstAttribute="trailing" secondItem="Drh-GY-0va" secondAttribute="trailing" constant="29" id="pp8-tw-hrF"/>
                                 </constraints>

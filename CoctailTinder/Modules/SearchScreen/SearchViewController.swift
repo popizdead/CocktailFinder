@@ -93,8 +93,8 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
             return
         }
         
-        network.stopAllRequests {
-            self.search(text)
+        network.stopAllRequests { [weak self] in
+            self?.search(text)
         }
     }
     
