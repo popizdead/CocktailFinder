@@ -10,25 +10,11 @@ import Foundation
 class DataService {
     static let shared = DataService()
     
-    //var alertIngredient = Ingredient(name: "")
-    //var reviewCocktail: Cocktail?
-    
     //User source
     var userBuyList : [Ingredient] = []
     var favArray : [Cocktail] = []
     
-//    //Categories
-//    var categoryReview : CategoryType = .cocoa
-//    var ingrCategoryReview : Ingredient = Ingredient(name: "")
-    
     let network = NetworkService.shared
-    
-    //MARK: -COCKTAIL
-    func isFavoriteCocktail(_ cocktail: Cocktail) -> Bool {
-        return self.favArray.contains(where: {
-            $0.id == cocktail.id
-        })
-    }
     
     //MARK: -INGREDIENT
     public enum IngredientAction {

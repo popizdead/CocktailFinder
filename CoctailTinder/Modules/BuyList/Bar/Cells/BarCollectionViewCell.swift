@@ -14,6 +14,7 @@ class BarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     
     private let dataService = DataService.shared
+    weak var delegate: BarProtocol?
     
     func setupUI() {
         self.makeShadowAndRadius(shadow: true, opacity: 0.5, radius: 10)
@@ -24,7 +25,7 @@ class BarCollectionViewCell: UICollectionViewCell {
         dataService.userBuyList = dataService.userBuyList.filter({$0.name != self.nameLbl.text})
         dataService.deleteBuyListItem(name: self.nameLbl.text!)
         
-        NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
+        delegate?.update()
     }
     
 }

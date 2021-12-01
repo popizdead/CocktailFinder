@@ -65,7 +65,7 @@ extension ItemSearchCollectionViewCell: UICollectionViewDelegate, UICollectionVi
             return cell
         }
         
-        //Bag catcher
+        //Bug catcher
         if indexPath.row <= cellCocktail.ingrArray.count - 1 {
             let ingr = cellCocktail.ingrArray[indexPath.row]
             if ingr.ingrImage != nil {

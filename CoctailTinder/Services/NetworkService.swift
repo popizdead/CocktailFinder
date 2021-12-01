@@ -150,7 +150,6 @@ class NetworkService {
                             action(ingredient)
                         }
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
                 }
             }
         }

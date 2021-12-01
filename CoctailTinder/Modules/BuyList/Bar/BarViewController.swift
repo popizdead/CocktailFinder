@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class BarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, BarProtocol {
 
     //MARK: -OUTLETS
     @IBOutlet weak var navView: UIView!
@@ -22,21 +22,20 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         delegate()
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        ingrCV.reloadData()
+        UIUpdate()
     }
     
-    @objc func update() {
+    func UIUpdate() {
         ingrCV.reloadData()
     }
     
     private func delegate() {
-        NotificationCenter.default.addObserver(self, selector: #selector(update), name: NSNotification.Name("updateBar"), object: nil)
-        
         ingrCV.dataSource = self
         ingrCV.delegate = self
     }
@@ -67,6 +66,7 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         cell.ingrImage.image = ingr.ingrImage
         cell.nameLbl.text = ingr.name
         
+        cell.delegate = self
         return cell
     }
 

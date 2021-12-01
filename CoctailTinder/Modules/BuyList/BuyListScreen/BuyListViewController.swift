@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BuyListViewController: UIViewController {
+class BuyListViewController: UIViewController, BarProtocol {
     
     //MARK: -OUTLETS
     @IBOutlet weak var ingredientsCV: UICollectionView!
@@ -21,6 +21,8 @@ class BuyListViewController: UIViewController {
     
     let network = NetworkService.shared
     var appearingState : VCState = .all
+    
+    weak var delegate : BarProtocol?
     
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
@@ -41,7 +43,7 @@ class BuyListViewController: UIViewController {
         ingredientsCV.delegate = self
         ingredientsCV.dataSource = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(UIUpdate), name: NSNotification.Name("updateAuthCV"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIUpdate), name: NSNotification.Name("updateListCV"), object: nil)
     }
     
     @objc func UIUpdate() {
@@ -124,6 +126,10 @@ extension BuyListViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         cell.ingredient = ingredient
+        
+        cell.barDelegate = self.delegate
+        cell.listDelegate = self
+        
         cell.action()
     }
 }

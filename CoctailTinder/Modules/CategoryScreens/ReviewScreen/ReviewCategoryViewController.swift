@@ -19,8 +19,6 @@ class ReviewCategoryViewController: UIViewController {
     @IBOutlet weak var itemsCV: UICollectionView!
 
     let network = NetworkService.shared
-    //let dataService = DataService.shared
-    
     var requestFrom : UIStateType = .ingr
     
     var requestedIngredient : Ingredient?

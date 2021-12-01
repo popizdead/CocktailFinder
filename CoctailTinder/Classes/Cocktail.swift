@@ -99,7 +99,9 @@ class Cocktail {
     }
     
     func isFavorite() -> Bool {
-        return dataService.isFavoriteCocktail(self)
+        return dataService.favArray.contains(where: {
+            $0.id == self.id
+        })
     }
 }
 

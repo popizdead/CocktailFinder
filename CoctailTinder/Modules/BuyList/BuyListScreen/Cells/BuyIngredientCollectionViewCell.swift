@@ -13,8 +13,10 @@ class BuyIngredientCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     
     var ingredient: Ingredient?
-    
     private let dataService = DataService.shared
+    
+    weak var barDelegate: BarProtocol?
+    weak var listDelegate: BarProtocol?
     
     func configure() {
         guard let ingredient = ingredient else {
@@ -35,7 +37,7 @@ class BuyIngredientCollectionViewCell: UICollectionViewCell {
         } else {
             if ingr.isDownloading == false {
                 ingr.getImage {
-                    NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name("updateListCV"), object: nil)
                 }
             }
             
@@ -71,8 +73,9 @@ class BuyIngredientCollectionViewCell: UICollectionViewCell {
             dataService.buyListAction(ingredient, .add)
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name("updateBar"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name("updateAuthCV"), object: nil)
+        
+        barDelegate?.UIUpdate()
+        listDelegate?.UIUpdate()
     }
     
     private func isFavorite() -> Bool {

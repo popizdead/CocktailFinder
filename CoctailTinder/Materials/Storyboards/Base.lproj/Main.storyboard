@@ -1727,7 +1727,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="vvp-R4-Vr5" secondAttribute="bottom" constant="7" id="5t8-TN-3tb"/>
                                                 <constraint firstItem="vAl-gq-3lH" firstAttribute="leading" secondItem="vvp-R4-Vr5" secondAttribute="trailing" constant="8" id="9rt-Ze-ft1"/>
