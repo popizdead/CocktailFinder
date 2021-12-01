@@ -19,9 +19,12 @@ class ReviewCategoryViewController: UIViewController {
     @IBOutlet weak var itemsCV: UICollectionView!
 
     let network = NetworkService.shared
-    let dataService = DataService.shared
+    //let dataService = DataService.shared
     
     var requestFrom : UIStateType = .ingr
+    
+    var requestedIngredient : Ingredient?
+    var requestedCategory : CategoryType?
     
     var categoryCocktailSource : [Cocktail] = []
     weak var selectedCocktail : Cocktail?
@@ -58,9 +61,11 @@ class ReviewCategoryViewController: UIViewController {
     @objc func update() {
         switch requestFrom {
         case .ingr:
-            self.viewNameLbl.text = dataService.ingrCategoryReview.name
+            guard let title = self.requestedIngredient?.name else { return }
+            self.viewNameLbl.text = title
         case .categories:
-            self.viewNameLbl.text = dataService.categoryReview.getTitle()
+            guard let title = self.requestedCategory?.getTitle() else { return }
+            self.viewNameLbl.text = title
         }
         
         UIRefreshButton()
@@ -68,7 +73,7 @@ class ReviewCategoryViewController: UIViewController {
     }
     
     private func UIRefreshButton() {
-        let showingCategory = dataService.categoryReview
+        guard let showingCategory = requestedCategory else { return }
         let isHidden = showingCategory == .new || showingCategory == .pop || showingCategory == .random
         
         refreshButton.isHidden = isHidden

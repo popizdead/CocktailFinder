@@ -33,13 +33,13 @@ extension ReviewCategoryViewController {
         
         switch requestFrom {
         case .ingr:
-            let ingr = dataService.ingrCategoryReview
+            guard let ingr = requestedIngredient else { return }
             
-            network.byIngredientSearch(ingr.name) { cocktail in
-                self.apply(cocktail)
+            network.byIngredientSearch(ingr.name) { [weak self] cocktail in
+                self?.apply(cocktail)
             }
         case .categories:
-            let category = dataService.categoryReview
+            guard let category = requestedCategory else { return }
             
             network.categoryRequest(category.getUrl(), category.getRequestType()) { [weak self] cocktail in
                 self?.apply(cocktail)

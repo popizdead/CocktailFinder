@@ -53,8 +53,14 @@ extension CategoryViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toItemsList" {
             let vc = segue.destination as! ReviewCategoryViewController
+            switch UIState {
+            case .ingr:
+                vc.requestedIngredient = ingredientSelected
+            case .categories:
+                vc.requestedCategory = categorySelected
+            }
             
-            vc.requestFrom = self.UIState
+            vc.requestFrom = UIState
         }
     }
     

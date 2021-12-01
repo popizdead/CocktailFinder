@@ -29,6 +29,9 @@ class CategoryViewController: UIViewController {
     var UIState = UIStateType.categories
     var sourceState = SourceStateType.all
     
+    var categorySelected : CategoryType?
+    var ingredientSelected : Ingredient?
+    
     //MARK: -VIEW LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,7 +157,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
-    //UI CELL CONFIGURE
     private func ingredientCell(_ item: CategoryIngredient, indexPath: IndexPath) -> IngredientCollectionViewCell {
         let cell = itemsCV.dequeueReusableCell(withReuseIdentifier: "ingredientCell", for: indexPath) as! IngredientCollectionViewCell
         cell.ingredient = item
@@ -174,30 +176,22 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch UIState {
         case .ingr:
-            var ingr = CategoryIngredient(name: "", count: 0)
-            
             switch sourceState {
                 case .all:
-                ingr = source.ingredientSource[indexPath.row]
+                    let name = source.ingredientSource[indexPath.row].name
+                    ingredientSelected = Ingredient(name: name)
                 case .search:
-                ingr = source.ingredientSearch[indexPath.row]
+                    let name = source.ingredientSearch[indexPath.row].name
+                    ingredientSelected = Ingredient(name: name)
             }
-            
-            dataService.categoryReview = .nonAlc
-            dataService.ingrCategoryReview = Ingredient(name: ingr.name)
         case .categories:
-            var category = CategoryType.cocoa
-            
             switch sourceState {
                 case .all:
-                category = source.categoriesSource[indexPath.row]
+                categorySelected = source.categoriesSource[indexPath.row]
                 case .search:
-                category = source.categoriesSearch[indexPath.row]
+                categorySelected = source.categoriesSearch[indexPath.row]
             }
-            
-            dataService.categoryReview = category
         }
-        
         
         self.performSegue(withIdentifier: "toItemsList", sender: self)
     }

@@ -17,9 +17,9 @@ class DataService {
     var userBuyList : [Ingredient] = []
     var favArray : [Cocktail] = []
     
-    //Categories
-    var categoryReview : CategoryType = .cocoa
-    var ingrCategoryReview : Ingredient = Ingredient(name: "")
+//    //Categories
+//    var categoryReview : CategoryType = .cocoa
+//    var ingrCategoryReview : Ingredient = Ingredient(name: "")
     
     let network = NetworkService.shared
     
